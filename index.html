@@ -9,23 +9,25 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #030508;
-    --surface: rgba(10, 18, 30, 0.75);
-    --surface-2: rgba(20, 35, 60, 0.85);
-    --ink: #e6f1ff;
-    --muted: #8aa3c9;
-    --accent: #00f0ff;
-    --accent-2: #7b2fff;
-    --accent-3: #00ffc8;
-    --glass: rgba(10, 18, 30, 0.65);
-    --glass-border: rgba(0, 240, 255, 0.18);
-    --shadow: 0 10px 40px rgba(0,0,0,0.55);
-    --glow: 0 0 30px rgba(0,240,255,0.35);
+    --bg: #f4f4f0;
+    --surface: #ffffff;
+    --ink: #000000;
+    --muted: #555555;
+    --accent: #ff2d55;
+    --accent-2: #00f0ff;
+    --accent-3: #ffcc00;
+    --border: 3px solid #000000;
+    --shadow: 6px 6px 0px #000000;
+    --shadow-hover: 2px 2px 0px #000000;
   }
   html, body { height: 100%; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #020408;
+    font-family: "Courier New", Courier, monospace;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
     color: var(--ink);
   }
   body::before {
@@ -34,11 +36,11 @@
     inset: 0;
     z-index: -2;
     pointer-events: none;
-    background-color: #020408;
+    background-color: var(--bg);
     background-image:
-      linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
-    background-size: 24px 24px;
+      linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
   body::after {
     content: "";
@@ -46,8 +48,8 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.02) 2px, rgba(0,240,255,0.02) 4px);
-    animation: scanline 4s linear infinite;
+    background: transparent;
+    animation: none;
   }
   @keyframes scanline { from { transform: translateY(0); } to { transform: translateY(6px); } }
   @keyframes pulse { 0%,100%{opacity:0.35;} 50%{opacity:0.75;} }
@@ -55,10 +57,11 @@
   @keyframes float2 { from { transform: translate(0,0); } to { transform: translate(-50px,-30px); } }
 
   header {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: white;
+    background: var(--accent);
+    color: #ffffff;
     padding: 16px 20px;
     box-shadow: var(--shadow);
+    border-bottom: var(--border);
     position: relative;
     text-align: center;
   }
@@ -69,9 +72,10 @@
   }
   header .logo svg {
     width: 36px; height: 36px;
+    filter: drop-shadow(3px 3px 0 #000);
   }
-  header h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.3px; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
-  header p { font-size: 15px; opacity: 0.9; margin-top: 2px; font-weight: 500; }
+  header h1 { font-size: 24px; font-weight: 900; letter-spacing: 0.3px; text-transform: uppercase; }
+  header p { font-size: 15px; margin-top: 2px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
 
   main { padding: 20px; max-width: 860px; margin: 0 auto; }
 
@@ -87,67 +91,66 @@
     width: 120px; height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent);
-    box-shadow: var(--glow), 0 0 0 6px rgba(0,240,255,0.08);
+    border: var(--border);
+    box-shadow: var(--shadow);
     background: var(--surface);
-    animation: float1 10s ease-in-out infinite alternate, pulse 3s ease-in-out infinite;
   }
   .profile-name {
     font-size: 24px;
     font-weight: 900;
     letter-spacing: 0.25px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 10px;
+    box-shadow: var(--shadow);
+    display: inline-block;
   }
   .profile-sub {
     font-size: 13px;
     color: var(--muted);
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    background: var(--surface);
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    padding: 4px 10px;
+    display: inline-block;
   }
 
   .profile-section { margin-top: 18px; }
   .profile-section h2 {
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 900;
     margin-bottom: 14px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     color: var(--accent-3);
-    text-shadow: 0 0 10px rgba(0,255,200,0.35);
+    background: #000;
+    display: inline-block;
+    padding: 6px 10px;
+    box-shadow: var(--shadow);
   }
 
   .exp-card {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 18px;
+    background: var(--surface);
+    border: var(--border);
+    border-radius: 0px;
     padding: 16px;
     margin-bottom: 12px;
     box-shadow: var(--shadow);
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
     cursor: pointer;
     position: relative;
     z-index: 1;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-  .exp-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 18px;
-    background: linear-gradient(180deg, rgba(0,240,255,0.06), transparent 40%);
-    pointer-events: none;
   }
   .exp-card:hover, .exp-card:active, .exp-card.active {
-    transform: scale(1.08);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 3px rgba(0,240,255,0.45);
-    border-color: rgba(0,240,255,0.55);
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-hover);
     z-index: 10;
+    background: #fffbe6;
   }
   .exp-card.active .title { font-size: 20px; }
   .exp-card.active .company { font-size: 18px; }
@@ -155,34 +158,34 @@
   .exp-card.active .duty { font-size: 17px; }
   .exp-card .title {
     font-size: 15px;
-    font-weight: 800;
-    color: var(--accent-3);
+    font-weight: 900;
+    color: var(--accent);
     letter-spacing: 0.3px;
+    text-transform: uppercase;
   }
-  .exp-card .company { font-size: 14px; font-weight: 800; color: var(--ink); margin-top: 4px; }
-  .exp-card .period { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.4px; }
-  .exp-card .duty { font-size: 13px; color: #cbd5e1; margin-top: 8px; line-height: 1.6; }
+  .exp-card .company { font-size: 14px; font-weight: 900; color: var(--ink); margin-top: 4px; text-transform: uppercase; }
+  .exp-card .period { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.4px; font-weight: 700; }
+  .exp-card .duty { font-size: 13px; color: var(--ink); margin-top: 8px; line-height: 1.6; }
 
-  .empty { text-align: center; color: var(--muted); padding: 50px 20px; font-size: 15px; font-weight: 500; }
-  #yt-player { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; border: 0; pointer-events: none; }
+  .empty { text-align: center; color: var(--muted); padding: 50px 20px; font-size: 15px; font-weight: 500; background: var(--surface); border: var(--border); box-shadow: var(--shadow); }
+  #yt-player { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; border: 0; pointer-events: none; opacity: 0.25; mix-blend-mode: multiply; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background-color:#020408;
+  background-color:var(--bg);
   background-image:
-    linear-gradient(rgba(0,240,255,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,240,255,0.07) 1px, transparent 1px);
-  background-size:24px 24px;
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size:20px 20px;
   animation:gridPulse 3s ease-in-out infinite;
 "></div>
 <div aria-hidden="true" style="position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.05) 2px,rgba(0,240,255,0.05) 4px);
-  animation:scanline 2s linear infinite;
+  background:transparent;
 "></div>
 <div aria-hidden="true" id="matrix-fallback" style="position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;opacity:0.55;"></div>
 <div style="position:fixed;top:12px;right:12px;z-index:20;">
-  <button id="sound-toggle" type="button" style="background:rgba(0,0,0,0.55);border:1px solid rgba(0,240,255,0.35);color:#00ffc8;border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🔇 Sound</button>
+  <button id="sound-toggle" type="button" style="background:#ffffff;border:3px solid #000;color:#000;border-radius:0px;padding:8px 14px;font-weight:900;font-size:13px;cursor:pointer;box-shadow:4px 4px 0 #000;font-family:'Courier New',Courier,monospace;">🔇 SOUND</button>
 </div>
 <div id="yt-wrap" style="position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s ease;">
   <div id="yt-player"></div>
@@ -335,14 +338,14 @@
         if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
           ytPlayer.playVideo();
         }
-        btn.textContent = '🔊 Sound';
+        btn.textContent = '🔊 SOUND';
         playing = true;
       } else {
         wrap.style.opacity = '0';
         if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
           ytPlayer.pauseVideo();
         }
-        btn.textContent = '🔇 Sound';
+        btn.textContent = '🔇 SOUND';
         playing = false;
       }
     });
