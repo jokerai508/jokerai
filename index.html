@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Joker AI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #334155;
+    --ink: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+    --accent-3: #22d3ee;
+    --glass: rgba(30,41,59,0.7);
+    --glass-border: rgba(148,163,184,0.15);
+    --shadow: 0 4px 24px rgba(0,0,0,0.35);
+    --glow: 0 0 30px rgba(56,189,248,0.25);
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: -1;
+    pointer-events: none;
+  }
+  body::before {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--accent), transparent);
+    top: -100px; left: -100px;
+    animation: float1 12s ease-in-out infinite alternate;
+  }
+  body::after {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, var(--accent-2), transparent);
+    bottom: -80px; right: -80px;
+    animation: float2 14s ease-in-out infinite alternate;
+  }
+  @keyframes float1 { from { transform: translate(0,0); } to { transform: translate(60px,40px); } }
+  @keyframes float2 { from { transform: translate(0,0); } to { transform: translate(-50px,-30px); } }
+
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    text-align: center;
+  }
+  header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  header .logo svg {
+    width: 36px; height: 36px;
+  }
+  header h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.3px; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  header p { font-size: 15px; opacity: 0.9; margin-top: 2px; font-weight: 500; }
+
+  main { padding: 16px; max-width: 800px; margin: 0 auto; }
+
+  .profile-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    margin-top: 10px;
+  }
+  .profile-avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-3);
+    box-shadow: var(--glow);
+    background: var(--surface);
+  }
+  .profile-name { font-size: 22px; font-weight: 800; letter-spacing: 0.2px; }
+  .profile-sub { font-size: 14px; color: var(--muted); font-weight: 600; text-align: center; }
+
+  .profile-section { margin-top: 10px; }
+  .profile-section h2 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .exp-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .exp-card .title { font-size: 15px; font-weight: 700; color: var(--accent-3); }
+  .exp-card .company { font-size: 14px; font-weight: 700; color: var(--ink); margin-top: 4px; }
+  .exp-card .period { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .exp-card .duty { font-size: 13px; color: #cbd5e1; margin-top: 8px; line-height: 1.6; }
+
+  .empty { text-align: center; color: var(--muted); padding: 50px 20px; font-size: 15px; font-weight: 500; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" width="36" height="36" aria-label="Joker AI logo" style="flex-shrink:0;">
+      <circle cx="32" cy="32" r="30" fill="#ff2d55" stroke="#fff" stroke-width="2"/>
+      <text x="32" y="38" font-size="30" font-weight="900" fill="#ffffff" text-anchor="middle" font-family="sans-serif">😈</text>
+    </svg>
+    <h1>Joker AI</h1>
+  </div>
+  <p>Profile</p>
+</header>
+
+<main>
+  <div class="profile-hero">
+    <img class="profile-avatar" src="https://avatars.githubusercontent.com/u/348349164?v=4" alt="Profile">
+    <div class="profile-name">Lim Beng Thai</div>
+    <div class="profile-sub">Singapore · +65 8186 5220 · btlim8@gmail.com</div>
+  </div>
+
+  <div class="profile-section">
+    <h2>Work Experience</h2>
+
+    <div class="exp-card">
+      <div class="title">Sales for APAC</div>
+      <div class="company">AP Sensing, Singapore</div>
+      <div class="period">06/26 – Present</div>
+      <div class="duty">Lead end-to-end sales and business development for Oil & Gas, Water, and Chemical/CO2 transmission across APAC, including Australia and New Zealand, while excluding Korea and China.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Account Manager (Government Sector)</div>
+      <div class="company">CTC Global, Singapore</div>
+      <div class="period">07/25 – 04/26</div>
+      <div class="duty">Drove strategic growth and key stakeholder relationships across major public and commercial accounts, including MHA SPF, IMDA, CAAS, ST Engineering, DSTA, CSA, and MPA. Led high-impact IT initiatives, including AI infrastructure and platform migrations, while managing vendor partnerships with HPE, Dell, Cisco, and CrowdStrike.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Advisory and Sales Manager</div>
+      <div class="company">TGK Advisory & Trading, Singapore</div>
+      <div class="period">08/23 – 06/25</div>
+      <div class="duty">Oversaw a Hong Kong holding entity and its wholly owned Suzhou subsidiary, managing a 20,000 sq. m., three-building commercial portfolio generating approximately 5 million RMB annually. Led full-lifecycle tenant leasing, contract negotiations, and rent collection. Spearheaded a 2.2 million RMB, 902 kW rooftop solar installation delivering a 30% annual ROI, and expanded regional operations by securing a strategic distributor agreement with CoreAVI for safety-critical solution sales across Taiwan and China.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Sales Manager</div>
+      <div class="company">Elma Asia Pacific, Singapore</div>
+      <div class="period">06/19 – 08/23</div>
+      <div class="duty">Drove APAC sales for hardware and software solutions, including partner offerings like CoreAVI, across defence, aerospace, radar, avionics, and test & measurement markets. Guided client engineering teams on MIL-standards, system requirements, budget allocation, and forecasting, accelerating client planning timelines by 30–40% and securing long-term partnerships.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Application Sales Manager</div>
+      <div class="company">Comsoft Asia Pacific / Biam Technology, Singapore</div>
+      <div class="period">09/14 – 05/19</div>
+      <div class="duty">Cultivated extensive regional expertise and strong defense industry relationships across major global and APAC markets, including London, Tokyo, Seoul, Singapore, and Bangkok, through active participation in international sales conferences, exhibitions, and direct customer engagements.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Product Manager</div>
+      <div class="company">Contec, Singapore</div>
+      <div class="period">05/13 – 08/14</div>
+      <div class="duty">Analyzed key customer and market trends to drive new product launches, managed product lifecycles including end-of-life replacements and specification comparisons, and executed strategic product go-to-market activities.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Business Support System, Business Analyst</div>
+      <div class="company">HuaWei Technologies, Malaysia</div>
+      <div class="period">06/12 – 09/12</div>
+      <div class="duty">Evaluated network architecture designs, including network layouts, IP assignments, backup solutions, and efficiency metrics, while translating customer business support needs into comprehensive functional requirements and scopes for the R&D department.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Senior Software Engineer</div>
+      <div class="company">Continental Automotive, Singapore</div>
+      <div class="period">10/07 – 04/12</div>
+      <div class="duty">Led cross-functional teams of up to six engineers across four full Software Development Life Cycles for tier-1 European and Japanese automotive OEMs. Spearheaded low-cost platform adoption and designed a prototype touch-pad software solution that secured a >€250M European OEM award.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Electrical Engineer</div>
+      <div class="company">Toshiba TEC, Singapore</div>
+      <div class="period">06/06 – 10/07</div>
+      <div class="duty">Supported Project Managers with technical assistance through new product electrical board/IC chip evaluations, test plan creation, test cycle execution, and detailed test report preparation using tools like SAP, ECAD, oscilloscopes, logic analyzers, and EMC testing environments.</div>
+    </div>
+
+  </div>
+</main>
+</body>
+</html>
