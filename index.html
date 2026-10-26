@@ -213,12 +213,14 @@
 <script>
   document.querySelectorAll('.exp-card').forEach(function(card) {
     card.addEventListener('touchstart', function() {
+      document.querySelectorAll('.exp-card').forEach(function(c) { c.classList.remove('active'); });
       card.classList.add('active');
     });
     card.addEventListener('touchend', function() {
       setTimeout(function() { card.classList.remove('active'); }, 8000);
     });
     card.addEventListener('mousedown', function() {
+      document.querySelectorAll('.exp-card').forEach(function(c) { c.classList.remove('active'); });
       card.classList.add('active');
     });
     card.addEventListener('mouseup', function() {
