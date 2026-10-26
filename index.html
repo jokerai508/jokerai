@@ -25,32 +25,32 @@
   html, body { height: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
+    background: #020408;
     color: var(--ink);
   }
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(0,240,255,0.08), transparent 35%),
-      radial-gradient(circle at 80% 70%, rgba(123,47,255,0.08), transparent 35%),
-      linear-gradient(rgba(0,240,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,240,255,0.04) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 24px 24px, 24px 24px;
     z-index: -2;
     pointer-events: none;
+    background-color: #020408;
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
   body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.012) 2px, rgba(0,240,255,0.012) 4px);
     z-index: -1;
     pointer-events: none;
-    animation: scanline 6s linear infinite;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.02) 2px, rgba(0,240,255,0.02) 4px);
+    animation: scanline 4s linear infinite;
   }
   @keyframes scanline { from { transform: translateY(0); } to { transform: translateY(6px); } }
+  @keyframes pulse { 0%,100%{opacity:0.35;} 50%{opacity:0.75;} }
   @keyframes float1 { from { transform: translate(0,0); } to { transform: translate(60px,40px); } }
   @keyframes float2 { from { transform: translate(0,0); } to { transform: translate(-50px,-30px); } }
 
@@ -91,7 +91,7 @@
     border: 2px solid var(--accent);
     box-shadow: var(--glow), 0 0 0 6px rgba(0,240,255,0.08);
     background: var(--surface);
-    animation: float1 10s ease-in-out infinite alternate;
+    animation: float1 10s ease-in-out infinite alternate, pulse 3s ease-in-out infinite;
     flex-shrink: 0;
   }
   .us-stock-widget {
