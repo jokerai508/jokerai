@@ -224,9 +224,9 @@
 <main>
   <div class="profile-hero">
     <div class="us-stock-widget">
-      <div class="label">US Stocks</div>
+      <div class="label">Today</div>
       <div class="pl">-$5,789.45</div>
-      <div class="sub">Market: $62,954.09</div>
+      <div class="sub">P/L</div>
     </div>
     <img class="profile-avatar" src="avatar.jpg" alt="Joker">
     <div class="profile-name">bt</div>
@@ -318,6 +318,19 @@
       setTimeout(function() { card.classList.remove('active'); }, 8000);
     });
   });
+
+  fetch('us_today_pl.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var pl = parseFloat(data.today_pl);
+      var el = document.querySelector('.us-stock-widget .pl');
+      if (el && !isNaN(pl)) {
+        var sign = pl >= 0 ? '+' : '';
+        el.textContent = sign + pl.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        el.className = 'pl' + (pl >= 0 ? ' positive' : '');
+      }
+    })
+    .catch(function(err) { console.log('Today P/L unavailable'); });
 </script>
 </body>
 </html>
