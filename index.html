@@ -219,7 +219,24 @@
 </style>
 </head>
 <body>
-<canvas id="matrix" style="position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:0.45;"></canvas>
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-color:#020408;
+  background-image:
+    linear-gradient(rgba(0,240,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,0.07) 1px, transparent 1px);
+  background-size:24px 24px;
+  animation:gridPulse 3s ease-in-out infinite;
+"></div>
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.05) 2px,rgba(0,240,255,0.05) 4px);
+  animation:scanline 2s linear infinite;
+"></div>
+<div aria-hidden="true" id="matrix-fallback" style="position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;opacity:0.55;"></div>
+<style>
+  @keyframes gridPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+  .matrix-col { position:absolute; top:-100%; font-family:monospace; font-size:16px; line-height:18px; color:#00ff41; text-shadow:0 0 8px #00ff41; white-space:pre; animation:matrixFall linear infinite; }
+  @keyframes matrixFall { 0%{transform:translateY(-100%);} 100%{transform:translateY(120vh);} }
+</style>
 
 
 <main>
@@ -334,37 +351,24 @@
     .catch(function(err) { console.log('Today P/L unavailable'); });
 
   (function(){
-    var canvas = document.getElementById('matrix');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var w = canvas.width = window.innerWidth;
-    var h = canvas.height = window.innerHeight;
-    var cols = Math.floor(w / 18);
-    var drops = Array(cols).fill(0);
+    var container = document.getElementById('matrix-fallback');
+    if (!container) return;
+    var cols = Math.floor(window.innerWidth / 22);
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>/{}[]';
-    function draw(){
-      ctx.fillStyle = 'rgba(2,4,8,0.10)';
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = '#00ff41';
-      ctx.shadowColor = '#00ff41';
-      ctx.shadowBlur = 6;
-      ctx.font = '16px monospace';
-      for (var i = 0; i < cols; i++){
-        var ch = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(ch, i * 18, drops[i] * 18);
-        if (drops[i] * 18 > h && Math.random() > 0.975){
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < cols; i++) {
+      var el = document.createElement('div');
+      el.className = 'matrix-col';
+      el.style.left = (i * 22) + 'px';
+      el.style.animationDuration = (2.5 + Math.random() * 4) + 's';
+      el.style.animationDelay = (Math.random() * 6) + 's';
+      var len = 12 + Math.floor(Math.random() * 22);
+      var txt = '';
+      for (var j = 0; j < len; j++) txt += chars[Math.floor(Math.random() * chars.length)] + '\n';
+      el.textContent = txt;
+      frag.appendChild(el);
     }
-    setInterval(draw, 45);
-    window.addEventListener('resize', function(){
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      cols = Math.floor(w / 18);
-      drops = Array(cols).fill(0);
-    });
+    container.appendChild(frag);
   })();
 </script>
 </body>
