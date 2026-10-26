@@ -164,6 +164,7 @@
   .exp-card .duty { font-size: 13px; color: #cbd5e1; margin-top: 8px; line-height: 1.6; }
 
   .empty { text-align: center; color: var(--muted); padding: 50px 20px; font-size: 15px; font-weight: 500; }
+  #yt-player { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; border: 0; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -184,7 +185,7 @@
   <button id="sound-toggle" type="button" style="background:rgba(0,0,0,0.55);border:1px solid rgba(0,240,255,0.35);color:#00ffc8;border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🔇 Sound</button>
 </div>
 <div id="yt-wrap" style="position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s ease;">
-  <iframe id="yt-frame" src="https://www.youtube.com/embed/eF7XdTfyNJY?enablejsapi=1&controls=0&loop=1&playlist=eF7XdTfyNJY&autoplay=0&rel=0&modestbranding=1" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;border:0;pointer-events:none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <div id="yt-player"></div>
 </div>
 <style>
   @keyframes gridPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
@@ -268,6 +269,7 @@
 
   </div>
 </main>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
   document.querySelectorAll('.exp-card').forEach(function(card) {
     card.addEventListener('touchstart', function() {
@@ -310,18 +312,36 @@
   (function(){
     var btn = document.getElementById('sound-toggle');
     var wrap = document.getElementById('yt-wrap');
-    var frame = document.getElementById('yt-frame');
-    if (!btn || !wrap || !frame) return;
+    var playerEl = document.getElementById('yt-player');
+    if (!btn || !wrap || !playerEl) return;
     var playing = false;
+    var ytReady = false;
+    var ytPlayer = null;
+
+    window.onYouTubeIframeAPIReady = function() {
+      ytReady = true;
+      ytPlayer = new YT.Player('yt-player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'eF7XdTfyNJY',
+        playerVars: { 'controls': 0, 'loop': 1, 'playlist': 'eF7XdTfyNJY', 'rel': 0, 'modestbranding': 1 },
+        events: { 'onReady': function() { ytPlayer.setVolume(35); } }
+      });
+    };
+
     btn.addEventListener('click', function(){
       if (!playing) {
         wrap.style.opacity = '0.35';
-        frame.src = frame.src.replace('autoplay=0','autoplay=1');
+        if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+          ytPlayer.playVideo();
+        }
         btn.textContent = '🔊 Sound';
         playing = true;
       } else {
         wrap.style.opacity = '0';
-        frame.src = frame.src.replace('autoplay=1','autoplay=0');
+        if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+          ytPlayer.pauseVideo();
+        }
         btn.textContent = '🔇 Sound';
         playing = false;
       }
