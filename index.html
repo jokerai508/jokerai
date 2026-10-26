@@ -183,10 +183,9 @@
 <div style="position:fixed;top:12px;right:12px;z-index:20;">
   <button id="sound-toggle" type="button" style="background:rgba(0,0,0,0.55);border:1px solid rgba(0,240,255,0.35);color:#00ffc8;border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🔇 Sound</button>
 </div>
-<audio id="matrix-audio" loop preload="none" style="display:none;">
-  <source src="matrix-soundtrack.mp3?v=2" type="audio/mpeg">
-</source>
-</audio>
+<div id="yt-wrap" style="position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s ease;">
+  <iframe id="yt-frame" src="https://www.youtube.com/embed/Ni8rkUW9rrs?enablejsapi=1&controls=0&loop=1&playlist=Ni8rkUW9rrs&autoplay=0&rel=0&modestbranding=1" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;border:0;pointer-events:none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 <style>
   @keyframes gridPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
   .matrix-col { position:absolute; top:-100%; font-family:monospace; font-size:16px; line-height:18px; color:#00ff41; text-shadow:0 0 8px #00ff41; white-space:pre; animation:matrixFall linear infinite; }
@@ -310,15 +309,21 @@
 
   (function(){
     var btn = document.getElementById('sound-toggle');
-    var audio = document.getElementById('matrix-audio');
-    if (!btn || !audio) return;
+    var wrap = document.getElementById('yt-wrap');
+    var frame = document.getElementById('yt-frame');
+    if (!btn || !wrap || !frame) return;
+    var playing = false;
     btn.addEventListener('click', function(){
-      if (audio.paused) {
-        audio.play().catch(function(){});
+      if (!playing) {
+        wrap.style.opacity = '0.35';
+        frame.src = frame.src.replace('autoplay=0','autoplay=1');
         btn.textContent = '🔊 Sound';
+        playing = true;
       } else {
-        audio.pause();
+        wrap.style.opacity = '0';
+        frame.src = frame.src.replace('autoplay=1','autoplay=0');
         btn.textContent = '🔇 Sound';
+        playing = false;
       }
     });
   })();
