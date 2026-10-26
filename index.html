@@ -219,7 +219,7 @@
 </style>
 </head>
 <body>
-<canvas id="matrix" style="position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:0.18;"></canvas>
+<canvas id="matrix" style="position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:0.45;"></canvas>
 
 
 <main>
@@ -343,10 +343,12 @@
     var drops = Array(cols).fill(0);
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>/{}[]';
     function draw(){
-      ctx.fillStyle = 'rgba(2,4,8,0.12)';
+      ctx.fillStyle = 'rgba(2,4,8,0.10)';
       ctx.fillRect(0, 0, w, h);
       ctx.fillStyle = '#00ff41';
-      ctx.font = '14px monospace';
+      ctx.shadowColor = '#00ff41';
+      ctx.shadowBlur = 6;
+      ctx.font = '16px monospace';
       for (var i = 0; i < cols; i++){
         var ch = chars[Math.floor(Math.random() * chars.length)];
         ctx.fillText(ch, i * 18, drops[i] * 18);
@@ -356,7 +358,7 @@
         drops[i]++;
       }
     }
-    setInterval(draw, 55);
+    setInterval(draw, 45);
     window.addEventListener('resize', function(){
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
