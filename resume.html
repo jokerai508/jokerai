@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Joker AI</title>
+<style>
+  html { background: #000; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #030508;
+    --surface: rgba(10, 18, 30, 0.75);
+    --surface-2: rgba(20, 35, 60, 0.85);
+    --ink: #e6f1ff;
+    --muted: #8aa3c9;
+    --accent: #00f0ff;
+    --accent-2: #7b2fff;
+    --accent-3: #00ffc8;
+    --glass: rgba(10, 18, 30, 0.65);
+    --glass-border: rgba(0, 240, 255, 0.18);
+    --shadow: 0 10px 40px rgba(0,0,0,0.55);
+    --glow: 0 0 30px rgba(0,240,255,0.35);
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #020408;
+    color: var(--ink);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-color: #020408;
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.02) 2px, rgba(0,240,255,0.02) 4px);
+    animation: scanline 4s linear infinite;
+  }
+  @keyframes scanline { from { transform: translateY(0); } to { transform: translateY(6px); } }
+  @keyframes pulse { 0%,100%{opacity:0.35;} 50%{opacity:0.75;} }
+  @keyframes float1 { from { transform: translate(0,0); } to { transform: translate(60px,40px); } }
+  @keyframes float2 { from { transform: translate(0,0); } to { transform: translate(-50px,-30px); } }
+
+  header {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    text-align: center;
+  }
+  header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  header .logo svg {
+    width: 36px; height: 36px;
+  }
+  header h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.3px; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  header p { font-size: 15px; opacity: 0.9; margin-top: 2px; font-weight: 500; }
+
+  main { padding: 20px; max-width: 860px; margin: 0 auto; }
+
+  .profile-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    margin-top: 14px;
+  }
+  .profile-avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: var(--glow), 0 0 0 6px rgba(0,240,255,0.08);
+    background: var(--surface);
+    animation: float1 10s ease-in-out infinite alternate, pulse 3s ease-in-out infinite;
+  }
+  .profile-name {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 0.25px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .profile-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .profile-section { margin-top: 18px; }
+  .profile-section h2 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--accent-3);
+    text-shadow: 0 0 10px rgba(0,255,200,0.35);
+  }
+
+  .exp-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .exp-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(0,240,255,0.06), transparent 40%);
+    pointer-events: none;
+  }
+  .exp-card:hover, .exp-card:active, .exp-card.active {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 3px rgba(0,240,255,0.45);
+    border-color: rgba(0,240,255,0.55);
+    z-index: 10;
+  }
+  .exp-card.active .title { font-size: 20px; }
+  .exp-card.active .company { font-size: 18px; }
+  .exp-card.active .period { font-size: 16px; }
+  .exp-card.active .duty { font-size: 17px; }
+  .exp-card .title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--accent-3);
+    letter-spacing: 0.3px;
+  }
+  .exp-card .company { font-size: 14px; font-weight: 800; color: var(--ink); margin-top: 4px; }
+  .exp-card .period { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.4px; }
+  .exp-card .duty { font-size: 13px; color: #cbd5e1; margin-top: 8px; line-height: 1.6; }
+
+  .empty { text-align: center; color: var(--muted); padding: 50px 20px; font-size: 15px; font-weight: 500; }
+  #yt-player { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; border: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<!-- Password gate overlay -->
+<div id="pw-overlay" style="position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+  <div style="text-align:center;padding:20px;">
+    <div style="color:#00aa22;font-family:'Courier New',monospace;font-size:24px;font-weight:900;text-shadow:0 0 10px #00aa22;margin-bottom:20px;">🔒 ACCESS REQUIRED</div>
+    <input id="pw-input" type="password" placeholder="Enter password" style="background:#111;border:2px solid #00aa22;color:#00aa22;font-family:'Courier New',monospace;font-size:16px;padding:10px 16px;border-radius:4px;text-align:center;outline:none;width:200px;" />
+    <br>
+    <button onclick="checkPw()" style="margin-top:12px;background:#00aa22;color:#000;border:none;padding:10px 24px;font-family:'Courier New',monospace;font-weight:900;font-size:14px;cursor:pointer;border-radius:4px;">UNLOCK</button>
+    <div id="pw-error" style="color:#ff4444;font-family:'Courier New',monospace;font-size:12px;margin-top:8px;display:none;">Incorrect password</div>
+  </div>
+</div>
+<script>
+  (function() {
+    var PW = '52205220';
+    var key = 'joker_auth';
+    if (sessionStorage.getItem(key) === '1') {
+      document.getElementById('pw-overlay').style.display = 'none';
+      return;
+    }
+    window.checkPw = function() {
+      var val = document.getElementById('pw-input').value;
+      if (val === PW) {
+        sessionStorage.setItem(key, '1');
+        document.getElementById('pw-overlay').style.display = 'none';
+      } else {
+        document.getElementById('pw-error').style.display = 'block';
+        document.getElementById('pw-input').value = '';
+      }
+    };
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPw();
+    });
+  })();
+</script>
+
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-color:#020408;
+  background-image:
+    linear-gradient(rgba(0,240,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,0.07) 1px, transparent 1px);
+  background-size:24px 24px;
+  animation:gridPulse 3s ease-in-out infinite;
+"></div>
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.05) 2px,rgba(0,240,255,0.05) 4px);
+  animation:scanline 2s linear infinite;
+"></div>
+<div aria-hidden="true" id="matrix-fallback" style="position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;opacity:0.55;"></div>
+<div style="position:fixed;top:12px;right:12px;z-index:20;">
+  <button id="sound-toggle" type="button" style="background:rgba(0,0,0,0.55);border:1px solid rgba(0,240,255,0.35);color:#00ffc8;border-radius:999px;padding:8px 14px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">🔇 Sound</button>
+</div>
+<div id="yt-wrap" style="position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s ease;">
+  <div id="yt-player"></div>
+</div>
+<style>
+  @keyframes gridPulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+  .matrix-col { position:absolute; top:-100%; font-family:monospace; font-size:16px; line-height:18px; color:#00aa22; text-shadow:0 0 8px #00aa22; white-space:pre; animation:matrixFall linear infinite; }
+  @keyframes matrixFall { 0%{transform:translateY(-100%);} 100%{transform:translateY(120vh);} }
+</style>
+
+
+<main>
+  <div class="profile-hero">
+    <img class="profile-avatar" src="avatar.jpg" alt="Joker">
+    <div class="profile-name">bt</div>
+    <div class="profile-sub">Singapore · Malaysia</div>
+  </div>
+
+  <div class="profile-section">
+    <h2>Work Experience</h2>
+
+    <div class="exp-card">
+      <div class="title">Sales for APAC</div>
+      <div class="company">AP Sensing, Singapore</div>
+      <div class="period">06/26 – 10/26</div>
+      <div class="duty">Lead end-to-end sales and business development for Oil & Gas, Water, and Chemical/CO2 transmission across APAC, including Australia and New Zealand, while excluding Korea and China.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Account Manager (Government Sector)</div>
+      <div class="company">CTC Global, Singapore</div>
+      <div class="period">07/25 – 04/26</div>
+      <div class="duty">Drove strategic growth and key stakeholder relationships across major public and commercial accounts, including MHA SPF, IMDA, CAAS, ST Engineering, DSTA, CSA, and MPA. Led high-impact IT initiatives, including AI infrastructure and platform migrations, while managing vendor partnerships with HPE, Dell, Cisco, and CrowdStrike.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Advisory and Sales Manager</div>
+      <div class="company">TGK Advisory & Trading, Singapore</div>
+      <div class="period">08/23 – 06/25</div>
+      <div class="duty">Oversaw a Hong Kong holding entity and its wholly owned Suzhou subsidiary, managing a 20,000 sq. m., three-building commercial portfolio generating approximately 5 million RMB annually. Led full-lifecycle tenant leasing, contract negotiations, and rent collection. Spearheaded a 2.2 million RMB, 902 kW rooftop solar installation delivering a 30% annual ROI, and expanded regional operations by securing a strategic distributor agreement with CoreAVI for safety-critical solution sales across Taiwan and China.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Sales Manager</div>
+      <div class="company">Elma Asia Pacific, Singapore</div>
+      <div class="period">06/19 – 08/23</div>
+      <div class="duty">Drove APAC sales for hardware and software solutions, including partner offerings like CoreAVI, across defence, aerospace, radar, avionics, and test & measurement markets. Guided client engineering teams on MIL-standards, system requirements, budget allocation, and forecasting, accelerating client planning timelines by 30–40% and securing long-term partnerships.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Application Sales Manager</div>
+      <div class="company">Comsoft Asia Pacific / Biam Technology, Singapore</div>
+      <div class="period">09/14 – 05/19</div>
+      <div class="duty">Cultivated extensive regional expertise and strong defense industry relationships across major global and APAC markets, including London, Tokyo, Seoul, Singapore, and Bangkok, through active participation in international sales conferences, exhibitions, and direct customer engagements.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Product Manager</div>
+      <div class="company">Contec, Singapore</div>
+      <div class="period">05/13 – 08/14</div>
+      <div class="duty">Analyzed key customer and market trends to drive new product launches, managed product lifecycles including end-of-life replacements and specification comparisons, and executed strategic product go-to-market activities.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Business Support System, Business Analyst</div>
+      <div class="company">HuaWei Technologies, Malaysia</div>
+      <div class="period">06/12 – 09/12</div>
+      <div class="duty">Evaluated network architecture designs, including network layouts, IP assignments, backup solutions, and efficiency metrics, while translating customer business support needs into comprehensive functional requirements and scopes for the R&D department.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Senior Software Engineer</div>
+      <div class="company">Continental Automotive, Singapore</div>
+      <div class="period">10/07 – 04/12</div>
+      <div class="duty">Led cross-functional teams of up to six engineers across four full Software Development Life Cycles for tier-1 European and Japanese automotive OEMs. Spearheaded low-cost platform adoption and designed a prototype touch-pad software solution that secured a >€250M European OEM award.</div>
+    </div>
+
+    <div class="exp-card">
+      <div class="title">Electrical Engineer</div>
+      <div class="company">Toshiba TEC, Singapore</div>
+      <div class="period">06/06 – 10/07</div>
+      <div class="duty">Supported Project Managers with technical assistance through new product electrical board/IC chip evaluations, test plan creation, test cycle execution, and detailed test report preparation using tools like SAP, ECAD, oscilloscopes, logic analyzers, and EMC testing environments.</div>
+    </div>
+
+  </div>
+</main>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  document.querySelectorAll('.exp-card').forEach(function(card) {
+    card.addEventListener('touchstart', function() {
+      document.querySelectorAll('.exp-card').forEach(function(c) { c.classList.remove('active'); });
+      card.classList.add('active');
+    });
+    card.addEventListener('touchend', function() {
+      setTimeout(function() { card.classList.remove('active'); }, 8000);
+    });
+    card.addEventListener('mousedown', function() {
+      document.querySelectorAll('.exp-card').forEach(function(c) { c.classList.remove('active'); });
+      card.classList.add('active');
+    });
+    card.addEventListener('mouseup', function() {
+      setTimeout(function() { card.classList.remove('active'); }, 8000);
+    });
+  });
+
+  (function(){
+    var container = document.getElementById('matrix-fallback');
+    if (!container) return;
+    var cols = Math.floor(window.innerWidth / 22);
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>/{}[]';
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < cols; i++) {
+      var el = document.createElement('div');
+      el.className = 'matrix-col';
+      el.style.left = (i * 22) + 'px';
+      el.style.animationDuration = (2.5 + Math.random() * 4) + 's';
+      el.style.animationDelay = (Math.random() * 6) + 's';
+      var len = 12 + Math.floor(Math.random() * 22);
+      var txt = '';
+      for (var j = 0; j < len; j++) txt += chars[Math.floor(Math.random() * chars.length)] + '\n';
+      el.textContent = txt;
+      frag.appendChild(el);
+    }
+    container.appendChild(frag);
+  })();
+
+  (function(){
+    var btn = document.getElementById('sound-toggle');
+    var wrap = document.getElementById('yt-wrap');
+    var playerEl = document.getElementById('yt-player');
+    if (!btn || !wrap || !playerEl) return;
+    var playing = false;
+    var ytReady = false;
+    var ytPlayer = null;
+
+    window.onYouTubeIframeAPIReady = function() {
+      ytReady = true;
+      ytPlayer = new YT.Player('yt-player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'eF7XdTfyNJY',
+        playerVars: { 'controls': 0, 'loop': 1, 'playlist': 'eF7XdTfyNJY', 'rel': 0, 'modestbranding': 1 },
+        events: { 'onReady': function() { ytPlayer.setVolume(35); } }
+      });
+    };
+
+    btn.addEventListener('click', function(){
+      if (!playing) {
+        wrap.style.opacity = '0.35';
+        if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+          ytPlayer.playVideo();
+        }
+        btn.textContent = '🔊 Sound';
+        playing = true;
+      } else {
+        wrap.style.opacity = '0';
+        if (ytReady && ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+          ytPlayer.pauseVideo();
+        }
+        btn.textContent = '🔇 Sound';
+        playing = false;
+      }
+    });
+  })();
+</script>
+<a href="reports.html" style="position:fixed;bottom:20px;right:20px;background:#00aa22;color:#000;border:2px solid #00aa22;padding:12px 20px;font-weight:900;font-size:14px;cursor:pointer;box-shadow:4px 4px 0 #00aa22;font-family:'Courier New',Courier,monospace;text-decoration:none;z-index:9999;">📊 REPORTS</a>
+</body>
+</html>
