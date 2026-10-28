@@ -2,51 +2,131 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Executive Summary - Joker AI Reports</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>USA Stock Executive Summary - Joker AI Reports</title>
 <link rel="stylesheet" href="report-style.css">
+<style>
+.exec-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px}
+.exec-card h3{color:var(--accent2);margin-bottom:10px;font-size:18px}
+.exec-card .meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+.exec-card ul{margin-left:18px;line-height:1.8;color:var(--ink);font-size:15px}
+.exec-card li{margin-bottom:6px}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.kpi-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.kpi-box .val{font-size:24px;font-weight:800;color:var(--accent2)}
+.kpi-box .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+.section-title{font-size:20px;color:var(--accent2);margin:24px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.link-btn{display:inline-block;background:var(--accent);color:#000;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;margin-top:12px;min-height:44px;line-height:24px}
+.link-btn:hover{background:var(--accent2)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:10px 8px;border-bottom:2px solid var(--line)}
+td{padding:12px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;color:var(--ink);font-size:14px}
+tr:last-child td{border-bottom:none}
+.up{color:var(--green);font-weight:600}
+.down{color:var(--red);font-weight:600}
+@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}.kpi-box .val{font-size:20px}.kpi-box .lbl{font-size:11px}.exec-card{padding:16px}.exec-card ul{font-size:14px}.section-title{font-size:18px}table{font-size:13px}td,th{padding:10px 6px}.link-btn{width:100%;text-align:center}}
+@media(max-width:400px){.kpi-row{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="container">
-<h1>Executive Summary - US Portfolio and Market Intelligence</h1>
-<p>Generated: 2026-10-28 11:00 SGT</p>
-<p><a href="price-alert.html">Price Alert</a> | <a href="moomoo-pl-report.html">P and L Report</a> | <a href="portfolio-report.html">Portfolio Report</a></p>
-<h2>Market Overview</h2>
-<p>AI Trade Revival Driving Broad Rally. Anthropic IPO filing revived AI enthusiasm. Nvidia investing $3B in Meta $98B equity offering. Chip sector: CBRS +10.10%, RIOT +7.70%, DELL +7.47%.</p>
-<h2>Portfolio P and L</h2>
-<p>Realized P and L (Net): $16,070.65. Unrealized: -$2,895.83. Combined Net: $13,174.82. Total Assets: $83,417.95. Fees: $835.06.</p>
-<h2>Portfolio Alerts</h2>
-<table>
-<tr><th>Symbol</th><th>Change</th><th>P/L from Cost</th></tr>
-<tr><td>CBRS</td><td>+10.00%</td><td>-13.20%</td></tr>
-<tr><td>DELL</td><td>+8.17%</td><td>+7.99%</td></tr>
-<tr><td>SKHY</td><td>+8.03%</td><td>-11.59%</td></tr>
-<tr><td>MU</td><td>+5.77%</td><td>+3.46%</td></tr>
-<tr><td>AMD</td><td>+6.51%</td><td>+0.05%</td></tr>
-<tr><td>MRVL</td><td>+4.90%</td><td>-3.34%</td></tr>
-<tr><td>INTC</td><td>+4.57%</td><td>-7.32%</td></tr>
-<tr><td>NOK</td><td>+3.53%</td><td>-28.31%</td></tr>
-</table>
-<h2>Key Risks</h2>
-<ul>
-<li>Fed decision (Oct 28): Markets pricing ~10% odds of hike</li>
-<li>Big tech earnings: Alphabet and Microsoft Q3 today</li>
-<li>Oil easing but Middle East tensions remain; 10Y yield near 5%</li>
-<li>Meta $98B raise: Dilution concerns vs AI infrastructure funding</li>
-<li>NOK deep loss: -28.31% from cost</li>
-</ul>
-<h2>Analyst Highlights</h2>
-<ul>
-<li>CBRS: Consensus Strong Buy, avg target $282.55 (+160% upside)</li>
-<li>DELL: RBC Outperform, $640 target - $95B AI-server backlog</li>
-<li>AMD: Susquehanna raised target to $620. Data Center AI over 80% CAGR</li>
-<li>TSM: Citi expects over 40% YoY revenue growth into 2027</li>
-<li>INTC: New Street upgraded to Buy, $125 target</li>
-<li>NOK: Rosenblatt calls post-earnings selloff overdone</li>
-</ul>
-<footer>
-<span>Joker AI - Executive Summary - 2026-10-28 11:00 SGT</span>
-<span>Not investment advice - Verify all figures via your broker</span>
-</footer>
+  <header class="hero">
+    <div class="brand">
+      <div class="logo">J</div>
+      <div>
+        <strong>Joker AI</strong>
+        <small>USA Stock Executive Summary</small>
+      </div>
+    </div>
+    <h1>USA Stock Executive Summary</h1>
+    <div class="meta">
+      <span>Generated: 2026-10-28 11:00 SGT</span>
+      <span>Source: Price Alert, P and L Report, Portfolio Report</span>
+      <span>Last updated: 2026-10-28 11:00 SGT</span>
+    </div>
+  </header>
+  <div class="kpi-row">
+    <div class="kpi-box"><div class="val">$83,417.95</div><div class="lbl">Total Assets</div></div>
+    <div class="kpi-box"><div class="val">$16,070.65</div><div class="lbl">Realized P and L (Net)</div></div>
+    <div class="kpi-box"><div class="val">-$2,895.83</div><div class="lbl">Unrealized P and L</div></div>
+    <div class="kpi-box"><div class="val">$13,174.82</div><div class="lbl">Combined Net P and L</div></div>
+    <div class="kpi-box"><div class="val">8</div><div class="lbl">Watchlist Movers</div></div>
+    <div class="kpi-box"><div class="val">8</div><div class="lbl">Portfolio Alerts</div></div>
+  </div>
+  <h2 class="section-title">Market Overview</h2>
+  <div class="exec-card">
+    <h3>AI Trade Revival Driving Broad Rally</h3>
+    <div class="meta">Source: Price Alert (Enhanced) - 2026-10-28</div>
+    <ul>
+      <li><strong>Key Driver:</strong> Anthropic IPO filing revived AI enthusiasm across markets</li>
+      <li><strong>Nvidia</strong> investing $3B in Meta $98B equity offering; AMD investing $1B</li>
+      <li><strong>Chip sector bounce:</strong> CBRS +10.10%, RIOT +7.70%, DELL +7.47%, ANET +5.51%, AMD +5.45%</li>
+      <li><strong>Broad market:</strong> SPX +0.70%, Nasdaq +0.83% (Oct 27)</li>
+      <li><strong>Social buzz:</strong> Threads passed X in global monthly actives; Stocktwits trending DELL, MU, INTC, TSM, NVDA</li>
+    </ul>
+    <a href="price-alert.html" class="link-btn">View Full Price Alert</a>
+  </div>
+  <h2 class="section-title">Portfolio P and L Summary</h2>
+  <div class="exec-card">
+    <h3>Realized and Unrealized Performance</h3>
+    <div class="meta">Source: Moomoo P and L Report - March 1 to Oct 28, 2026</div>
+    <ul>
+      <li><strong>Realized P and L (Gross):</strong> $16,905.71 across 682 trades, 39 symbols</li>
+      <li><strong>Total Fees:</strong> $835.06 (platform, settlement, CAT, consumption tax)</li>
+      <li><strong>Realized P and L (Net):</strong> $16,070.65</li>
+      <li><strong>Unrealized P and L:</strong> -$2,895.83 (current positions underwater)</li>
+      <li><strong>Combined Net P and L:</strong> $13,174.82</li>
+      <li><strong>Account:</strong> Total Assets $83,417.95, Market Value $71,020.44, Buying Power $56,162.62</li>
+      <li><strong>Top Gainer:</strong> DELL +7.99% from cost, <strong>Top Loser:</strong> CBRS -13.20% from cost</li>
+    </ul>
+    <a href="moomoo-pl-report.html" class="link-btn">View Full P and L Report</a>
+  </div>
+  <h2 class="section-title">Portfolio Alerts (3% or more Move)</h2>
+  <div class="exec-card">
+    <h3>8 Positions Moved Significantly</h3>
+    <div class="meta">Source: Price Deviation Alert - 10:23 SGT</div>
+    <table>
+      <thead><tr><th>Symbol</th><th>Change</th><th>P and L from Cost</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CBRS</strong></td><td class="up">+10.00%</td><td class="down">-13.20%</td><td>Watch</td></tr>
+        <tr><td><strong>DELL</strong></td><td class="up">+8.17%</td><td class="up">+7.99%</td><td>Strong</td></tr>
+        <tr><td><strong>SKHY</strong></td><td class="up">+8.03%</td><td class="down">-11.59%</td><td>Watch</td></tr>
+        <tr><td><strong>MU</strong></td><td class="up">+5.77%</td><td class="up">+3.46%</td><td>Good</td></tr>
+        <tr><td><strong>AMD</strong></td><td class="up">+6.51%</td><td class="up">+0.05%</td><td>Neutral</td></tr>
+        <tr><td><strong>MRVL</strong></td><td class="up">+4.90%</td><td class="down">-3.34%</td><td>Watch</td></tr>
+        <tr><td><strong>INTC</strong></td><td class="up">+4.57%</td><td class="down">-7.32%</td><td>Watch</td></tr>
+        <tr><td><strong>NOK</strong></td><td class="up">+3.53%</td><td class="down">-28.31%</td><td>Deep Loss</td></tr>
+      </tbody>
+    </table>
+    <a href="price-alert.html" class="link-btn">View Full Price Alert</a>
+  </div>
+  <h2 class="section-title">Key Risks and Watch Items</h2>
+  <div class="exec-card">
+    <ul>
+      <li><strong>Fed decision (Oct 28):</strong> Markets pricing ~10% odds of hike; commentary on Dec path crucial</li>
+      <li><strong>Big tech earnings:</strong> Alphabet and Microsoft Q3 today - AI spending commentary will set tone</li>
+      <li><strong>Oil easing but Middle East tensions remain;</strong> 10Y Treasury yield near 5% constrains valuations</li>
+      <li><strong>Meta $98B raise:</strong> Dilution concerns vs AI infrastructure funding - stock volatile</li>
+      <li><strong>SK Hynix Q3 preview:</strong> Record profits possible but valuation fears persist; results due Oct 28</li>
+      <li><strong>NOK deep loss:</strong> -28.31% from cost - monitor for recovery or exit decision</li>
+    </ul>
+  </div>
+  <h2 class="section-title">Analyst Highlights</h2>
+  <div class="exec-card">
+    <ul>
+      <li><strong>CBRS:</strong> Consensus Strong Buy, avg target $282.55 (+160% upside). OpenAI reaffirmed as close partner under $10B agreement</li>
+      <li><strong>DELL:</strong> RBC Outperform, $640 target - $95B AI-server backlog, 6,500+ customers. Mizuho/Evercore raised to $650</li>
+      <li><strong>AMD:</strong> Susquehanna raised target to $620. Data Center AI over 80% CAGR</li>
+      <li><strong>TSM:</strong> Citi expects over 40% YoY revenue growth into 2027. AI revenue to nearly double</li>
+      <li><strong>INTC:</strong> New Street upgraded to Buy, $125 target. Q3 consensus ~$0.39 EPS on $16.45B revenue (Oct 29)</li>
+      <li><strong>NOK:</strong> Rosenblatt calls post-earnings selloff overdone. Q3 beat: AI and cloud sales up 123%</li>
+    </ul>
+    <a href="price-alert.html" class="link-btn">View Full Price Alert</a>
+  </div>
+  <footer>
+    <span>Joker AI - USA Stock Executive Summary - 2026-10-28 11:00 SGT</span>
+    <span>Not investment advice - Verify all figures via your broker</span>
+  </footer>
 </div>
 </body>
 </html>
