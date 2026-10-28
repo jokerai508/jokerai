@@ -9,21 +9,21 @@
    ============================================ */
 
 :root {
-  --bg: #fbfcfd;
-  --paper: #ffffff;
-  --ink: #182026;
-  --muted: #626d78;
-  --line: #dde3e8;
-  --line-strong: #1f4e5f;
-  --line-soft: #edf1f4;
-  --accent: #1f4e5f;
-  --accent-dark: #173948;
-  --accent-soft: #eef6f8;
-  --blue: #225b76;
-  --green: #246257;
-  --amber: #80602e;
-  --red: #8a3b35;
-  --soft: #f6f8fa;
+  --bg: #0d1117;
+  --paper: #1a1d24;
+  --ink: #e8e4d9;
+  --muted: #94a3b8;
+  --line: #2b303b;
+  --line-strong: #d4a93c;
+  --line-soft: #1e293b;
+  --accent: #d4a93c;
+  --accent-dark: #f0d060;
+  --accent-soft: #1e293b;
+  --blue: #60a5fa;
+  --green: #4ade80;
+  --amber: #f0d060;
+  --red: #f87171;
+  --soft: #1a1d24;
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
 }
 
@@ -34,7 +34,7 @@ body {
   font-family: var(--font); line-height: 1.85; font-size: 16px; font-weight: 400;
 }
 
-a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #c8c8c8; }
+a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #2b303b; }
 a:hover { text-decoration: underline; }
 
 /* Page container */
@@ -70,7 +70,7 @@ a:hover { text-decoration: underline; }
 .toc h2 { margin: 0 0 18px; padding: 0; border: 0; border-left: 0; color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em; }
 .toc ol { display: block; margin: 0; padding: 0; list-style-position: inside; font-size: 15px; column-count: 2; column-gap: 56px; }
 .toc li { margin: 8px 0; break-inside: avoid; }
-.toc a { color: var(--ink); border-bottom: 1px dotted #b8c4ca; }
+.toc a { color: var(--ink); border-bottom: 1px dotted #2b303b; }
 .toc a:hover { color: var(--accent); text-decoration: none; }
 
 /* Section */
@@ -89,18 +89,18 @@ li { margin: 7px 0; }
 .card p:last-child { margin-bottom: 0; }
 
 /* Callout */
-.callout { margin: 32px 0; padding: 18px 22px 18px 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); background: var(--accent-soft); }
-.callout.green { border-left-color: var(--green); background: #eef7f4; }
-.callout.amber { border-left-color: var(--amber); background: #fbf7ed; }
-.callout.red   { border-left-color: var(--red); background: #fbf1f0; }
+.callout { margin: 32px 0; padding: 18px 22px 18px 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); background: #1e293b; }
+.callout.green { border-left-color: var(--green); background: #1a2e1a; }
+.callout.amber { border-left-color: var(--amber); background: #2e2a1a; }
+.callout.red   { border-left-color: var(--red); background: #2e1a1a; }
 .callout strong { color: var(--ink); }
 
 /* Table */
 table { width: 100%; border-collapse: collapse; margin: 38px 0 44px; font-size: 14.5px; background: var(--paper); }
 th, td { padding: 15px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; overflow-wrap: break-word; }
-th { background: #f2f6f8; color: var(--accent-dark); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 2px solid var(--accent); }
+th { background: #1a1d24; color: var(--accent-dark); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 2px solid var(--accent); }
 tr:last-child td { border-bottom: 0; }
-tbody tr:nth-child(even) td { background: #fbfdfe; }
+tbody tr:nth-child(even) td { background: #1a1d24; }
 
 /* Compare Table */
 .compare-table th:first-child { width: 30%; }
@@ -109,10 +109,10 @@ tbody tr:nth-child(even) td { background: #fbfdfe; }
 
 /* Tag */
 .tag { display: inline-flex; padding: 2px 7px; border: 1px solid var(--line); font-size: 11px; font-weight: 600; white-space: nowrap; }
-.tag.green { background: #eef7f4; border-color: #c9e1da; color: var(--green); }
-.tag.blue  { background: #eef6fb; border-color: #c7dce6; color: var(--blue); }
-.tag.amber { background: #fbf6e9; border-color: #e2d1a9; color: var(--amber); }
-.tag.red   { background: #fbf1f0; border-color: #e0b8b5; color: var(--red); }
+.tag.green { background: #1a2e1a; border-color: #2b303b; color: var(--green); }
+.tag.blue  { background: #1e293b; border-color: #2b303b; color: var(--blue); }
+.tag.amber { background: #2e2a1a; border-color: #2b303b; color: var(--amber); }
+.tag.red   { background: #2e1a1a; border-color: #2b303b; color: var(--red); }
 
 /* KPI */
 .kpi { font-size: 42px; font-weight: 620; line-height: 1.1; }
@@ -181,4 +181,4 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 44px 0; }
 </style><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-</head><body><div class="page" data-family="data-audit"><div class="report-page cover"><div class="hero"><p class="eyebrow">Joker AI · System Health Audit</p><h1>Hermes Agent Audit Report</h1><p class="subtitle">Cron Jobs · Skills · Model Status · Issues Fixed</p><div class="meta"><span>2026-10-28</span><span>v2.0</span></div></div><nav class="toc"><h2>Contents</h2><ol><li><a href="#stats">Quick Stats</a></li><li><a href="#issues">Issues Fixed</a></li><li><a href="#verify">Verification Results</a></li><li><a href="#crons">Cron Job Status</a></li><li><a href="#skills">Skills Installed</a></li></ol></nav></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Overview</p><section id="stats"><h2>Quick Stats</h2><div class="kpi">13 <span class="unit">Cron Jobs</span></div><div class="kpi">11 <span class="unit">Running OK</span></div><div class="kpi">1 <span class="unit">Fixed</span></div><div class="kpi">61 <span class="unit">Skills</span></div><div class="progress-bar green" role="progressbar" aria-label="92%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"><div class="fill" style="width:92%"></div></div><div class="callout green">92% jobs healthy. All critical issues resolved.</div></section><section id="issues"><h2>Issues Fixed</h2><div class="callout green">Issue 1: Portfolio Full Report 8PM — Media Delivery Failed. Root cause: generate_reports.py crashed with TypeError &#x27;&gt;=&#x27; not supported between NaTType and float (backtest_engine.py). Fix: Added pd.notna() checks before comparing row[&#x27;ret&#x27;] values (2 locations). Result: generate_reports.py exits 0, run_reports.py exits 0, HTML regenerated.</div><div class="callout amber">Issue 2: Price Deviation Alert — HTTP 429 Rate Limit. Root cause: New model has different fair-share rate limits; job runs every 30 min. Status: Self-resolved. Now running OK at 30-min intervals. No code change needed.</div><div class="callout green">Issue 3: Cron Job Skill References — &#x27;terminal&#x27; not found. Root cause: 5 jobs had &#x27;terminal&#x27; in skills list, but terminal is a built-in tool, not a skill. Fix: Removed &#x27;terminal&#x27; from 5 jobs. Result: No more &#x27;Skill(s) not found&#x27; warnings.</div><div class="callout green">Issue 4: Hardcoded Model References. Root cause: report_html.py, report_html_zh.py, report_pdf.py had old model name (stepfun/step-3.7-flash). Fix: Updated all 3 to reflection/beam-1.0-501b-a23b:free. Result: Reports now show correct model name.</div></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Verification</p><section id="verify"><h2>Verification Results</h2><table><thead><tr><th scope="col">Check</th><th scope="col">Status</th></tr></thead><tbody><tr><td>generate_reports.py</td><td>Exit 0 ✅</td></tr><tr><td>run_reports.py</td><td>Exit 0 ✅</td></tr><tr><td>price_monitor.py</td><td>Exit 0 ✅ (32 scanned, 8 movers, 8 alerts)</td></tr><tr><td>13 Cron Jobs</td><td>All scheduled &amp; enabled ✅</td></tr><tr><td>61 Skills</td><td>No model dependencies ✅</td></tr></tbody></table></section><section id="crons"><h2>Cron Job Status</h2><table><thead><tr><th scope="col">Job</th><th scope="col">Schedule</th><th scope="col">Status</th></tr></thead><tbody><tr><td>6-Hour Status Report</td><td>9am/3pm/9pm/3am</td><td>OK</td></tr><tr><td>Daily Earnings &amp; Holdings Alert</td><td>Daily 8am</td><td>OK</td></tr><tr><td>3-Hour Market Trend</td><td>9am/12pm/3pm/6pm/9pm/12am</td><td>OK</td></tr><tr><td>Portfolio Deviation (2hr)</td><td>Every 2 hours</td><td>OK</td></tr><tr><td>Portfolio Full Report 10AM</td><td>Daily 10am</td><td>OK</td></tr><tr><td>Portfolio Full Report 8PM</td><td>Daily 8pm</td><td>FIXED</td></tr><tr><td>Price Deviation Alert</td><td>Every 30 min</td><td>OK</td></tr><tr><td>Daily Chinese News TGK</td><td>Daily 9am</td><td>OK</td></tr><tr><td>Daily Moomoo Email Sync</td><td>Daily 9pm</td><td>OK</td></tr><tr><td>Weekly P/L Summary</td><td>Monday 9am</td><td>Scheduled</td></tr><tr><td>Deploy Neo-Brutalism Reminder</td><td>Nov 3 9am</td><td>Scheduled</td></tr><tr><td>US Trading Signals Daily</td><td>Oct 28 10:30</td><td>Scheduled</td></tr><tr><td>US Trading Signals Recurring</td><td>Daily 10am</td><td>Completed</td></tr></tbody></table></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Skills</p><section id="skills"><h2>Skills Installed</h2><div class="grid two"><div class="card"><h3>finance/stocks</h3><p>Yahoo Finance quotes, history, search, compare, crypto — no API key needed</p></div><div class="card"><h3>yahoo-finance-forex</h3><p>Real-time FOREX news and market data from Yahoo Finance</p></div><div class="card"><h3>productivity/live-dashboard</h3><p>Build self-updating dashboards from live sources with cron refresh</p></div><div class="card"><h3>paged-report</h3><p>Professional client-facing HTML reports with A4 print styles and self-contained HTML</p></div></div><div class="callout blue">Total: 61 skills available. No model dependencies. All skills are model-agnostic.</div></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div><p style="text-align:center;font-size:11px;color:#64748d;margin-top:4px;">Last updated: 2026-10-28 16:40 SGT</p></div></div></body></html>
+</head><body><div class="page" data-family="data-audit"><div class="report-page cover"><div class="hero"><p class="eyebrow">Joker AI · System Health Audit</p><h1>Hermes Agent Audit Report</h1><p class="subtitle">Cron Jobs · Skills · Model Status · Issues Fixed</p><div class="meta"><span>2026-10-28</span><span>v2.0</span></div></div><nav class="toc"><h2>Contents</h2><ol><li><a href="#stats">Quick Stats</a></li><li><a href="#issues">Issues Fixed</a></li><li><a href="#verify">Verification Results</a></li><li><a href="#crons">Cron Job Status</a></li><li><a href="#skills">Skills Installed</a></li></ol></nav></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Overview</p><section id="stats"><h2>Quick Stats</h2><div class="kpi">13 <span class="unit">Cron Jobs</span></div><div class="kpi">11 <span class="unit">Running OK</span></div><div class="kpi">1 <span class="unit">Fixed</span></div><div class="kpi">61 <span class="unit">Skills</span></div><div class="progress-bar green" role="progressbar" aria-label="92%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"><div class="fill" style="width:92%"></div></div><div class="callout green">92% jobs healthy. All critical issues resolved.</div></section><section id="issues"><h2>Issues Fixed</h2><div class="callout green">Issue 1: Portfolio Full Report 8PM — Media Delivery Failed. Root cause: generate_reports.py crashed with TypeError &#x27;&gt;=&#x27; not supported between NaTType and float (backtest_engine.py). Fix: Added pd.notna() checks before comparing row[&#x27;ret&#x27;] values (2 locations). Result: generate_reports.py exits 0, run_reports.py exits 0, HTML regenerated.</div><div class="callout amber">Issue 2: Price Deviation Alert — HTTP 429 Rate Limit. Root cause: New model has different fair-share rate limits; job runs every 30 min. Status: Self-resolved. Now running OK at 30-min intervals. No code change needed.</div><div class="callout green">Issue 3: Cron Job Skill References — &#x27;terminal&#x27; not found. Root cause: 5 jobs had &#x27;terminal&#x27; in skills list, but terminal is a built-in tool, not a skill. Fix: Removed &#x27;terminal&#x27; from 5 jobs. Result: No more &#x27;Skill(s) not found&#x27; warnings.</div><div class="callout green">Issue 4: Hardcoded Model References. Root cause: report_html.py, report_html_zh.py, report_pdf.py had old model name (stepfun/step-3.7-flash). Fix: Updated all 3 to reflection/beam-1.0-501b-a23b:free. Result: Reports now show correct model name.</div></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Verification</p><section id="verify"><h2>Verification Results</h2><table><thead><tr><th scope="col">Check</th><th scope="col">Status</th></tr></thead><tbody><tr><td>generate_reports.py</td><td>Exit 0 ✅</td></tr><tr><td>run_reports.py</td><td>Exit 0 ✅</td></tr><tr><td>price_monitor.py</td><td>Exit 0 ✅ (32 scanned, 8 movers, 8 alerts)</td></tr><tr><td>13 Cron Jobs</td><td>All scheduled &amp; enabled ✅</td></tr><tr><td>61 Skills</td><td>No model dependencies ✅</td></tr></tbody></table></section><section id="crons"><h2>Cron Job Status</h2><table><thead><tr><th scope="col">Job</th><th scope="col">Schedule</th><th scope="col">Status</th></tr></thead><tbody><tr><td>6-Hour Status Report</td><td>9am/3pm/9pm/3am</td><td>OK</td></tr><tr><td>Daily Earnings &amp; Holdings Alert</td><td>Daily 8am</td><td>OK</td></tr><tr><td>3-Hour Market Trend</td><td>9am/12pm/3pm/6pm/9pm/12am</td><td>OK</td></tr><tr><td>Portfolio Deviation (2hr)</td><td>Every 2 hours</td><td>OK</td></tr><tr><td>Portfolio Full Report 10AM</td><td>Daily 10am</td><td>OK</td></tr><tr><td>Portfolio Full Report 8PM</td><td>Daily 8pm</td><td>FIXED</td></tr><tr><td>Price Deviation Alert</td><td>Every 30 min</td><td>OK</td></tr><tr><td>Daily Chinese News TGK</td><td>Daily 9am</td><td>OK</td></tr><tr><td>Daily Moomoo Email Sync</td><td>Daily 9pm</td><td>OK</td></tr><tr><td>Weekly P/L Summary</td><td>Monday 9am</td><td>Scheduled</td></tr><tr><td>Deploy Neo-Brutalism Reminder</td><td>Nov 3 9am</td><td>Scheduled</td></tr><tr><td>US Trading Signals Daily</td><td>Oct 28 10:30</td><td>Scheduled</td></tr><tr><td>US Trading Signals Recurring</td><td>Daily 10am</td><td>Completed</td></tr></tbody></table></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div></div><div class="report-page flex-col"><div class="content-area"><p class="page-label">Skills</p><section id="skills"><h2>Skills Installed</h2><div class="grid two"><div class="card"><h3>finance/stocks</h3><p>Yahoo Finance quotes, history, search, compare, crypto — no API key needed</p></div><div class="card"><h3>yahoo-finance-forex</h3><p>Real-time FOREX news and market data from Yahoo Finance</p></div><div class="card"><h3>productivity/live-dashboard</h3><p>Build self-updating dashboards from live sources with cron refresh</p></div><div class="card"><h3>paged-report</h3><p>Professional client-facing HTML reports with A4 print styles and self-contained HTML</p></div></div><div class="callout blue">Total: 61 skills available. No model dependencies. All skills are model-agnostic.</div></section></div><div class="footer-area"><div class="footer"><p>Joker AI · System Health Audit · 2026-10-28</p></div></div><p style="text-align:center;font-size:11px;color:#64748d;margin-top:4px;">Last updated: 2026-10-28 16:50 SGT</p></div></div></body></html>
