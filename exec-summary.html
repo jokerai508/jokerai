@@ -135,8 +135,9 @@ tr:last-child td{border-bottom:none}
     <ul>
       <li><strong>Data source:</strong> Yahoo Finance (free, real-time) - prices, P/E, market cap, 52W range, beta, sector</li>
       <li><strong>Coverage:</strong> NVDA, INTC, MU, MRVL, NOK, CBRS, DELL, TSM, AMD, AVGO, AAPL, MSFT, META, TSLA, AMZN, GOOGL, ORCL, PLTR, RIOT, ANET</li>
-      <li><strong>AI method:</strong> Multi-agent analysis (analysts, bull/bear debate, risk manager) - based on MIT-licensed open-source ai-hedge-fund project</li>
-      <li><strong>LLM:</strong> reflection/beam-1.0-501b-a23b:free via Nous Portal (available for per-stock buy/sell/hold signals)</li>
+      <li><strong>AI method:</strong> Multi-agent analysis inspired by virattt/ai-hedge-fund (46.7K stars, MIT-licensed) - 5 investor personas: Buffett, Graham, Lynch, Munger, Druckenmiller</li>
+      <li><strong>Each persona evaluates:</strong> moat/quality (Buffett), margin of safety (Graham), growth/PEG (Lynch), inversion/quality (Munger), inflection/trajectory (Druckenmiller)</li>
+      <li><strong>LLM:</strong> reflection/beam-1.0-501b-a23b:free via Nous Portal (per-stock buy/sell/hold signals from each persona)</li>
       <li><strong>Integration:</strong> Data feeds into Price Alert, P and L Report, and Portfolio reports</li>
     </ul>
     <a href="price-alert.html" class="link-btn">View Price Alert with AI Analysis</a>
