@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moomoo P&L Report — From 2026-03-01</title>
+<link rel="stylesheet" href="https://jokerai508.github.io/jokerai/report-style.css">
+<style>
+  body { font-family: 'Source Sans 3', system-ui, sans-serif; background: #f6f9fc; color: #061b31; margin: 0; padding: 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+  header { background: linear-gradient(135deg, #1c1e54 0%, #533afd 100%); color: #fff; padding: 24px 20px; border-radius: 8px; margin-bottom: 24px; text-align: center; }
+  header h1 { font-size: 1.75rem; margin-bottom: 4px; font-weight: 300; }
+  header p { font-size: 0.875rem; opacity: 0.9; margin: 0; }
+  .card { background: #fff; border: 1px solid #e5edf5; border-radius: 6px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(23,23,23,0.06); }
+  .card h2 { font-size: 1.25rem; margin-bottom: 12px; color: #061b31; font-weight: 300; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: #f6f9fc; border: 1px solid #e5edf5; border-radius: 6px; padding: 16px; text-align: center; }
+  .stat-value { font-size: 1.5rem; font-weight: 500; color: #061b31; font-feature-settings: "tnum"; }
+  .stat-label { font-size: 0.75rem; color: #64748d; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
+  .pos { color: #108c3d; }
+  .neg { color: #ea2261; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: #f6f9fc; color: #273951; font-weight: 500; text-align: left; padding: 10px 12px; border-bottom: 2px solid #e5edf5; white-space: nowrap; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e5edf5; color: #061b31; vertical-align: middle; }
+  tr:hover td { background: #f6f9fc; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 6px; border: 1px solid #e5edf5; margin-bottom: 16px; }
+  .disclaimer { font-size: 0.75rem; color: #64748d; padding: 16px; background: #f6f9fc; border-radius: 6px; border-left: 3px solid #533afd; margin-top: 24px; line-height: 1.5; }
+  footer { text-align: center; padding: 24px 16px; color: #64748d; font-size: 0.75rem; border-top: 1px solid #e5edf5; margin-top: 32px; }
+  @media (max-width: 640px) {
+    .container { padding: 12px 10px; }
+    header h1 { font-size: 1.375rem; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 8px 10px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>💰 Moomoo P&L Report</h1>
+    <p>Realized + Unrealized P&L from 2026-03-01 to 2026-10-28 | Generated: 2026-10-28 09:15:00 SGT</p>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value pos">16,905.71</div>
+      <div class="stat-label">Total Realized P&L (USD)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value neg">-2,895.83</div>
+      <div class="stat-label">Total Unrealized P&L (USD)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">14,009.88</div>
+      <div class="stat-label">Combined P&L (USD)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">682</div>
+      <div class="stat-label">Total Trades</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">39</div>
+      <div class="stat-label">Symbols Traded</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">71,847.70</div>
+      <div class="stat-label">Current Market Value (USD)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📊 Realized P&L by Symbol (from 2026-03-01)</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Realized P&L</th>
+          <th>Total Bought</th>
+          <th>Total Sold</th>
+          <th>Trades</th>
+          <th>Buy/Sell/Short/BB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>MRVL</strong></td>
+          <td class="pos">1,700.75</td>
+          <td>111,615.10</td>
+          <td>104,435.85</td>
+          <td>76</td>
+          <td>39/30/4/3</td>
+        </tr>
+        <tr>
+          <td><strong>META</strong></td>
+          <td class="pos">1,563.13</td>
+          <td>142,154.29</td>
+          <td>143,717.42</td>
+          <td>38</td>
+          <td>21/15/1/1</td>
+        </tr>
+        <tr>
+          <td><strong>NVDA</strong></td>
+          <td class="pos">1,491.57</td>
+          <td>67,750.53</td>
+          <td>64,649.79</td>
+          <td>48</td>
+          <td>26/19/2/1</td>
+        </tr>
+        <tr>
+          <td><strong>INTC</strong></td>
+          <td class="pos">1,302.35</td>
+          <td>50,054.15</td>
+          <td>38,087.15</td>
+          <td>48</td>
+          <td>27/15/3/3</td>
+        </tr>
+        <tr>
+          <td><strong>TSM</strong></td>
+          <td class="pos">1,191.41</td>
+          <td>150,034.94</td>
+          <td>149,162.95</td>
+          <td>52</td>
+          <td>23/22/4/3</td>
+        </tr>
+        <tr>
+          <td><strong>MU</strong></td>
+          <td class="pos">1,156.86</td>
+          <td>53,737.64</td>
+          <td>49,351.10</td>
+          <td>24</td>
+          <td>3/1/11/9</td>
+        </tr>
+        <tr>
+          <td><strong>SPCX</strong></td>
+          <td class="pos">1,120.19</td>
+          <td>43,353.51</td>
+          <td>41,391.90</td>
+          <td>44</td>
+          <td>22/16/5/1</td>
+        </tr>
+        <tr>
+          <td><strong>AVGO</strong></td>
+          <td class="pos">944.61</td>
+          <td>52,161.20</td>
+          <td>53,105.81</td>
+          <td>27</td>
+          <td>12/15/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>AMD</strong></td>
+          <td class="pos">825.60</td>
+          <td>41,066.25</td>
+          <td>27,752.15</td>
+          <td>20</td>
+          <td>13/5/1/1</td>
+        </tr>
+        <tr>
+          <td><strong>GOOG</strong></td>
+          <td class="pos">697.30</td>
+          <td>60,400.00</td>
+          <td>59,499.80</td>
+          <td>38</td>
+          <td>23/15/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>TSMG</strong></td>
+          <td class="pos">655.00</td>
+          <td>13,115.00</td>
+          <td>13,770.00</td>
+          <td>6</td>
+          <td>2/4/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>TSLA</strong></td>
+          <td class="pos">626.57</td>
+          <td>107,584.90</td>
+          <td>108,211.47</td>
+          <td>37</td>
+          <td>17/16/2/2</td>
+        </tr>
+        <tr>
+          <td><strong>SKHY</strong></td>
+          <td class="pos">527.25</td>
+          <td>41,883.15</td>
+          <td>35,438.90</td>
+          <td>37</td>
+          <td>13/7/10/7</td>
+        </tr>
+        <tr>
+          <td><strong>DELL</strong></td>
+          <td class="pos">506.70</td>
+          <td>31,655.20</td>
+          <td>27,482.90</td>
+          <td>19</td>
+          <td>4/2/9/4</td>
+        </tr>
+        <tr>
+          <td><strong>ARM</strong></td>
+          <td class="pos">423.25</td>
+          <td>10,763.00</td>
+          <td>11,186.25</td>
+          <td>8</td>
+          <td>2/3/1/2</td>
+        </tr>
+        <tr>
+          <td><strong>CBRS</strong></td>
+          <td class="pos">395.64</td>
+          <td>9,676.80</td>
+          <td>8,012.44</td>
+          <td>10</td>
+          <td>6/4/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>COHR</strong></td>
+          <td class="pos">341.60</td>
+          <td>9,300.20</td>
+          <td>9,641.80</td>
+          <td>10</td>
+          <td>2/2/3/3</td>
+        </tr>
+        <tr>
+          <td><strong>MSFT</strong></td>
+          <td class="pos">339.73</td>
+          <td>50,050.22</td>
+          <td>50,389.94</td>
+          <td>20</td>
+          <td>7/7/5/1</td>
+        </tr>
+        <tr>
+          <td><strong>SMCI</strong></td>
+          <td class="pos">248.50</td>
+          <td>8,824.50</td>
+          <td>9,073.00</td>
+          <td>11</td>
+          <td>2/2/5/2</td>
+        </tr>
+        <tr>
+          <td><strong>PLTR</strong></td>
+          <td class="pos">230.90</td>
+          <td>30,057.60</td>
+          <td>30,288.50</td>
+          <td>25</td>
+          <td>4/4/10/7</td>
+        </tr>
+        <tr>
+          <td><strong>TSLG</strong></td>
+          <td class="pos">175.00</td>
+          <td>16,115.00</td>
+          <td>16,290.00</td>
+          <td>7</td>
+          <td>3/4/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>PLTU</strong></td>
+          <td class="pos">169.06</td>
+          <td>3,849.60</td>
+          <td>4,018.66</td>
+          <td>4</td>
+          <td>1/3/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>AMZN</strong></td>
+          <td class="pos">126.32</td>
+          <td>22,538.88</td>
+          <td>22,665.20</td>
+          <td>8</td>
+          <td>5/3/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>NVDX</strong></td>
+          <td class="pos">77.50</td>
+          <td>13,683.00</td>
+          <td>13,760.50</td>
+          <td>5</td>
+          <td>3/2/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>ORCL</strong></td>
+          <td class="pos">60.10</td>
+          <td>10,396.80</td>
+          <td>10,456.90</td>
+          <td>8</td>
+          <td>4/2/1/1</td>
+        </tr>
+        <tr>
+          <td><strong>NFLX</strong></td>
+          <td class="pos">51.00</td>
+          <td>5,201.40</td>
+          <td>5,252.40</td>
+          <td>5</td>
+          <td>2/3/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>GFS</strong></td>
+          <td class="pos">42.60</td>
+          <td>4,229.20</td>
+          <td>4,271.80</td>
+          <td>4</td>
+          <td>1/1/1/1</td>
+        </tr>
+        <tr>
+          <td><strong>SMCZ</strong></td>
+          <td class="pos">37.95</td>
+          <td>2,598.00</td>
+          <td>2,635.95</td>
+          <td>7</td>
+          <td>2/5/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>FUTG</strong></td>
+          <td class="pos">35.00</td>
+          <td>333.00</td>
+          <td>368.00</td>
+          <td>4</td>
+          <td>1/3/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>CBRZ</strong></td>
+          <td class="pos">32.70</td>
+          <td>630.90</td>
+          <td>663.60</td>
+          <td>2</td>
+          <td>1/1/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>ORCX</strong></td>
+          <td class="pos">25.50</td>
+          <td>1,048.50</td>
+          <td>1,074.00</td>
+          <td>2</td>
+          <td>1/1/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>BA</strong></td>
+          <td class="pos">16.65</td>
+          <td>3,416.55</td>
+          <td>3,433.20</td>
+          <td>3</td>
+          <td>1/2/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>SPCU</strong></td>
+          <td class="pos">14.30</td>
+          <td>3,940.50</td>
+          <td>3,954.80</td>
+          <td>8</td>
+          <td>3/5/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>AAPL</strong></td>
+          <td class="pos">13.30</td>
+          <td>3,130.00</td>
+          <td>3,143.30</td>
+          <td>3</td>
+          <td>1/2/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>GOOGL</strong></td>
+          <td class="pos">8.81</td>
+          <td>6,350.00</td>
+          <td>6,358.81</td>
+          <td>2</td>
+          <td>1/1/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>NOK</strong></td>
+          <td class="pos">0.00</td>
+          <td>1,869.00</td>
+          <td>0.00</td>
+          <td>2</td>
+          <td>2/0/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>PLTD</strong></td>
+          <td class="neg">-48.00</td>
+          <td>1,394.00</td>
+          <td>1,346.00</td>
+          <td>2</td>
+          <td>1/1/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>SSPC</strong></td>
+          <td class="neg">-85.00</td>
+          <td>1,240.70</td>
+          <td>1,155.70</td>
+          <td>6</td>
+          <td>3/3/0/0</td>
+        </tr>
+        <tr>
+          <td><strong>SPAX</strong></td>
+          <td class="neg">-136.00</td>
+          <td>1,372.00</td>
+          <td>1,236.00</td>
+          <td>2</td>
+          <td>1/1/0/0</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📈 Current Positions (Unrealized P&L)</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Qty</th>
+          <th>Cost Price</th>
+          <th>Current Price</th>
+          <th>Market Value</th>
+          <th>Unrealized P&L</th>
+          <th>P/L %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DELL</strong></td>
+          <td>10</td>
+          <td>467.90</td>
+          <td>503.88</td>
+          <td>5,038.80</td>
+          <td class="pos">359.80</td>
+          <td class="pos">7.69%</td>
+        </tr>
+        <tr>
+          <td><strong>MU</strong></td>
+          <td>6</td>
+          <td>923.90</td>
+          <td>949.55</td>
+          <td>5,697.30</td>
+          <td class="pos">153.90</td>
+          <td class="pos">2.78%</td>
+        </tr>
+        <tr>
+          <td><strong>TSM</strong></td>
+          <td>5</td>
+          <td>412.68</td>
+          <td>436.45</td>
+          <td>2,182.25</td>
+          <td class="pos">118.85</td>
+          <td class="pos">5.76%</td>
+        </tr>
+        <tr>
+          <td><strong>GOOG</strong></td>
+          <td>5</td>
+          <td>319.50</td>
+          <td>321.17</td>
+          <td>1,605.85</td>
+          <td class="pos">8.35</td>
+          <td class="pos">0.52%</td>
+        </tr>
+        <tr>
+          <td><strong>AMD</strong></td>
+          <td>25</td>
+          <td>565.59</td>
+          <td>564.04</td>
+          <td>14,101.00</td>
+          <td class="neg">-38.70</td>
+          <td class="neg">-0.27%</td>
+        </tr>
+        <tr>
+          <td><strong>G13</strong></td>
+          <td>10000</td>
+          <td>0.60</td>
+          <td>0.59</td>
+          <td>5,950.00</td>
+          <td class="neg">-50.00</td>
+          <td class="neg">-0.83%</td>
+        </tr>
+        <tr>
+          <td><strong>SPCX</strong></td>
+          <td>20</td>
+          <td>154.09</td>
+          <td>149.14</td>
+          <td>2,982.80</td>
+          <td class="neg">-99.00</td>
+          <td class="neg">-3.21%</td>
+        </tr>
+        <tr>
+          <td><strong>NVDA</strong></td>
+          <td>20</td>
+          <td>229.73</td>
+          <td>217.85</td>
+          <td>4,357.00</td>
+          <td class="neg">-237.60</td>
+          <td class="neg">-5.17%</td>
+        </tr>
+        <tr>
+          <td><strong>CBRS</strong></td>
+          <td>15</td>
+          <td>137.33</td>
+          <td>118.50</td>
+          <td>1,777.50</td>
+          <td class="neg">-282.50</td>
+          <td class="neg">-13.71%</td>
+        </tr>
+        <tr>
+          <td><strong>MRVL</strong></td>
+          <td>35</td>
+          <td>253.71</td>
+          <td>243.50</td>
+          <td>8,522.50</td>
+          <td class="neg">-357.50</td>
+          <td class="neg">-4.03%</td>
+        </tr>
+        <tr>
+          <td><strong>NOK</strong></td>
+          <td>150</td>
+          <td>12.43</td>
+          <td>8.89</td>
+          <td>1,333.50</td>
+          <td class="neg">-530.88</td>
+          <td class="neg">-28.47%</td>
+        </tr>
+        <tr>
+          <td><strong>SKHY</strong></td>
+          <td>40</td>
+          <td>174.26</td>
+          <td>152.24</td>
+          <td>6,089.60</td>
+          <td class="neg">-880.80</td>
+          <td class="neg">-12.64%</td>
+        </tr>
+        <tr>
+          <td><strong>INTC</strong></td>
+          <td>130</td>
+          <td>102.07</td>
+          <td>93.92</td>
+          <td>12,209.60</td>
+          <td class="neg">-1,059.75</td>
+          <td class="neg">-7.99%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Data sourced from Moomoo OpenAPI (read-only). Realized P&L computed from trade history using average cost method. Unrealized P&L from current positions. Report generated 2026-10-28 09:15:00 SGT. This report is for informational purposes only and does not constitute financial advice. Verify all figures via your broker before making investment decisions.
+  </div>
+
+  <footer>
+    Joker AI · Moomoo P&L Report · 2026-03-01 to 2026-10-28<br>
+    <a href="https://jokerai508.github.io/jokerai/reports.html" style="color: #533afd;">← Back to Reports Dashboard</a>
+  </footer>
+</div>
+</body>
+</html>
