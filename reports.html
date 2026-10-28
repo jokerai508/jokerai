@@ -8,7 +8,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: #000;
-    color: #00ff41;
+    color: #00aa22;
     font-family: 'Courier New', Courier, monospace;
     min-height: 100vh;
     overflow-x: hidden;
@@ -20,50 +20,50 @@
   .matrix-col {
     position: absolute; top: -100%;
     font-family: monospace; font-size: 16px; line-height: 18px;
-    color: #00ff41; text-shadow: 0 0 8px #00ff41;
+    color: #00aa22; text-shadow: 0 0 8px #00aa22;
     white-space: pre; animation: matrixFall linear infinite;
   }
   @keyframes matrixFall { 0%{transform:translateY(-100%);} 100%{transform:translateY(120vh);} }
   .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; position: relative; z-index: 1; }
-  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px #00ff41; }
-  .subtitle { color: #00cc33; font-size: 14px; margin-bottom: 24px; }
+  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px #00aa22; }
+  .subtitle { color: #007711; font-size: 14px; margin-bottom: 24px; }
   .back-link {
     display: inline-block; margin-bottom: 20px;
-    color: #00ff41; text-decoration: none; font-weight: 900; font-size: 14px;
-    text-shadow: 0 0 6px #00ff41;
+    color: #00aa22; text-decoration: none; font-weight: 900; font-size: 14px;
+    text-shadow: 0 0 6px #00aa22;
   }
   .back-link:hover { text-decoration: underline; }
   .report-card {
     background: rgba(0, 20, 0, 0.8);
-    border: 2px solid #00ff41;
-    box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+    border: 2px solid #00aa22;
+    box-shadow: 0 0 12px rgba(0, 136, 34, 0.3);
     padding: 16px 20px;
     margin-bottom: 16px;
     transition: all 0.2s;
     text-decoration: none;
-    color: #00ff41;
+    color: #00aa22;
     display: block;
     backdrop-filter: blur(2px);
   }
   .report-card:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+    box-shadow: 0 0 20px rgba(0, 136, 34, 0.6);
     transform: translate(2px, 2px);
     background: rgba(0, 30, 0, 0.9);
   }
-  .report-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; text-shadow: 0 0 6px #00ff41; }
-  .report-desc { font-size: 12px; color: #00cc33; }
+  .report-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; text-shadow: 0 0 6px #00aa22; }
+  .report-desc { font-size: 12px; color: #007711; }
   .report-badge {
     display: inline-block;
     padding: 2px 8px;
     font-size: 10px;
     font-weight: 700;
     margin-right: 8px;
-    border: 1px solid #00ff41;
+    border: 1px solid #00aa22;
   }
-  .badge-en { background: #00ff41; color: #000; }
-  .badge-zh { background: #00cc33; color: #000; }
-  .badge-live { background: transparent; color: #00ff41; border: 1px solid #00ff41; }
-  .footer { margin-top: 30px; text-align: center; font-size: 11px; color: #00cc33; }
+  .badge-en { background: #00aa22; color: #000; }
+  .badge-zh { background: #007711; color: #000; }
+  .badge-live { background: transparent; color: #00aa22; border: 1px solid #00aa22; }
+  .footer { margin-top: 30px; text-align: center; font-size: 11px; color: #007711; }
   @media (max-width: 640px) {
     h1 { font-size: 22px; }
     .report-card { padding: 12px 14px; }
@@ -160,7 +160,7 @@
 
   <div class="footer">
     Joker AI · Reports Dashboard · Matrix Style<br>
-    <a href="index.html" style="color: #00ff41;">← Back to Home</a>
+    <a href="index.html" style="color: #00aa22;">← Back to Home</a>
   </div>
 </div>
 <script>
