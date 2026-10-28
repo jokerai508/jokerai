@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Joker AI — Reports</title>
 <style>
+  html { background: #000; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: #000;
+    background: transparent;
     color: #00aa22;
     font-family: 'Courier New', Courier, monospace;
     min-height: 100vh;
     overflow-x: hidden;
   }
   #matrix-fallback {
-    position: fixed; inset: 0; z-index: -3;
+    position: fixed; inset: 0; z-index: 0;
     pointer-events: none; overflow: hidden; opacity: 0.55;
   }
   .matrix-col {
@@ -24,7 +25,7 @@
     white-space: pre; animation: matrixFall linear infinite;
   }
   @keyframes matrixFall { 0%{transform:translateY(-100%);} 100%{transform:translateY(120vh);} }
-  .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; position: relative; z-index: 1; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; position: relative; z-index: 2; }
   h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px #00aa22; }
   .subtitle { color: #007711; font-size: 14px; margin-bottom: 24px; }
   .back-link {
