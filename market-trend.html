@@ -58,8 +58,6 @@
   .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
   .card .price { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
   .card .change { font-size: 15px; font-weight: 600; }
-  .up { color: var(--green); }
-  .down { color: var(--red); }
   .card .range { color: var(--muted); font-size: 12px; margin-top: 8px; }
   .section { margin-bottom: 28px; }
   .section h2 { font-size: 16px; color: var(--gold); margin-bottom: 12px; border-left: 3px solid var(--gold); padding-left: 10px; }
@@ -93,6 +91,8 @@
   .badge.green { background: rgba(74,222,128,0.15); color: var(--green); }
   .badge.red { background: rgba(248,113,113,0.15); color: var(--red); }
   .badge.gold { background: rgba(212,169,60,0.15); color: var(--gold); }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
   footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
   @media (max-width: 600px) {
     .price { font-size: 22px; }
@@ -110,21 +110,21 @@
       </div>
     </div>
     <div class="timestamp">
-      <div><strong>SGT:</strong> 2026-10-28 15:54</div>
+      <div><strong>SGT:</strong> 2026-10-28 18:01</div>
       <div>Market close: 2026-10-27 (US)</div>
     </div>
   </header>
 
   <div class="grid">
     <div class="card">
-      <div class="label">S&amp;P 500</div>
+      <div class="label">S&P 500</div>
       <div class="price">7,722.60</div>
       <div class="change up">+0.60%</div>
       <div class="range">O 7,699.47 · H 7,736.24 · L 7,677.16</div>
     </div>
     <div class="card">
       <div class="label">Dow 30</div>
-      <div class="price">52,377.60</div>
+      <div class="price">52,377.57</div>
       <div class="change up">+0.03%</div>
       <div class="range">O 52,277.49 · H 52,477.91 · L 52,231.84</div>
     </div>
@@ -142,20 +142,20 @@
     </div>
     <div class="card">
       <div class="label">VIX</div>
-      <div class="price">17.51</div>
-      <div class="change down">-0.06%</div>
-      <div class="range">H 17.51 · L 17.47</div>
+      <div class="price">17.52</div>
+      <div class="change up">+0.00%</div>
+      <div class="range">H 17.61 · L 17.44</div>
     </div>
     <div class="card">
       <div class="label">10Y Treasury</div>
       <div class="price">4.993%</div>
       <div class="change up">+0.14%</div>
-      <div class="range">H 5.007 · L 4.972</div>
+      <div class="range">O 4.976% · H 5.007% · L 4.972%</div>
     </div>
     <div class="card">
       <div class="label">US Dollar Index</div>
-      <div class="price">102.416</div>
-      <div class="change up">+0.10%</div>
+      <div class="price">102.388</div>
+      <div class="change up">+0.07%</div>
       <div class="range">O 102.367 · H 102.491 · L 102.313</div>
     </div>
   </div>
@@ -163,10 +163,10 @@
   <div class="section">
     <h2>Market Summary</h2>
     <div class="summary">
-      <p><span class="badge green">Bullish</span> US equities closed higher across the board on the latest session, led by tech-heavy Nasdaq (+1.18%) and small-caps (+1.16%). S&amp;P 500 added 0.60% while the Dow was nearly flat (+0.03%).</p>
-      <p><span class="badge gold">Volatility</span> VIX eased slightly to 17.51 (-0.06%), indicating calm risk sentiment despite the rally.</p>
-      <p><span class="badge red">Rates</span> 10-Year Treasury yield rose to 4.993% (+0.14%), reflecting firming rate expectations; the US Dollar Index firmed to 102.416 (+0.10%).</p>
-      <p>Overall tone: risk-on with broad participation; watch yield and dollar strength for follow-through.</p>
+      <p><span class="badge green">Bullish</span> US equities closed higher across the board on the latest session, led by tech-heavy Nasdaq (+1.18%) and small-caps (+1.16%). S&amp;P 500 added +0.60% while the Dow was nearly flat (+0.03%).</p>
+<p><span class="badge gold">Volatility</span> VIX settled at 17.52 (+0.00%), indicating calm risk sentiment.</p>
+<p><span class="badge red">Rates</span> 10-Year Treasury yield moved to 4.993% (+0.14%), reflecting firming rate expectations; the US Dollar Index moved to 102.388 (+0.07%).</p>
+<p>Overall tone: risk-on with broad participation; watch yield and dollar strength for follow-through.</p>
     </div>
   </div>
 
@@ -184,19 +184,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>S&amp;P 500</td><td>7,722.60</td><td class="up">+0.60%</td><td>7,699.47</td><td>7,736.24</td><td>7,677.16</td></tr>
-        <tr><td>Dow 30</td><td>52,377.60</td><td class="up">+0.03%</td><td>52,277.49</td><td>52,477.91</td><td>52,231.84</td></tr>
+        <tr><td>S&P 500</td><td>7,722.60</td><td class="up">+0.60%</td><td>7,699.47</td><td>7,736.24</td><td>7,677.16</td></tr>
+        <tr><td>Dow 30</td><td>52,377.57</td><td class="up">+0.03%</td><td>52,277.49</td><td>52,477.91</td><td>52,231.84</td></tr>
         <tr><td>Nasdaq</td><td>26,477.81</td><td class="up">+1.18%</td><td>26,286.31</td><td>26,540.81</td><td>26,219.31</td></tr>
         <tr><td>Russell 2000</td><td>2,818.87</td><td class="up">+1.16%</td><td>2,792.85</td><td>2,820.98</td><td>2,788.59</td></tr>
-        <tr><td>VIX</td><td>17.51</td><td class="down">-0.06%</td><td>17.47</td><td>17.51</td><td>17.47</td></tr>
-        <tr><td>10Y Treasury</td><td>4.993%</td><td class="up">+0.14%</td><td>4.976</td><td>5.007</td><td>4.972</td></tr>
-        <tr><td>US Dollar Index</td><td>102.416</td><td class="up">+0.10%</td><td>102.367</td><td>102.491</td><td>102.313</td></tr>
+        <tr><td>VIX</td><td>17.52</td><td class="up">+0.00%</td><td>17.47</td><td>17.61</td><td>17.44</td></tr>
+        <tr><td>10Y Treasury</td><td>4.993%</td><td class="up">+0.14%</td><td>4.976%</td><td>5.007%</td><td>4.972%</td></tr>
+        <tr><td>US Dollar Index</td><td>102.388</td><td class="up">+0.07%</td><td>102.367</td><td>102.491</td><td>102.313</td></tr>
       </tbody>
     </table>
   </div>
 
   <footer>
-    Data source: Yahoo Finance · Generated 2026-10-28 16:11 SGT · Last updated: 2026-10-28 16:11 SGT · Joker AI Market Trend
+    Data source: Yahoo Finance · Generated 2026-10-28 18:01 SGT · Last updated: 2026-10-28 18:01 SGT · Joker AI Market Trend
   </footer>
 </div>
 </body>
