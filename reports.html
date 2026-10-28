@@ -72,40 +72,6 @@
 </style>
 </head>
 <body>
-<!-- Password gate overlay -->
-<div id="pw-overlay" style="position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;">
-  <div style="text-align:center;padding:20px;">
-    <div style="color:#00aa22;font-family:'Courier New',monospace;font-size:24px;font-weight:900;text-shadow:0 0 10px #00aa22;margin-bottom:20px;">🔒 ACCESS REQUIRED</div>
-    <input id="pw-input" type="password" placeholder="Enter password" style="background:#111;border:2px solid #00aa22;color:#00aa22;font-family:'Courier New',monospace;font-size:16px;padding:10px 16px;border-radius:4px;text-align:center;outline:none;width:200px;" />
-    <br>
-    <button onclick="checkPw()" style="margin-top:12px;background:#00aa22;color:#000;border:none;padding:10px 24px;font-family:'Courier New',monospace;font-weight:900;font-size:14px;cursor:pointer;border-radius:4px;">UNLOCK</button>
-    <div id="pw-error" style="color:#ff4444;font-family:'Courier New',monospace;font-size:12px;margin-top:8px;display:none;">Incorrect password</div>
-  </div>
-</div>
-<script>
-  (function() {
-    var PW = '03410341';
-    var key = 'joker_auth';
-    if (sessionStorage.getItem(key) === '1') {
-      document.getElementById('pw-overlay').style.display = 'none';
-      return;
-    }
-    window.checkPw = function() {
-      var val = document.getElementById('pw-input').value;
-      if (val === PW) {
-        sessionStorage.setItem(key, '1');
-        document.getElementById('pw-overlay').style.display = 'none';
-      } else {
-        document.getElementById('pw-error').style.display = 'block';
-        document.getElementById('pw-input').value = '';
-      }
-    };
-    document.getElementById('pw-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') checkPw();
-    });
-  })();
-</script>
-
 <div id="matrix-fallback"></div>
 <div class="container">
   <h1>📊 Reports Dashboard</h1>
