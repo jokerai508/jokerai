@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Market Trend Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #101216;
+    --text: #e8e4d9;
+    --green: #4ade80;
+    --red: #f87171;
+    --gold: #d4a93c;
+    --card: #1a1d24;
+    --border: #2a2e38;
+    --muted: #9aa0a6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand h1 { font-size: 22px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; }
+  .brand span { color: var(--muted); font-size: 13px; }
+  .timestamp { color: var(--muted); font-size: 13px; text-align: right; }
+  .timestamp strong { color: var(--text); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    transition: transform 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .card .price { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .card .change { font-size: 15px; font-weight: 600; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .card .range { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .section { margin-bottom: 28px; }
+  .section h2 { font-size: 16px; color: var(--gold); margin-bottom: 12px; border-left: 3px solid var(--gold); padding-left: 10px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; background: #14171e; }
+  tr:last-child td { border-bottom: none; }
+  .summary {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .summary p { margin-bottom: 10px; }
+  .summary p:last-child { margin-bottom: 0; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .badge.green { background: rgba(74,222,128,0.15); color: var(--green); }
+  .badge.red { background: rgba(248,113,113,0.15); color: var(--red); }
+  .badge.gold { background: rgba(212,169,60,0.15); color: var(--gold); }
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+  @media (max-width: 600px) {
+    .price { font-size: 22px; }
+    th, td { padding: 8px 10px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div>
+        <h1>US Market Trend</h1>
+        <span>Daily snapshot · Yahoo Finance</span>
+      </div>
+    </div>
+    <div class="timestamp">
+      <div><strong>SGT:</strong> 2026-10-28 15:54</div>
+      <div>Market close: 2026-10-27 (US)</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <div class="label">S&amp;P 500</div>
+      <div class="price">7,722.60</div>
+      <div class="change up">+0.60%</div>
+      <div class="range">O 7,699.47 · H 7,736.24 · L 7,677.16</div>
+    </div>
+    <div class="card">
+      <div class="label">Dow 30</div>
+      <div class="price">52,377.60</div>
+      <div class="change up">+0.03%</div>
+      <div class="range">O 52,277.49 · H 52,477.91 · L 52,231.84</div>
+    </div>
+    <div class="card">
+      <div class="label">Nasdaq</div>
+      <div class="price">26,477.81</div>
+      <div class="change up">+1.18%</div>
+      <div class="range">O 26,286.31 · H 26,540.81 · L 26,219.31</div>
+    </div>
+    <div class="card">
+      <div class="label">Russell 2000</div>
+      <div class="price">2,818.87</div>
+      <div class="change up">+1.16%</div>
+      <div class="range">O 2,792.85 · H 2,820.98 · L 2,788.59</div>
+    </div>
+    <div class="card">
+      <div class="label">VIX</div>
+      <div class="price">17.51</div>
+      <div class="change down">-0.06%</div>
+      <div class="range">H 17.51 · L 17.47</div>
+    </div>
+    <div class="card">
+      <div class="label">10Y Treasury</div>
+      <div class="price">4.993%</div>
+      <div class="change up">+0.14%</div>
+      <div class="range">H 5.007 · L 4.972</div>
+    </div>
+    <div class="card">
+      <div class="label">US Dollar Index</div>
+      <div class="price">102.416</div>
+      <div class="change up">+0.10%</div>
+      <div class="range">O 102.367 · H 102.491 · L 102.313</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Market Summary</h2>
+    <div class="summary">
+      <p><span class="badge green">Bullish</span> US equities closed higher across the board on the latest session, led by tech-heavy Nasdaq (+1.18%) and small-caps (+1.16%). S&amp;P 500 added 0.60% while the Dow was nearly flat (+0.03%).</p>
+      <p><span class="badge gold">Volatility</span> VIX eased slightly to 17.51 (-0.06%), indicating calm risk sentiment despite the rally.</p>
+      <p><span class="badge red">Rates</span> 10-Year Treasury yield rose to 4.993% (+0.14%), reflecting firming rate expectations; the US Dollar Index firmed to 102.416 (+0.10%).</p>
+      <p>Overall tone: risk-on with broad participation; watch yield and dollar strength for follow-through.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Index Detail</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Price</th>
+          <th>Change %</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>S&amp;P 500</td><td>7,722.60</td><td class="up">+0.60%</td><td>7,699.47</td><td>7,736.24</td><td>7,677.16</td></tr>
+        <tr><td>Dow 30</td><td>52,377.60</td><td class="up">+0.03%</td><td>52,277.49</td><td>52,477.91</td><td>52,231.84</td></tr>
+        <tr><td>Nasdaq</td><td>26,477.81</td><td class="up">+1.18%</td><td>26,286.31</td><td>26,540.81</td><td>26,219.31</td></tr>
+        <tr><td>Russell 2000</td><td>2,818.87</td><td class="up">+1.16%</td><td>2,792.85</td><td>2,820.98</td><td>2,788.59</td></tr>
+        <tr><td>VIX</td><td>17.51</td><td class="down">-0.06%</td><td>17.47</td><td>17.51</td><td>17.47</td></tr>
+        <tr><td>10Y Treasury</td><td>4.993%</td><td class="up">+0.14%</td><td>4.976</td><td>5.007</td><td>4.972</td></tr>
+        <tr><td>US Dollar Index</td><td>102.416</td><td class="up">+0.10%</td><td>102.367</td><td>102.491</td><td>102.313</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Data source: Yahoo Finance · Generated 2026-10-28 15:54 SGT · Joker AI Market Trend
+  </footer>
+</div>
+</body>
+</html>
