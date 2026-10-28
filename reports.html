@@ -4,76 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Joker AI — Reports</title>
-<link rel="stylesheet" href="report-style.css">
-  
-  
-  <style>
+<style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f0ebe3;
-    --surface: #ffffff;
-    --ink: #1a1a1a;
-    --muted: #6b5e51;
-    --accent: #c75b3a;
-    --accent-2: #2f6f68;
-    --accent-3: #c9a227;
-    --border: 3px solid #1a1a1a;
-    --shadow: 6px 6px 0px #1a1a1a;
-    --shadow-hover: 2px 2px 0px #1a1a1a;
-  }
-  html, body { height: 100%; }
   body {
-    font-family: "Courier New", Courier, monospace;
-    background-color: var(--bg);
-    background-image:
-      linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
-    background-size: 20px 20px;
-    color: var(--ink);
-    padding: 20px;
+    background: #000;
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-  .container { max-width: 800px; margin: 0 auto; }
-  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; }
-  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  #matrix-fallback {
+    position: fixed; inset: 0; z-index: -3;
+    pointer-events: none; overflow: hidden; opacity: 0.55;
+  }
+  .matrix-col {
+    position: absolute; top: -100%;
+    font-family: monospace; font-size: 16px; line-height: 18px;
+    color: #00ff41; text-shadow: 0 0 8px #00ff41;
+    white-space: pre; animation: matrixFall linear infinite;
+  }
+  @keyframes matrixFall { 0%{transform:translateY(-100%);} 100%{transform:translateY(120vh);} }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; position: relative; z-index: 1; }
+  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px #00ff41; }
+  .subtitle { color: #00cc33; font-size: 14px; margin-bottom: 24px; }
+  .back-link {
+    display: inline-block; margin-bottom: 20px;
+    color: #00ff41; text-decoration: none; font-weight: 900; font-size: 14px;
+    text-shadow: 0 0 6px #00ff41;
+  }
+  .back-link:hover { text-decoration: underline; }
   .report-card {
-    background: var(--surface);
-    border: var(--border);
-    box-shadow: var(--shadow);
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid #00ff41;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
     padding: 16px 20px;
     margin-bottom: 16px;
-    transition: transform 0.1s, box-shadow 0.1s;
+    transition: all 0.2s;
     text-decoration: none;
-    color: var(--ink);
+    color: #00ff41;
     display: block;
+    backdrop-filter: blur(2px);
   }
-  .report-card:hover { transform: translate(2px, 2px); box-shadow: var(--shadow-hover); }
-  .report-card:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
-  .report-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
-  .report-desc { font-size: 12px; color: var(--muted); }
+  .report-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+    transform: translate(2px, 2px);
+    background: rgba(0, 30, 0, 0.9);
+  }
+  .report-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; text-shadow: 0 0 6px #00ff41; }
+  .report-desc { font-size: 12px; color: #00cc33; }
   .report-badge {
     display: inline-block;
     padding: 2px 8px;
     font-size: 10px;
     font-weight: 700;
     margin-right: 8px;
-    border: 2px solid #000;
+    border: 1px solid #00ff41;
   }
-  .badge-en { background: #c75b3a; color: #fff; }
-  .badge-zh { background: #2f6f68; color: #fff; }
-  .badge-live { background: #c9a227; color: #000; }
-  .back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 14px;
+  .badge-en { background: #00ff41; color: #000; }
+  .badge-zh { background: #00cc33; color: #000; }
+  .badge-live { background: transparent; color: #00ff41; border: 1px solid #00ff41; }
+  .footer { margin-top: 30px; text-align: center; font-size: 11px; color: #00cc33; }
+  @media (max-width: 640px) {
+    h1 { font-size: 22px; }
+    .report-card { padding: 12px 14px; }
   }
-  .back-link:hover { text-decoration: underline; }
-  .footer { margin-top: 30px; text-align: center; font-size: 11px; color: var(--muted); }
 </style>
 </head>
 <body>
+<div id="matrix-fallback"></div>
 <div class="container">
   <a href="index.html" class="back-link">← Back to Joker AI</a>
   <h1>📊 Reports Dashboard</h1>
@@ -152,9 +150,29 @@
   </a>
 
   <div class="footer">
-    Joker AI · Reports Dashboard · Updated 2026-10-28<br>
-    <a href="index.html" style="color: var(--accent);">← Back to Home</a>
+    Joker AI · Reports Dashboard · Matrix Style<br>
+    <a href="index.html" style="color: #00ff41;">← Back to Home</a>
   </div>
 </div>
+<script>
+  (function() {
+    var container = document.getElementById('matrix-fallback');
+    if (!container) return;
+    var cols = Math.floor(window.innerWidth / 20);
+    for (var i = 0; i < cols; i++) {
+      var el = document.createElement('div');
+      el.className = 'matrix-col';
+      el.style.left = (i * 20) + 'px';
+      el.style.animationDuration = (8 + Math.random() * 12) + 's';
+      el.style.animationDelay = (Math.random() * 10) + 's';
+      var chars = '';
+      for (var j = 0; j < 30; j++) {
+        chars += String.fromCharCode(0x30A0 + Math.random() * 96) + '\n';
+      }
+      el.textContent = chars;
+      container.appendChild(el);
+    }
+  })();
+</script>
 </body>
 </html>
