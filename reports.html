@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>Joker AI — Reports</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f0ebe3;
+    --surface: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b5e51;
+    --accent: #c75b3a;
+    --accent-2: #2f6f68;
+    --accent-3: #c9a227;
+    --border: 3px solid #1a1a1a;
+    --shadow: 6px 6px 0px #1a1a1a;
+    --shadow-hover: 2px 2px 0px #1a1a1a;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: "Courier New", Courier, monospace;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--ink);
+    padding: 20px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .report-card {
+    background: var(--surface);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+  }
+  .report-card:hover { transform: translate(2px, 2px); box-shadow: var(--shadow-hover); }
+  .report-card:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
+  .report-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; }
+  .report-desc { font-size: 12px; color: var(--muted); }
+  .report-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 8px;
+    border: 2px solid #000;
+  }
+  .badge-en { background: #c75b3a; color: #fff; }
+  .badge-zh { background: #2f6f68; color: #fff; }
+  .badge-live { background: #c9a227; color: #000; }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 14px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .footer { margin-top: 30px; text-align: center; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back-link">← Back to Joker AI</a>
+  <h1>📊 Reports Dashboard</h1>
+  <p class="subtitle">Live reports — click any card to open</p>
+
+  <a href="audit-report.html" class="report-card">
+    <div class="report-title">📋 Hermes Audit Report</div>
+    <div class="report-desc">System health, cron jobs, skills, issues fixed — professional A4 print layout</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-en">EN</span>
+    </div>
+  </a>
+
+  <a href="portfolio-report.html" class="report-card">
+    <div class="report-title">📈 Portfolio Report</div>
+    <div class="report-desc">Full portfolio analysis with charts, holdings, and market trends</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-en">EN</span>
+    </div>
+  </a>
+
+  <a href="portfolio-report-zh.html" class="report-card">
+    <div class="report-title">📈 投资组合报告</div>
+    <div class="report-desc">完整投资组合分析，含图表、持仓和市场趋势</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-zh">ZH</span>
+    </div>
+  </a>
+
+  <a href="price-alert.html" class="report-card">
+    <div class="report-title">🚨 Price Alert (Enhanced)</div>
+    <div class="report-desc">Watchlist movers, portfolio alerts, analyst commentary, social buzz</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-en">EN</span>
+    </div>
+  </a>
+
+  <a href="price-alert-zh.html" class="report-card">
+    <div class="report-title">🚨 价格异动警报 (增强版)</div>
+    <div class="report-desc">观察名单异动、持仓警报、分析师观点、社交媒体热度</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-zh">ZH</span>
+    </div>
+  </a>
+
+  <a href="malaysia-news.html" class="report-card">
+    <div class="report-title">📰 Malaysia Chinese News</div>
+    <div class="report-desc">Daily Malaysia Chinese news digest — Tangkak & surrounding areas</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-zh">ZH</span>
+    </div>
+  </a>
+
+  <a href="us-stock-report.html" class="report-card">
+    <div class="report-title">🇺🇸 US Stock Report</div>
+    <div class="report-desc">US stock market analysis and trading signals</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-en">EN</span>
+    </div>
+  </a>
+
+  <a href="singapore-coe.html" class="report-card">
+    <div class="report-title">🇸🇬 Singapore COE Report</div>
+    <div class="report-desc">Certificate of Entitlement prices and trends</div>
+    <div style="margin-top: 8px;">
+      <span class="report-badge badge-live">LIVE</span>
+      <span class="report-badge badge-en">EN</span>
+    </div>
+  </a>
+
+  <div class="footer">
+    Joker AI · Reports Dashboard · Updated 2026-10-28<br>
+    <a href="index.html" style="color: var(--accent);">← Back to Home</a>
+  </div>
+</div>
+</body>
+</html>

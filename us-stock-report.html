@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Stock Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f6f8fa;
+    color: #1a1a1a;
+    padding: 16px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #0f172a; }
+  .date { font-size: 13px; color: #64748b; margin-bottom: 14px; }
+  .section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #0f172a;
+  }
+  .kpi { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .kpi-box {
+    flex: 1 1 30%;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid #2563eb;
+  }
+  .kpi-box .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi-box .value { font-size: 16px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+  .kpi-box .sub { margin-top: 2px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; }
+  th { background: #f8fafc; color: #334155; font-weight: 600; }
+  .num { font-variant-numeric: tabular-nums; }
+  .news-item { margin: 8px 0; }
+  .news-title { font-size: 13px; font-weight: 600; color: #0f172a; line-height: 1.4; }
+  .news-title a { color: #2563eb; text-decoration: none; }
+  .news-title a:visited { color: #1d4ed8; }
+  .news-meta { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+  .footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 8px; padding-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>US Stock Report</h1>
+  <div class="date">2026-10-26 · Yahoo Finance + NewsAPI</div>
+
+  <div class="section">
+    <h2>Key Holdings Snapshot</h2>
+    <div class="kpi">
+      
+      <div class="kpi-box">
+        <div class="label">NVDA</div>
+        <div class="value">$210.96</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-0.67%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">INTC</div>
+        <div class="value">$86.96</div>
+        <div class="sub" style="color:#16a34a;font-size:12px;font-weight:600;">2.60%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">MU</div>
+        <div class="value">$877.55</div>
+        <div class="sub" style="color:#16a34a;font-size:12px;font-weight:600;">3.77%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">MRVL</div>
+        <div class="value">$228.51</div>
+        <div class="sub" style="color:#16a34a;font-size:12px;font-weight:600;">3.65%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">META</div>
+        <div class="value">$642.62</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-0.51%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">MSFT</div>
+        <div class="value">$524.51</div>
+        <div class="sub" style="color:#16a34a;font-size:12px;font-weight:600;">0.48%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">AAPL</div>
+        <div class="value">$347.73</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-0.25%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">AMZN</div>
+        <div class="value">$248.00</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-1.12%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">TSLA</div>
+        <div class="value">$372.22</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-0.30%</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">GOOGL</div>
+        <div class="value">$320.21</div>
+        <div class="sub" style="color:#dc2626;font-size:12px;font-weight:600;">-1.26%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>All US Holdings</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <tr>
+          <th>Symbol</th>
+          <th>Company</th>
+          <th>Cost</th>
+          <th>Price</th>
+          <th>Change</th>
+          <th>P/L</th>
+          <th>P/L %</th>
+        </tr>
+        
+      <tr>
+        <td><strong>NVDA</strong></td>
+        <td>NVIDIA Corporation</td>
+        <td class="num">$229.73</td>
+        <td class="num">$210.96</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.67%</td>
+        <td class="num">$-375.40</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-8.17%</td>
+      </tr>
+      <tr>
+        <td><strong>INTC</strong></td>
+        <td>Intel Corporation</td>
+        <td class="num">$102.07</td>
+        <td class="num">$86.96</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.60%</td>
+        <td class="num">$-1,964.30</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-14.80%</td>
+      </tr>
+      <tr>
+        <td><strong>MU</strong></td>
+        <td>Micron Technology, Inc.</td>
+        <td class="num">$923.90</td>
+        <td class="num">$877.55</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">3.77%</td>
+        <td class="num">$-278.10</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-5.02%</td>
+      </tr>
+      <tr>
+        <td><strong>MRVL</strong></td>
+        <td>Marvell Technology, Inc.</td>
+        <td class="num">$253.71</td>
+        <td class="num">$228.51</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">3.65%</td>
+        <td class="num">$-882.00</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-9.93%</td>
+      </tr>
+      <tr>
+        <td><strong>NOK</strong></td>
+        <td>Nokia Corporation Sponsored</td>
+        <td class="num">$12.43</td>
+        <td class="num">$8.14</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.91%</td>
+        <td class="num">$-643.50</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-34.51%</td>
+      </tr>
+      <tr>
+        <td><strong>CBRS</strong></td>
+        <td>Cerebras Systems Inc.</td>
+        <td class="num">$137.33</td>
+        <td class="num">$110.82</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.88%</td>
+        <td class="num">$-397.65</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-19.30%</td>
+      </tr>
+      <tr>
+        <td><strong>DELL</strong></td>
+        <td>Dell Technologies Inc.</td>
+        <td class="num">$467.90</td>
+        <td class="num">$456.44</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">1.66%</td>
+        <td class="num">$-114.60</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-2.45%</td>
+      </tr>
+      <tr>
+        <td><strong>SPCX</strong></td>
+        <td>Space Exploration Technologies </td>
+        <td class="num">$154.09</td>
+        <td class="num">$147.49</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">0.71%</td>
+        <td class="num">$-132.00</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-4.28%</td>
+      </tr>
+      <tr>
+        <td><strong>GOOG</strong></td>
+        <td>Alphabet Inc.</td>
+        <td class="num">$319.50</td>
+        <td class="num">$317.28</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-1.05%</td>
+        <td class="num">$-11.10</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.69%</td>
+      </tr>
+      <tr>
+        <td><strong>TSM</strong></td>
+        <td>Taiwan Semiconductor Manufactur</td>
+        <td class="num">$412.68</td>
+        <td class="num">$418.51</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.07%</td>
+        <td class="num">$29.15</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">1.41%</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td>Advanced Micro Devices, Inc.</td>
+        <td class="num">$565.59</td>
+        <td class="num">$516.79</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.18%</td>
+        <td class="num">$-1,220.00</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-8.63%</td>
+      </tr>
+      <tr>
+        <td><strong>AVGO</strong></td>
+        <td>Broadcom Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$321.68</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.25%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>ARM</strong></td>
+        <td>Arm Holdings plc</td>
+        <td class="num">—</td>
+        <td class="num">$210.33</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">1.00%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>AMZN</strong></td>
+        <td>Amazon.com, Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$248.00</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-1.12%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>AAPL</strong></td>
+        <td>Apple Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$347.73</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.25%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>BA</strong></td>
+        <td>Boeing Company (The)</td>
+        <td class="num">—</td>
+        <td class="num">$188.35</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">0.43%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>GOOGL</strong></td>
+        <td>Alphabet Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$320.21</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-1.26%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>MSFT</strong></td>
+        <td>Microsoft Corporation</td>
+        <td class="num">—</td>
+        <td class="num">$524.51</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">0.48%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>META</strong></td>
+        <td>Meta Platforms, Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$642.62</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.51%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>TSLA</strong></td>
+        <td>Tesla, Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$372.22</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.30%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>ORCL</strong></td>
+        <td>Oracle Corporation</td>
+        <td class="num">—</td>
+        <td class="num">$126.16</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">0.76%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>NFLX</strong></td>
+        <td>Netflix, Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$65.85</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-1.72%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>GFS</strong></td>
+        <td>GlobalFoundries Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$44.39</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">3.04%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>PLTR</strong></td>
+        <td>Palantir Technologies Inc.</td>
+        <td class="num">—</td>
+        <td class="num">$196.75</td>
+        <td class="num" style="color:#dc2626;font-weight:600;">-0.23%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>COHR</strong></td>
+        <td>Coherent Corp.</td>
+        <td class="num">—</td>
+        <td class="num">$209.29</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.34%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      <tr>
+        <td><strong>SPCU</strong></td>
+        <td>Defiance Daily Target 2X Long S</td>
+        <td class="num">—</td>
+        <td class="num">$12.18</td>
+        <td class="num" style="color:#16a34a;font-weight:600;">2.53%</td>
+        <td class="num">—</td>
+        <td class="num" style="color:#64748b;font-weight:600;">—</td>
+      </tr>
+      </table>
+    </div>
+    <div class="source" style="margin-top:8px;">
+      <a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a>
+    </div>
+  </div>
+  
+  <div class="footer">Prices via Yahoo Finance · News via NewsAPI · For reference only</div>
+</div>
+</body>
+</html>
