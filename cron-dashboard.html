@@ -165,9 +165,9 @@
       name: "Portfolio Deviation Report",
       jobId: "6238524385d8",
       schedule: "every 120m",
-      lastRun: "2026-10-30 09:00:11",
+      lastRun: "2026-10-30 09:00:10",
       status: "failed",
-      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+      output: "HTTP 429: Hold up for a bit, you've exceeded the rate limit on your API key."
     },
     {
       name: "Portfolio Full Report 10AM",
@@ -191,7 +191,7 @@
       schedule: "every 30m",
       lastRun: "2026-10-30 08:59:40",
       status: "ok",
-      output: "📊 Watchlist Movers — 08:59 SGT\n\nNo significant watchlist moves.\n\n🚨 Portfolio Alerts:\n⚠️ TSM DOWN 5.09% | Prev Close: 439.51 → Now: 417.14 | P/L from cost: +1.08%\n⚠️ SPCX DOWN 3.91% | Prev Close: 145.23 → Now: 139.55 | P/L from cost: -9.44%\n⚠️ SKHY DOWN 9.03% | Prev Close: 164.70 → Now: 149.82 | P/L from cost: -14.03%\n⚠️ NVDA DOWN 3.26% | Prev Close: 215.38 → Now: 208.35 | P/L from cost: -9.31%\n⚠️ NOK DOWN 3.58% | Prev Close: 9.22 → Now: 8.89 | P/L from cost: -28.47%\n⚠️ MU DOWN 9.38% | Prev Close: 983.23 → Now: 891.00 | P/L from cost: -3.56%\n⚠️ MRVL DOWN 17.59% | Prev Close: 251.65 → Now: 207.39 | P/L from cost: -18.26%"
+      output: "📊 Watchlist Movers — 08:59 SGT\n\nNo significant watchlist moves.\n\n🚨 Portfolio Alerts:\n⚠️ TSM DOWN 5.09% | Prev Close: 439.51 → Now: 417.14 | P/L from cost: +1.08%\n⚠️ SPCX DOWN 3.91% | Prev Close: 145.23 → Now: 139.55 | P/L from cost: -9.44%\n⚠️ SKHY DOWN 9.03% | Prev Close: 164.70 → Now: 149.82 | P/L from cost: -14.03%\n⚠️ NVDA DOWN 3.26% | Prev Close: 215.38 → Now: 208.35 | P/L from cost: -9.31%\n⚠️ NOK DOWN 3.58% | Prev Close: 9.22 → Now: 8.89 | P/L from cost: -28.47%\n⚠️ MU DOWN 9.38% | Prev Close: 983.23 → Now: 891.00 | P/L from cost: -3.56%\n⚠️ MRVL DOWN 17.59% | Prev Close: 251.65 → Now: 207.39 | P/L from cost: -18.26%\n⚠️ INTC DOWN 25.76% | Prev Close: 95.53 → Now: 70.92 | P/L from cost: -30.52%\n⚠️ GOOG DOWN 13.57% | Prev Close: 321.89 → Now: 278.20 | P/L from cost: -12.93%\n⚠️ DELL DOWN 10.61% | Prev Close: 493.79 → Now: 441.39 | P/L from cost: -5.67%\n⚠️ CBRS DOWN 3.16% | Prev Close: 112.56 → Now: 109.00 | P/L from cost: -20.63%\n⚠️ AMD DOWN 8.89% | Prev Close: 578.44 → Now: 527.00 | P/L from cost: -6.82%"
     },
     {
       name: "Daily Chinese News TGK",
@@ -205,9 +205,9 @@
       name: "Daily Moomoo Email Sync",
       jobId: "883679ec05f3",
       schedule: "every day at 9pm",
-      lastRun: "2026-10-30 09:01:22",
-      status: "ok",
-      output: "- Fixed Himalaya TOML schema errors: changed `imap.host` to `imap.server` and removed unsupported `imap.port`.\n- Script still fails before saving any emails. Latest error: `IMAP SELECT failed: BAD Unknown command d2e1a72f...`\n- Root cause: `/Users/btm6/.config/himalaya/config.toml` still contains the placeholder password `YOUR_APP_PASSWORD_HERE`, so Gmail IMAP auth cannot succeed.\n- Result: 0 new emails saved.\n\nBlocker: update `password = \"YOUR_APP_PASSWORD_HERE\"` in `/Users/btm6/.config/himalaya/config.toml` to a valid Gmail App Password, then rerun the script."
+      lastRun: "2026-10-30 09:01:20",
+      status: "failed",
+      output: "Fixed Himalaya TOML schema errors. Script still fails before saving any emails. Root cause: himalaya config.toml still contains placeholder password. Result: 0 new emails saved. Blocker: update Gmail App Password in /Users/btm6/.config/himalaya/config.toml."
     },
     {
       name: "Weekly P/L Summary",
@@ -221,8 +221,8 @@
       name: "Deploy Neo-Brutalism Style Reminder",
       jobId: "f6534e2f609e",
       schedule: "once at 2026-11-03 09:00",
-      lastRun: "2026-10-30 08:59:47",
-      status: "ok",
+      lastRun: "2026-10-30 08:59:45",
+      status: "failed",
       output: "Reminder: Time to deploy the Neo-Brutalism style switch online. Merge `style-neubrutalism` into `main` for the Joker AI profile site."
     }
   ];
