@@ -253,6 +253,91 @@
             0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
             40% { transform: scale(1); opacity: 1; }
         }
+
+        /* Snake Game */
+        .snake-header {
+            height: 50px;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #00c8ff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.25);
+            box-shadow: 0 2px 20px rgba(0, 200, 255, 0.08);
+        }
+        .nokia-frame {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #0a0e27;
+            padding: 16px;
+            gap: 12px;
+        }
+        .nokia-screen {
+            background: #9cb076;
+            border: 4px solid #1f2a1f;
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4), 0 0 0 2px #2f3b2f;
+            padding: 8px;
+            image-rendering: pixelated;
+        }
+        .nokia-screen canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #9cb076;
+        }
+        .nokia-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .nokia-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #1f2a1f;
+            color: #9cb076;
+            border: 2px solid #2f3b2f;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #0a0e27, 0 0 10px rgba(0,0,0,0.4);
+            transition: transform 0.05s;
+        }
+        .nokia-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #0a0e27, 0 0 10px rgba(0,0,0,0.4);
+        }
+        .nokia-action {
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #007aff 0%, #00c8ff 100%);
+            color: #fff;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 200, 255, 0.4);
+        }
+        .snake-score {
+            color: #00c8ff;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        .omlx-comment {
+            color: #e8e4d9;
+            font-size: 12px;
+            text-align: center;
+            min-height: 18px;
+        }
         @media (max-width: 420px) {
             .phone-frame {
                 width: 100%;
@@ -313,6 +398,31 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-content" id="snake-tab">
+                <div class="snake-header">Snake 3310</div>
+                <div class="nokia-frame">
+                    <div class="nokia-screen">
+                        <canvas id="snake-canvas" width="160" height="160"></canvas>
+                    </div>
+                    <div class="snake-score" id="snake-score">Score: 0</div>
+                    <div class="omlx-comment" id="omlx-comment">Ask oMLX for a tip</div>
+                    <div class="nokia-controls">
+                        <button class="nokia-btn" onclick="snakeSetDirection('up')">▲</button>
+                    </div>
+                    <div class="nokia-controls">
+                        <button class="nokia-btn" onclick="snakeSetDirection('left')">◀</button>
+                        <button class="nokia-btn" onclick="snakeTogglePause()">❚❚</button>
+                        <button class="nokia-btn" onclick="snakeSetDirection('right')">▶</button>
+                    </div>
+                    <div class="nokia-controls">
+                        <button class="nokia-btn" onclick="snakeSetDirection('down')">▼</button>
+                    </div>
+                    <div class="nokia-controls">
+                        <button class="nokia-action" onclick="snakeReset()">Reset</button>
+                        <button class="nokia-action" onclick="askOmlxAboutSnake()">Ask oMLX</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-bar">
             <button class="tab-button active" onclick="switchTab('chat')">
@@ -323,6 +433,10 @@
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
                 <span>Files</span>
             </button>
+            <button class="tab-button" onclick="switchTab('snake')">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <span>Snake</span>
+            </button>
         </div>
     </div>
     <script>
@@ -332,9 +446,13 @@
             if (tab === 'chat') {
                 document.getElementById('chat-tab').classList.add('active');
                 document.querySelectorAll('.tab-button')[0].classList.add('active');
-            } else {
+            } else if (tab === 'files') {
                 document.getElementById('files-tab').classList.add('active');
                 document.querySelectorAll('.tab-button')[1].classList.add('active');
+            } else if (tab === 'snake') {
+                document.getElementById('snake-tab').classList.add('active');
+                document.querySelectorAll('.tab-button')[2].classList.add('active');
+                snakeInit();
             }
         }
         function sendMessage() {
@@ -364,6 +482,141 @@
         }
         document.getElementById('chat-input')?.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') sendMessage();
+        });
+
+        /* Snake Game - Nokia 3310 style */
+        const SNAKE_COLS = 16;
+        const SNAKE_ROWS = 16;
+        const PIXEL = 10;
+        let snakeCtx = null;
+        let snake = [];
+        let food = {x: 8, y: 8};
+        let direction = {x: 1, y: 0};
+        let nextDirection = {x: 1, y: 0};
+        let score = 0;
+        let snakeInterval = null;
+        let snakeRunning = false;
+        let snakePaused = false;
+
+        function snakeInit() {
+            const canvas = document.getElementById('snake-canvas');
+            if (!canvas) return;
+            snakeCtx = canvas.getContext('2d');
+            canvas.width = SNAKE_COLS * PIXEL;
+            canvas.height = SNAKE_ROWS * PIXEL;
+            if (!snakeRunning) {
+                snakeReset();
+            }
+        }
+        function snakeReset() {
+            snake = [{x: 6, y: 8}, {x: 5, y: 8}, {x: 4, y: 8}];
+            direction = {x: 1, y: 0};
+            nextDirection = {x: 1, y: 0};
+            score = 0;
+            snakePaused = false;
+            snakePlaceFood();
+            updateSnakeScore();
+            if (snakeInterval) clearInterval(snakeInterval);
+            snakeInterval = setInterval(snakeTick, 140);
+            snakeRunning = true;
+            snakeDraw();
+        }
+        function snakeTogglePause() {
+            snakePaused = !snakePaused;
+        }
+        function snakeSetDirection(dir) {
+            const map = {
+                'up': {x: 0, y: -1},
+                'down': {x: 0, y: 1},
+                'left': {x: -1, y: 0},
+                'right': {x: 1, y: 0}
+            };
+            const d = map[dir];
+            if (!d) return;
+            if (d.x + direction.x === 0 && d.y + direction.y === 0) return;
+            nextDirection = d;
+        }
+        function snakePlaceFood() {
+            let pos;
+            do {
+                pos = {x: Math.floor(Math.random() * SNAKE_COLS), y: Math.floor(Math.random() * SNAKE_ROWS)};
+            } while (snake.some(seg => seg.x === pos.x && seg.y === pos.y));
+            food = pos;
+        }
+        function snakeTick() {
+            if (snakePaused) return;
+            direction = nextDirection;
+            const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+            if (head.x < 0 || head.y < 0 || head.x >= SNAKE_COLS || head.y >= SNAKE_ROWS) {
+                snakeGameOver();
+                return;
+            }
+            if (snake.some(seg => seg.x === head.x && seg.y === head.y)) {
+                snakeGameOver();
+                return;
+            }
+            snake.unshift(head);
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                updateSnakeScore();
+                snakePlaceFood();
+            } else {
+                snake.pop();
+            }
+            snakeDraw();
+        }
+        function snakeDraw() {
+            if (!snakeCtx) return;
+            snakeCtx.fillStyle = '#9cb076';
+            snakeCtx.fillRect(0, 0, SNAKE_COLS * PIXEL, SNAKE_ROWS * PIXEL);
+            snakeCtx.fillStyle = '#1f2a1f';
+            snake.forEach(seg => snakeCtx.fillRect(seg.x * PIXEL + 1, seg.y * PIXEL + 1, PIXEL - 2, PIXEL - 2));
+            snakeCtx.fillStyle = '#2f3b2f';
+            snakeCtx.fillRect(food.x * PIXEL + 2, food.y * PIXEL + 2, PIXEL - 4, PIXEL - 4);
+        }
+        function updateSnakeScore() {
+            const el = document.getElementById('snake-score');
+            if (el) el.textContent = 'Score: ' + score;
+        }
+        function snakeGameOver() {
+            clearInterval(snakeInterval);
+            snakeRunning = false;
+            if (!snakeCtx) return;
+            snakeCtx.fillStyle = 'rgba(0,0,0,0.55)';
+            snakeCtx.fillRect(0, 0, SNAKE_COLS * PIXEL, SNAKE_ROWS * PIXEL);
+            snakeCtx.fillStyle = '#9cb076';
+            snakeCtx.font = 'bold 18px monospace';
+            snakeCtx.textAlign = 'center';
+            snakeCtx.fillText('GAME OVER', SNAKE_COLS * PIXEL / 2, SNAKE_ROWS * PIXEL / 2 - 8);
+            snakeCtx.fillText('Score: ' + score, SNAKE_COLS * PIXEL / 2, SNAKE_ROWS * PIXEL / 2 + 16);
+        }
+        function askOmlxAboutSnake() {
+            const commentEl = document.getElementById('omlx-comment');
+            if (!commentEl) return;
+            const tips = [
+                "oMLX says: try corner traps — they work until they don't.",
+                "oMLX says: space left of food = safer turn ratio.",
+                "oMLX says: if length > 50, prefer open-loop edge runs.",
+                "oMLX says: wall-hugging is fine until it isn't."
+            ];
+            commentEl.textContent = tips[Math.floor(Math.random() * tips.length)];
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            const map = {
+                'ArrowUp': 'up', 'w': 'up',
+                'ArrowDown': 'down', 's': 'down',
+                'ArrowLeft': 'left', 'a': 'left',
+                'ArrowRight': 'right', 'd': 'right',
+                ' ': 'pause'
+            };
+            const action = map[e.key];
+            if (action === 'up') snakeSetDirection('up');
+            else if (action === 'down') snakeSetDirection('down');
+            else if (action === 'left') snakeSetDirection('left');
+            else if (action === 'right') snakeSetDirection('right');
+            else if (action === 'pause') snakeTogglePause();
         });
     </script>
 </body>
