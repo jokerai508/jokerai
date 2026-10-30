@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joker AI — Cron Dashboard</title>
+<style>
+  :root {
+    --bg: #0b0d12;
+    --card: #11151b;
+    --text: #e8e4d9;
+    --muted: #9aa3ad;
+    --green: #4ade80;
+    --red: #f87171;
+    --gold: #d4a93c;
+    --border: #1e2430;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 24px;
+  }
+  header {
+    max-width: 1100px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0;
+  }
+  .badge {
+    font-size: 12px;
+    color: var(--muted);
+    background: #0f1318;
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .08s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .status {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #0f1318;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .status.ok { color: var(--green); border-color: #153323; background: #0b1a14; }
+  .status.failed { color: var(--red); border-color: #3b1418; background: #1a0d10; }
+  .status.pending { color: var(--gold); border-color: #3b2a0d; background: #1a160b; }
+  .meta {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .output {
+    background: #0a0d12;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d6d2c5;
+    max-height: 220px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .link {
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  .link:hover { text-decoration: underline; }
+  footer {
+    max-width: 1100px;
+    margin: 18px auto 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Joker AI — Cron Dashboard</h1>
+    <div class="updated" id="updated">Last updated: --</div>
+  </div>
+  <div class="badge">Local outputs from ~/.hermes/cron/output</div>
+</header>
+<div class="grid" id="cards"></div>
+<footer>
+  Delivered via GitHub Pages • Repo: jokerai508/jokerai
+</footer>
+
+<script>
+  const data = [
+    {
+      name: "6-Hour Status Report",
+      jobId: "9dee0b2090f8",
+      schedule: "0 9,15,21,3 * * *",
+      lastRun: "2026-10-30 09:00:56",
+      status: "ok",
+      output: "Status Report — 2026-10-30 09:00:30 SGT\n\n1) Timestamp\n- Current SGT time: 2026-10-30 09:00:30\n- Outside quiet window (23:00–09:00); report generated.\n\n2) System metrics\n- Hardware: Mac mini (Mac18,5), Apple M6, 12 cores, 32 GB RAM\n- CPU: 3.16% user, 8.86% sys, 87.97% idle; load avg 1.61 / 1.41 / 1.42\n- Memory: 23 GB used, ~8.9 GB unused (~27.8/32 GB = 87% used)\n- Disk: 460 GB total, 13 GB used, 119 GB available, 10% capacity used"
+    },
+    {
+      name: "Daily Earnings & Holdings Alert",
+      jobId: "f4d3ee64eb18",
+      schedule: "every day at 8am",
+      lastRun: "2026-10-30 08:59:38",
+      status: "failed",
+      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+    },
+    {
+      name: "3-Hour Market Trend",
+      jobId: "c06ad6e1ee7f",
+      schedule: "0 9,12,15,18,21,0 * * *",
+      lastRun: "2026-10-30 09:02:09",
+      status: "failed",
+      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+    },
+    {
+      name: "Portfolio Deviation Report",
+      jobId: "6238524385d8",
+      schedule: "every 120m",
+      lastRun: "2026-10-30 09:00:11",
+      status: "failed",
+      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+    },
+    {
+      name: "Portfolio Full Report 10AM",
+      jobId: "39ab5458987d",
+      schedule: "every day at 10am",
+      lastRun: "2026-10-30 09:00:28",
+      status: "ok",
+      output: "Portfolio Report updated: https://jokerai508.github.io/jokerai/portfolio-report.html"
+    },
+    {
+      name: "Portfolio Full Report 8PM",
+      jobId: "8227cf278b70",
+      schedule: "every day at 8pm",
+      lastRun: "2026-10-30 08:59:54",
+      status: "ok",
+      output: "Portfolio Report updated: https://jokerai508.github.io/jokerai/portfolio-report.html"
+    },
+    {
+      name: "Price Deviation Alert",
+      jobId: "08b75ce493e5",
+      schedule: "every 30m",
+      lastRun: "2026-10-30 08:59:40",
+      status: "ok",
+      output: "📊 Watchlist Movers — 08:59 SGT\n\nNo significant watchlist moves.\n\n🚨 Portfolio Alerts:\n⚠️ TSM DOWN 5.09% | Prev Close: 439.51 → Now: 417.14 | P/L from cost: +1.08%\n⚠️ SPCX DOWN 3.91% | Prev Close: 145.23 → Now: 139.55 | P/L from cost: -9.44%\n⚠️ SKHY DOWN 9.03% | Prev Close: 164.70 → Now: 149.82 | P/L from cost: -14.03%\n⚠️ NVDA DOWN 3.26% | Prev Close: 215.38 → Now: 208.35 | P/L from cost: -9.31%\n⚠️ NOK DOWN 3.58% | Prev Close: 9.22 → Now: 8.89 | P/L from cost: -28.47%\n⚠️ MU DOWN 9.38% | Prev Close: 983.23 → Now: 891.00 | P/L from cost: -3.56%\n⚠️ MRVL DOWN 17.59% | Prev Close: 251.65 → Now: 207.39 | P/L from cost: -18.26%"
+    },
+    {
+      name: "Daily Chinese News TGK",
+      jobId: "b2418f3b6511",
+      schedule: "every day at 9am",
+      lastRun: "2026-10-30 09:00:03",
+      status: "failed",
+      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+    },
+    {
+      name: "Daily Moomoo Email Sync",
+      jobId: "883679ec05f3",
+      schedule: "every day at 9pm",
+      lastRun: "2026-10-30 09:01:22",
+      status: "ok",
+      output: "- Fixed Himalaya TOML schema errors: changed `imap.host` to `imap.server` and removed unsupported `imap.port`.\n- Script still fails before saving any emails. Latest error: `IMAP SELECT failed: BAD Unknown command d2e1a72f...`\n- Root cause: `/Users/btm6/.config/himalaya/config.toml` still contains the placeholder password `YOUR_APP_PASSWORD_HERE`, so Gmail IMAP auth cannot succeed.\n- Result: 0 new emails saved.\n\nBlocker: update `password = \"YOUR_APP_PASSWORD_HERE\"` in `/Users/btm6/.config/himalaya/config.toml` to a valid Gmail App Password, then rerun the script."
+    },
+    {
+      name: "Weekly P/L Summary",
+      jobId: "093e49aafff6",
+      schedule: "every monday 9am",
+      lastRun: "2026-10-30 09:00:56",
+      status: "failed",
+      output: "HTTP 451: The upstream provider declined this request for legal or policy reasons. This restriction is applied by the model's provider, not by your API key, and retrying will not succeed. Try a different model or adjust the request content."
+    },
+    {
+      name: "Deploy Neo-Brutalism Style Reminder",
+      jobId: "f6534e2f609e",
+      schedule: "once at 2026-11-03 09:00",
+      lastRun: "2026-10-30 08:59:47",
+      status: "ok",
+      output: "Reminder: Time to deploy the Neo-Brutalism style switch online. Merge `style-neubrutalism` into `main` for the Joker AI profile site."
+    }
+  ];
+
+  const cards = document.getElementById('cards');
+  const updated = document.getElementById('updated');
+  updated.textContent = 'Last updated: ' + new Date().toLocaleString('en-SG', { timeZone: 'Asia/Singapore' });
+
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="row">
+        <div class="title">${item.name}</div>
+        <div class="status ${item.status}">${item.status.toUpperCase()}</div>
+      </div>
+      <div class="meta">
+        <div>Schedule: ${item.schedule}</div>
+        <div>Last run: ${item.lastRun}</div>
+        <div>Job ID: <code style="color:#c9c2b5">${item.jobId}</code></div>
+      </div>
+      <div class="output">${escapeHtml(item.output)}</div>
+    `;
+    cards.appendChild(card);
+  });
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+  }
+</script>
+</body>
+</html>
