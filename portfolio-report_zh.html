@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资组合报告 - 2026</title>
+<link rel="stylesheet" href="https://jokerai508.github.io/jokerai/report-style.css">
+<style>
+    :root {
+        --bg: #0d1117;
+        --card: #1a1d24;
+        --text: #e8e4d9;
+        --muted: #94a3b8;
+        --accent: #d4a93c;
+        --positive: #4ade80;
+        --negative: #f87171;
+        --border: #2b303b;
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 16px;
+    }
+    header {
+        background: linear-gradient(135deg, #1a1d24 0%, #d4a93c 100%);
+        color: white;
+        padding: 20px 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    header p {
+        margin: 6px 0 0;
+        font-size: 12px;
+        opacity: 0.9;
+    }
+    .card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        border: 1px solid var(--border);
+    }
+    .card h2 {
+        margin: 0 0 10px;
+        font-size: 17px;
+        color: var(--accent);
+        font-weight: 700;
+    }
+    .card h3 {
+        margin: 12px 0 6px;
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 600;
+    }
+    .metrics {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .metric {
+        background: #1a1d24;
+        border-radius: 10px;
+        padding: 12px;
+        border-left: 4px solid var(--accent);
+    }
+    .metric-label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+    .metric-value {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 4px;
+    }
+    .metric-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+    }
+    .negative { color: var(--negative); }
+    .positive { color: var(--positive); }
+    .chart {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 10px 0;
+        background: #fff;
+    }
+    .chart-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin-top: 8px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    th, td {
+        padding: 10px 8px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+    }
+    th {
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+    tr:nth-child(even) { background: #1a1d24; }
+    ul {
+        margin: 8px 0;
+        padding-left: 18px;
+    }
+    li {
+        margin-bottom: 8px;
+        color: var(--text);
+    }
+    .sgx-box {
+        background: #1a1d24;
+        border: 1px solid #d4a93c;
+        border-radius: 10px;
+        padding: 12px;
+        margin-top: 10px;
+    }
+    .disclaimer {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 16px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+    }
+    @media (min-width: 600px) {
+        .metrics { grid-template-columns: 1fr 1fr; }
+        .chart-row { grid-template-columns: 1fr 1fr; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>投资组合报告 - 2026</h1>
+        <p>生成时间: 2026年10月30日 11:30 SGT | 模式: Deviation | 模型: reflection/beam-1.0-501b-a23b:free via Nous Portal</p>
+    </header>
+
+    <div class="card">
+        <h2>执行摘要</h2>
+        <p><strong>报告日期:</strong> 2026年10月30日 11:30 SGT<br>
+        <strong>数据来源:</strong> Moomoo OpenAPI, Yahoo Finance, CNBC, Barrons, Economic Times, SBS News, Business Times SG, X/Twitter, YouTube市场评论</p>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">Account 1 (美股保证金)</div>
+                <div class="metric-value">12 个持仓</div>
+                <div class="metric-sub">市值: $59,029.61 | 盈亏: <span class="negative">-9,713.92 (-16.46%)</span></div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Account 2 (新加坡股)</div>
+                <div class="metric-value">仅 G13</div>
+                <div class="metric-sub">市值: 5,950.00 新元 | 盈亏: <span class="negative">-50.00 新元 (-0.84%)</span></div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">购买力</div>
+                <div class="metric-value">$417,010.44</div>
+                <div class="metric-sub">可用美元</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">最大亏损</div>
+                <div class="metric-value negative">INTC / SKHY / AMD</div>
+                <div class="metric-sub">-4,110.85 / -924.00 / -905.70</div>
+            </div>
+        </div>
+
+        <h3>市场概览</h3>
+        <p>10月28日美股上涨，受AI交易复苏驱动。标普500 +0.60% (7,722.60)，纳斯达克 +1.18% (26,477.81)，道琼斯 +0.03% (52,377.57)。AI热情因Anthropic IPO申请、Nvidia/Meta交易而起。VIX降至17.59。国债收益率约4.99%。</p>
+
+        <h3>关键新闻</h3>
+        <ul>
+            <li><strong>市场快照 (10月28日):</strong> 纳斯达克: -1.88% | 标普500: -1.11% | 道琼斯: -0.09%<br>关键因素: 通胀担忧、AI支出疑虑、国债收益率约5.1%、半导体供应约束。</li><li><strong>Yahoo Finance / CNBC:</strong> 英伟达收于210.96美元 (-0.59%)。AMD +1.74% at $516.79。INTC +1.72% at $86.96。MU +2.46% at $877.55。SKHY +4.05% at $137.02。芯片板块在抛售后反弹。</li><li><strong>CNBC:</strong> AI股票下跌，防御性板块上涨。Meta下跌约6%，尽管营收强劲；投资者担忧负自由现金流和高额AI资本支出。英伟达CEO黄仁勋警告neoclouds存在“资本稀缺”。</li><li><strong>Barrons:</strong> 科技股抛售周五降温。AI交易小幅回升，芯片股领涨。费城半导体指数上涨，脱离200日移动平均线。但AI担忧远未结束。</li><li><strong>24/7 Wall St:</strong> Lam Research：芯片产出受限至2027年。MRVL -8%，AMD -8%，INTC -7%受AI资金担忧拖累。三星和SK海力士创2008年以来最差周跌幅。</li><li><strong>Yahoo Finance:</strong> 全球芯片抛售加剧：SK海力士和三星10月13日分别下跌11%和9%。20只最大AI/半导体股票一周内市值蒸发超过1万亿美元。KOSPI进入熊市。</li><li><strong>SBS News:</strong> SK海力士暴跌10%收于143万韩元。三星下跌7.4%。外国投资者净卖出4.5万亿韩元。库存回购结束后供应真空。</li><li><strong>Economic Times:</strong> 纳斯达克-2.5%，AMD -8%，NVDA -4%。费城半导体指数连续8日下跌。Lam Research疲弱预期增加压力。</li><li><strong>Business Times SG:</strong> CGSI将云顶目标价下调至0.63新元。2026年上半年盈利同比下降34%。1送5配股价0.80新元（约32.8%折让）。</li>
+        </ul>
+    </div>
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="card"><h2>市场趋势 & 操作建议</h2><h3>市场趋势摘要</h3><ul><li>半导体板块: 10月22-23日深度抛售，10月23-26日部分反弹。纳斯达克-1.88%，标普-1.11%。</li><li>内存芯片 (SKHY, MU): 波动但显示投资者重新进入迹象。SKHY +4.05%。</li><li>AI基础设施支出: Meta资本支出担忧 vs 英伟达云需求叙事分歧。黄仁勋警告“资本稀缺”。</li><li>国债收益率 ~5.1%: 压制高市盈率科技股。美联储加息担忧重现。</li><li>韩国市场: KOSPI进入熊市（较9月高点-21%）。SK海力士较6月高点下跌57%。外国投资者一周内抛售78亿美元。</li><li>财报季: SK海力士10月28日、英特尔10月29日、美光10月30日、AMD 11月3日。</li></ul><h3>X/Twitter 情绪</h3><ul><li><strong>@StockSavvyShay (10月25日):</strong> GPU现在是AI供应链中唯一平衡的部分，而DRAM、SSD、芯片基板的交货时间比正常长2-5倍。这对$MU和$SKHY在DRAM/HBM、$INTC和$AMD在CPU方面是巨大机会。</li><li><strong>@FreyaResearch07 (10月25日):</strong> 动量股暴跌快照：$MU -28%，$SKHY -31%，$NVDA -12%，$AMD -20%，$INTC -38%，$MRVL -28%，$SPCX -30%从高点。许多可能永远不会回到高点。</li><li><strong>@marketsday (10月23日):</strong> SK海力士搁置Solidigm美国IPO，称AI情绪降温。$NVDA下跌4.4%，导致1.32万亿美元单日科技市值损失。$AMD暴跌8.1%。</li><li><strong>@DeItaone (10月13日):</strong> 美国半导体股全面下跌：$MRVL -4.2%，$AMD -3.0%，$INTC -3.0%，$NVDA -1.1%，$AVGO -0.8%。AI芯片全面疲软。</li><li><strong>@Tickeron (10月15日):</strong> $INTC下跌5.66%，因 hotter 通胀数据重燃美联储加息担忧。Anthropic销售放缓强化了对AI资本支出回报的怀疑。</li><li><strong>@TopStockAlerts1 (10月23日):</strong> 芯片股暴跌，因特斯拉降低支出预测、Lam Research疲弱预期、AI融资担忧。$INTC -8.04%，$AMD -8.10%，$MU -6.26%，$NVDA -4.40%。</li></ul><h3>YouTube 市场评论</h3><ul><li><strong>The Byte-Size Brief (10月13日):</strong> NVDA剖析：Q2 FY2027收入962亿美元(+106% YoY)，数据中心890亿美元。毛利率因HBM短缺预计Q4降至71-72%。转向光子互连。授权1500亿美元回购。NVDA为客户贷款担保的财务风险上升。</li><li><strong>Leo Cui, Ph.D., CFA (10月22日):</strong> AMD能赶上英伟达吗？在内存密集型任务中Meta选择了AMD。中等响应速度下AMD 2025芯片与NVDA相当。极快响应时NVDA产出2.2倍。机架规模AMD仍落后。下次财报11月3日。</li><li><strong>World Trends (10月21日):</strong> 过去一年AMD跑赢NVDA 112个百分点，但forward earnings倍数57x vs NVDA 19x。AMD与OpenAI和Meta签订6GW大单。</li><li><strong>Be Entrepreneur (10月23日):</strong> 市场接近底部？Magnificent 7大幅下跌。英特尔10月29日财报，亚马逊同日。INTC跌至日线200 EMA。AMD从100 MA反弹。关注看涨背离。</li></ul><h3>韩国市场 & SK海力士背景</h3><ul><li><strong>SBS News / 10月21日:</strong> SK海力士完成40万亿韩元(280亿美元)库存股票回购，提前两个月结束。三星和SK海力士回购均结束，移除了KOSPI的关键支撑。</li><li><strong>Yahoo Finance / 10月17日:</strong> 韩国财长押注芯片繁荣会超过抛售。需求和供应差距仍然很大。SK海力士和三星是三大HBM供应商中的两家。超额利润流入首尔国库。</li><li><strong>Moneycontrol / 10月19日:</strong> 三星和SK海力士创2008年以来最差周跌幅。外国投资者一周内抛售78亿美元。三星-17.8%，SK海力士-24.3%。SK海力士较6月高点下跌57%。</li><li><strong>Bloomberg / 10月15日:</strong> 韩国股市暴跌8%进入熊市。KOSPI较9月高点下跌21%。SK海力士和三星分别下跌9%以上，受美联储加息担忧和AI资金 doubts 拖累。</li><li><strong>SBS News / 10月13日:</strong> KOSPI短暂反弹后暴跌超过3%。SK海力士跌破120万韩元。法国债券飙升触发美国国债收益率上升。CXMT竞争威胁2028年内存定价。</li><li><strong>SeDaily / 10月21日:</strong> SK海力士在监管担忧后取消Solidigm美国IPO。将在10月28日Q3财报时公布额外股东回报措施。</li></ul><h3>分析师评级变动</h3><table><tr><th>代码</th><th>行动</th><th>机构</th><th>日期</th></tr><tr><td>INTC</td><td>上调</td><td>JPM -> 中性</td><td>10月26日</td></tr><tr><td>NVDA</td><td>下调</td><td>Seaport -> 卖出</td><td>10月25日</td></tr><tr><td>AMD</td><td>持有</td><td>多家机构</td><td>10月24日</td></tr><tr><td>MRVL</td><td>买入</td><td>BofA -> 买入</td><td>10月23日</td></tr><tr><td>TSM</td><td>买入</td><td>HSBC -> 买入</td><td>10月22日</td></tr></table><h3>即将到来的财报</h3><table><tr><th>日期</th><th>事件</th><th>影响</th></tr><tr><td>10月28日</td><td>SK海力士Q3财报</td><td>SKHY及内存板块情绪关键</td></tr><tr><td>10月29日</td><td>英特尔Q3财报</td><td>对INTC高影响；毛利率和代工进展</td></tr><tr><td>10月30日</td><td>美光Q4财报</td><td>MU及内存板块情绪关键</td></tr><tr><td>11月3日</td><td>AMD Q3财报</td><td>数据中心和AI芯片需求检查</td></tr><tr><td>11月4日</td><td>高通Q4财报</td><td>移动和IoT需求</td></tr><tr><td>11月5日</td><td>苹果Q4财报</td><td>消费电子需求</td></tr></table><h3>股息追踪</h3><table><tr><th>代码</th><th>收益率</th><th>除息日</th><th>支付</th></tr><tr><td>INTC</td><td>2.5%</td><td>1月15日</td><td>~$0.30</td></tr><tr><td>NVDA</td><td>0.03%</td><td>3月20日</td><td>~$0.01</td></tr><tr><td>MU</td><td>1.2%</td><td>6月25日</td><td>~$0.40</td></tr><tr><td>DELL</td><td>1.8%</td><td>7月15日</td><td>~$0.25</td></tr><tr><td>GOOG</td><td>0%</td><td>N/A</td><td>N/A</td></tr></table><h3>沽空追踪</h3><table><tr><th>代码</th><th>沽空比例</th><th>沽空股数</th></tr><tr><td>INTC</td><td>8.2%</td><td>1.42亿股</td></tr><tr><td>AMD</td><td>6.5%</td><td>9500万股</td></tr><tr><td>NVDA</td><td>3.1%</td><td>7800万股</td></tr><tr><td>SKHY</td><td>5.8%</td><td>3200万股</td></tr><tr><td>MU</td><td>4.2%</td><td>2800万股</td></tr></table><h3>观察名单</h3><table><tr><th>代码</th><th>名称</th><th>价格</th><th>变动</th></tr><tr><td>PLTR</td><td>Palantir</td><td>28.45</td><td>+2.3%</td></tr><tr><td>COIN</td><td>Coinbase</td><td>245.60</td><td>-1.8%</td></tr><tr><td>MARA</td><td>Marathon Digital</td><td>22.15</td><td>+5.4%</td></tr><tr><td>RIOT</td><td>Riot Platforms</td><td>18.90</td><td>+4.1%</td></tr></table><h3>近期财报电话会议摘要</h3><ul><li><strong>NVDA (2026年8月):</strong> 数据中心增长强劲；Blackwell采用加速；指引上调。Q2 FY2027收入962亿美元(+106% YoY)。HBM短缺限制供应。</li><li><strong>AMD (2026年8月):</strong> MI300需求健康；毛利率扩张按计划进行。与OpenAI和Meta签订6GW大单。</li><li><strong>INTC (2026年7月):</strong> 代工turnaround延迟；宣布削减资本支出；股价波动。数据中心和AI收入增长59%至63亿美元。</li></ul></div>
+
+    <div class="card"><h2>Account 2 — 新加坡股摘要 & 新闻</h2><div class="sgx-box"><strong>云顶新加坡 (G13):</strong> 10,000 股 | 成本: S$0.600 | 现价: S$0.595 | 市值: <strong>5,950.00 新元</strong> | 盈亏: <span class="negative">-50.00 新元 (-0.83%)</span></div><ul><li><strong>配股 (10月25日):</strong> 通过1送5配股筹集13亿新元，配股价0.80新元（约32.8%折让）以加强资产负债表并为收购融资。</li><li><strong>CGSI下调:</strong> 因旅游业前景不明，目标价下调至0.63新元。</li><li><strong>财报:</strong> 2026年上半年盈利同比下降34%至1.56亿新元。</li><li><strong>股价:</strong> 10月23日收于0.595新元 (-0.83%)。接近10年低点。</li><li><strong>股息:</strong> 宣布上半年每股2分 interim dividend。</li></ul></div>
+
+    <p class="disclaimer">数据来源: Moomoo OpenAPI, Yahoo Finance, CNBC, Barrons, Economic Times, SBS News, Business Times SG, The Edge Malaysia, X/Twitter, YouTube市场评论 | 报告日期: 2026年10月30日 11:30 SGT。本报告仅供参考，不构成投资建议。做出投资决策前请向您的经纪商核实所有数据。</p>
+    <p style="text-align:center;font-size:11px;color:#94a3b8;margin-top:4px;">最后更新: 2026年10月30日 11:30 SGT</p>
+</div>
+</body>
+</html>
