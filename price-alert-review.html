@@ -20,8 +20,8 @@
   h1 { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: #e8e4d9; }
   .meta { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
 
-  /* KPI Strip */
-  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+  /* KPI Strip - responsive for 10 stocks */
+  .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 18px; }
   .kpi-card {
     background: #1a1d24;
     border: 1px solid #2b303b;
@@ -58,7 +58,7 @@
 
   /* Tables */
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 8px; }
-  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
   th { background: #1e2430; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #94a3b8; text-align: left; padding: 8px; border-bottom: 1px solid #2b303b; }
   td { padding: 8px; border-bottom: 1px solid #2b303b; vertical-align: top; }
   tr:last-child td { border-bottom: none; }
@@ -108,9 +108,9 @@
 <body>
 <div class="wrap">
   <h1>🚨 Enhanced Price Alert & Market Intelligence</h1>
-  <div class="meta">2026-11-03 · Last updated: 2026-11-03 15:48 SGT · Prev-day close baseline · Watchlist + Portfolio · Analyst + Social + Moomoo</div>
+  <div class="meta">2026-11-03 · Last updated: 2026-11-03 19:07 SGT · Prev-day close baseline · Watchlist + Portfolio · Analyst + Social + Moomoo</div>
 
-  <!-- KPI Strip -->
+  <!-- KPI Strip - 10 stocks -->
   <div class="kpi-strip">
     <div class="kpi-card">
       <div class="kpi-symbol">US.TSLA</div>
@@ -136,6 +136,42 @@
       <div class="kpi-change down">-37.96 (-7.52%)</div>
       <div class="kpi-range">466.07 - 512.82 · Vol 32.1M</div>
     </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.MSFT</div>
+      <div class="kpi-price">$507.12</div>
+      <div class="kpi-change down">-16.90 (-3.22%)</div>
+      <div class="kpi-range">504.96 - 529.63 · Vol 34.7M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.GOOGL</div>
+      <div class="kpi-price">$278.99</div>
+      <div class="kpi-change down">-3.47 (-1.23%)</div>
+      <div class="kpi-range">278.80 - 287.00 · Vol 48.5M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.AMZN</div>
+      <div class="kpi-price">$245.63</div>
+      <div class="kpi-change up">+2.62 (+1.08%)</div>
+      <div class="kpi-range">242.28 - 253.81 · Vol 58.3M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.META</div>
+      <div class="kpi-price">$606.73</div>
+      <div class="kpi-change down">-7.71 (-1.25%)</div>
+      <div class="kpi-range">606.41 - 621.69 · Vol 19.5M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.NFLX</div>
+      <div class="kpi-price">$62.34</div>
+      <div class="kpi-change up">+0.14 (+0.22%)</div>
+      <div class="kpi-range">61.71 - 62.89 · Vol 40.9M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-symbol">US.CRM</div>
+      <div class="kpi-price">$226.18</div>
+      <div class="kpi-change down">-3.57 (-1.55%)</div>
+      <div class="kpi-range">225.15 - 232.95 · Vol 6.6M</div>
+    </div>
   </div>
 
   <div class="grid">
@@ -144,13 +180,13 @@
       <div class="section">
         <h2>📋 Executive Summary</h2>
         <div class="banner ai">🧠 AI Sector Watch</div>
-        <p><strong>Watchlist:</strong> 4 of 4 movers — TSLA +1.00% (leader), NVDA -1.26%, AAPL -1.83%, AMD -7.52% (laggard).</p>
-        <p><strong>Key Driver:</strong> Semiconductor sector under pressure; AMD led the decline on rotation out of high-beta AI names. Tesla held green on delivery optimism.</p>
-        <p><strong>Risk Watch:</strong> AMD -7.52% breach warrants attention; monitor NVDA and AAPL support levels. 10Y yield and Fed path remain key macro constraints.</p>
+        <p><strong>Watchlist:</strong> 10 of 10 movers — TSLA +1.00% and AMZN +1.08% (leaders), NFLX +0.22%. AMD -7.52% (laggard), MSFT -3.22%, CRM -1.55%.</p>
+        <p><strong>Key Driver:</strong> Semiconductor sector under pressure; AMD led the decline on rotation out of high-beta AI names. Big Tech mixed with MSFT/GOOGL/META down on AI capex concerns.</p>
+        <p><strong>Risk Watch:</strong> AMD -7.52% breach warrants attention; MSFT -3.22% exceeds 3% alert threshold. Monitor NVDA and AAPL support levels. 10Y yield and Fed path remain key macro constraints.</p>
       </div>
 
       <div class="section">
-        <h2>🔥 Watchlist Movers (4)</h2>
+        <h2>🔥 Watchlist Movers (10)</h2>
         <div class="table-wrap">
         <table>
           <thead>
@@ -175,6 +211,24 @@
               <td class="num">43,141,083</td>
             </tr>
             <tr>
+              <td><span class="symbol">US.AMZN</span><br><span class="name">Amazon.com</span></td>
+              <td>Amazon.com</td>
+              <td class="num price">$245.63</td>
+              <td class="num up">+2.62</td>
+              <td class="num up">🟢 +1.08%</td>
+              <td class="num">242.28 - 253.81</td>
+              <td class="num">58,347,979</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.NFLX</span><br><span class="name">Netflix, Inc.</span></td>
+              <td>Netflix, Inc.</td>
+              <td class="num price">$62.34</td>
+              <td class="num up">+0.14</td>
+              <td class="num up">🟢 +0.22%</td>
+              <td class="num">61.71 - 62.89</td>
+              <td class="num">40,917,261</td>
+            </tr>
+            <tr>
               <td><span class="symbol">US.NVDA</span><br><span class="name">NVIDIA Corp.</span></td>
               <td>NVIDIA Corp.</td>
               <td class="num price">$202.06</td>
@@ -184,6 +238,33 @@
               <td class="num">119,272,174</td>
             </tr>
             <tr>
+              <td><span class="symbol">US.GOOGL</span><br><span class="name">Alphabet-A</span></td>
+              <td>Alphabet-A</td>
+              <td class="num price">$278.99</td>
+              <td class="num down">-3.47</td>
+              <td class="num down">🔴 -1.23%</td>
+              <td class="num">278.80 - 287.00</td>
+              <td class="num">48,512,348</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.META</span><br><span class="name">Meta Platforms</span></td>
+              <td>Meta Platforms</td>
+              <td class="num price">$606.73</td>
+              <td class="num down">-7.71</td>
+              <td class="num down">🔴 -1.25%</td>
+              <td class="num">606.41 - 621.69</td>
+              <td class="num">19,496,498</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.CRM</span><br><span class="name">Salesforce, Inc.</span></td>
+              <td>Salesforce, Inc.</td>
+              <td class="num price">$226.18</td>
+              <td class="num down">-3.57</td>
+              <td class="num down">🔴 -1.55%</td>
+              <td class="num">225.15 - 232.95</td>
+              <td class="num">6,621,853</td>
+            </tr>
+            <tr>
               <td><span class="symbol">US.AAPL</span><br><span class="name">Apple Inc.</span></td>
               <td>Apple Inc.</td>
               <td class="num price">$338.32</td>
@@ -191,6 +272,15 @@
               <td class="num down">🔴 -1.83%</td>
               <td class="num">335.82 - 343.80</td>
               <td class="num">64,757,691</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.MSFT</span><br><span class="name">Microsoft Corp.</span></td>
+              <td>Microsoft Corp.</td>
+              <td class="num price">$507.12</td>
+              <td class="num down">-16.90</td>
+              <td class="num down">🔴 -3.22%</td>
+              <td class="num">504.96 - 529.63</td>
+              <td class="num">34,743,321</td>
             </tr>
             <tr>
               <td><span class="symbol">US.AMD</span><br><span class="name">Advanced Micro Devices</span></td>
@@ -230,8 +320,13 @@
             </tr>
             <tr>
               <td><strong>Consumer Tech</strong></td>
-              <td>AAPL -1.83%. Mild decline amid earnings night and broader tech rotation.</td>
+              <td>AAPL -1.83%, GOOGL -1.23%. Mild decline amid earnings night and broader tech rotation.</td>
               <td>Hold; no structural concern flagged.</td>
+            </tr>
+            <tr>
+              <td><strong>Enterprise Software</strong></td>
+              <td>MSFT -3.22%, CRM -1.55%. Enterprise names under pressure on macro uncertainty.</td>
+              <td>Watch MSFT support at 3% alert threshold.</td>
             </tr>
             <tr>
               <td><strong>Macro</strong></td>
@@ -261,31 +356,17 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="symbol">US.TSLA</span></td>
-              <td class="num">$403.82</td>
-              <td class="num up">+4.01</td>
-              <td class="num up">+1.00%</td>
-              <td><span class="tag tag-hold">HOLD</span></td>
-            </tr>
-            <tr>
-              <td><span class="symbol">US.NVDA</span></td>
-              <td class="num">$202.06</td>
-              <td class="num down">-2.58</td>
-              <td class="num down">-1.26%</td>
-              <td><span class="tag tag-hold">HOLD</span></td>
-            </tr>
-            <tr>
-              <td><span class="symbol">US.AAPL</span></td>
-              <td class="num">$338.32</td>
-              <td class="num down">-6.31</td>
-              <td class="num down">-1.83%</td>
-              <td><span class="tag tag-hold">HOLD</span></td>
-            </tr>
-            <tr>
               <td><span class="symbol">US.AMD</span></td>
               <td class="num">$466.84</td>
               <td class="num down">-37.96</td>
               <td class="num down">-7.52%</td>
+              <td><span class="tag tag-review">REVIEW</span></td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.MSFT</span></td>
+              <td class="num">$507.12</td>
+              <td class="num down">-16.90</td>
+              <td class="num down">-3.22%</td>
               <td><span class="tag tag-review">REVIEW</span></td>
             </tr>
           </tbody>
@@ -311,9 +392,34 @@
               <td>Only gainer in watchlist; momentum intact.</td>
             </tr>
             <tr>
+              <td><span class="symbol">US.AMZN</span></td>
+              <td><span class="tag tag-hold">HOLD</span></td>
+              <td>Green on the day; e-commerce and AWS strength.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.NFLX</span></td>
+              <td><span class="tag tag-hold">HOLD</span></td>
+              <td>Flat to slightly up; subscriber growth stable.</td>
+            </tr>
+            <tr>
               <td><span class="symbol">US.NVDA</span></td>
               <td><span class="tag tag-hold">HOLD</span></td>
               <td>Mild pullback; AI infrastructure demand unchanged.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.GOOGL</span></td>
+              <td><span class="tag tag-hold">HOLD</span></td>
+              <td>Small decline; search and cloud business steady.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.META</span></td>
+              <td><span class="tag tag-hold">HOLD</span></td>
+              <td>Minor pullback; AI ad revenue remains strong.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol">US.CRM</span></td>
+              <td><span class="tag tag-hold">HOLD</span></td>
+              <td>Small decline; CRM execution on track.</td>
             </tr>
             <tr>
               <td><span class="symbol">US.AAPL</span></td>
@@ -321,9 +427,14 @@
               <td>Small decline; earnings tonight, watch reaction.</td>
             </tr>
             <tr>
+              <td><span class="symbol">US.MSFT</span></td>
+              <td><span class="tag tag-review">REVIEW</span></td>
+              <td>-3.22% breach; check stop-loss and thesis validity.</td>
+            </tr>
+            <tr>
               <td><span class="symbol">US.AMD</span></td>
               <td><span class="tag tag-review">REVIEW</span></td>
-              <td>Largest decline (-7.52%); check stop-loss and thesis validity before earnings.</td>
+              <td>-7.52% largest decline; check stop-loss before earnings.</td>
             </tr>
           </tbody>
         </table>
@@ -365,7 +476,7 @@
   </div>
 
   <div class="footer">
-    <p><strong>📋 Summary:</strong> Today 4 tracked US stocks — only <strong>Tesla (TSLA)</strong> up (+1.00%), Apple (AAPL), NVIDIA (NVDA), AMD all down, AMD largest decline (-7.52%).</p>
+    <p><strong>📋 Summary:</strong> Today 10 tracked US stocks — TSLA +1.00% and AMZN +1.08% up, NFLX +0.22%. Seven stocks down led by AMD -7.52% and MSFT -3.22%.</p>
     <p><strong>⚠️ Disclaimer:</strong> Above is market data and AI-generated analysis summary, not investment advice. Investing involves risk, enter market with caution.</p>
     <p class="source">Data: Moomoo OpenD (127.0.0.1:11111) · News: Schwab Network, Investopedia, Yahoo Finance, Pulsarium, CNBC, Bloomberg · Generated by Hermes Agent · Not investment advice · 2026-11-03</p>
   </div>
