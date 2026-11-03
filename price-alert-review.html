@@ -10,47 +10,70 @@
   html { -webkit-text-size-adjust: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, Roboto, sans-serif;
-    background: #0d1117;
+    background: linear-gradient(180deg, #0a0b10 0%, #0f121a 100%);
     color: #e8e4d9;
     padding: 16px;
     line-height: 1.7;
-    font-size: 18px;
+    font-size: 17px;
   }
   .wrap { max-width: 100%; margin: 0 auto; }
 
   /* Header */
-  h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: #e8e4d9; }
-  .meta { font-size: 15px; color: #94a3b8; margin-bottom: 20px; }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  h1 { font-size: 22px; font-weight: 800; color: #e8e4d9; letter-spacing: -0.3px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #c4b5fd;
+  }
+  .meta { font-size: 14px; color: #94a3b8; margin-bottom: 20px; }
 
-  /* KPI Strip - mobile: 1 column, large cards */
-  .kpi-strip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 22px; }
-  @media (min-width: 600px) {
-    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 900px) {
-    .kpi-strip { grid-template-columns: repeat(5, 1fr); }
-  }
+  /* KPI Strip - mobile: 1 column, desktop: 5 columns */
+  .kpi-strip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  @media (min-width: 600px) { .kpi-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .kpi-strip { grid-template-columns: repeat(5, 1fr); } }
   .kpi-card {
-    background: #1a1d24;
-    border: 1px solid #2b303b;
+    background: linear-gradient(145deg, #161b22 0%, #1c212a 100%);
+    border: 1px solid #2d343e;
     border-radius: 16px;
-    padding: 18px 16px;
+    padding: 16px 14px;
+    position: relative;
+    overflow: hidden;
   }
-  .kpi-symbol { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 6px; }
-  .kpi-price { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; color: #e8e4d9; margin-bottom: 5px; }
-  .kpi-change { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; margin-bottom: 5px; }
-  .kpi-range { font-size: 14px; color: #94a3b8; font-variant-numeric: tabular-nums; }
+  .kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #4ade80, #f87171);
+    opacity: 0.6;
+  }
+  .kpi-symbol { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 6px; }
+  .kpi-price { font-size: 21px; font-weight: 800; font-variant-numeric: tabular-nums; color: #e8e4d9; margin-bottom: 5px; }
+  .kpi-change { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; margin-bottom: 5px; }
+  .kpi-range { font-size: 13px; color: #94a3b8; font-variant-numeric: tabular-nums; }
   .kpi-change.up { color: #4ade80; }
   .kpi-change.down { color: #f87171; }
 
   /* Sections */
   .section {
-    background: #1a1d24;
-    border: 1px solid #2b303b;
-    border-radius: 18px;
-    padding: 20px 22px;
-    margin-bottom: 22px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(145deg, #161b22 0%, #1c212a 100%);
+    border: 1px solid #2d343e;
+    border-radius: 20px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
   .section h2 {
     font-size: 20px;
@@ -66,39 +89,51 @@
 
   /* Tables - large, mobile friendly */
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 10px; }
-  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 17px; min-width: 700px; }
-  th { background: #1e2430; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; text-align: left; padding: 16px 12px; border-bottom: 1px solid #2b303b; white-space: nowrap; }
-  td { padding: 16px 12px; border-bottom: 1px solid #2b303b; vertical-align: top; white-space: nowrap; font-size: 17px; }
+  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 720px; }
+  th { background: #1e293b; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; text-align: left; padding: 14px 10px; border-bottom: 1px solid #334155; white-space: nowrap; }
+  td { padding: 14px 10px; border-bottom: 1px solid #334155; vertical-align: top; white-space: nowrap; font-size: 16px; }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(56,189,248,0.06); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  tr:hover td { background: rgba(56,189,248,0.08); }
 
   .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .up { color: #4ade80; font-weight: 800; }
   .down { color: #f87171; font-weight: 800; }
   .symbol { font-weight: 800; color: #e8e4d9; font-size: 17px; }
-  .name { color: #cbd5e1; font-size: 16px; }
+  .name { color: #cbd5e1; font-size: 15px; }
 
   /* Banners & comments */
-  .banner { padding: 14px 16px; border-radius: 14px; font-weight: 800; margin-bottom: 14px; border: 1px solid #3b4556; font-size: 15px; color: #e8e4d9; }
-  .banner.ai { background: #1e293b; border-left: 4px solid #d4a93c; }
-  .banner.social { background: #1e293b; border-left: 4px solid #60a5fa; }
-  .banner.news { background: #1e293b; border-left: 4px solid #d4a93c; }
-  .comment { font-size: 17px; color: #cbd5e1; margin: 7px 0; padding-left: 14px; border-left: 4px solid #3b4556; line-height: 1.7; }
-  .source { font-size: 14px; color: #94a3b8; margin-top: 5px; }
+  .banner { padding: 14px 16px; border-radius: 14px; font-weight: 800; margin-bottom: 14px; border: 1px solid #334155; font-size: 15px; color: #e8e4d9; }
+  .banner.ai { background: linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(16,185,129,0.1) 100%); border-left: 4px solid #8b5cf6; }
+  .banner.social { background: linear-gradient(135deg, rgba(59,130,246,0.15) 0%, rgba(16,185,129,0.1) 100%); border-left: 4px solid #3b82f6; }
+  .banner.news { background: linear-gradient(135deg, rgba(234,179,8,0.15) 0%, rgba(139,92,246,0.1) 100%); border-left: 4px solid #ca8a04; }
+  .comment { font-size: 16px; color: #cbd5e1; margin: 7px 0; padding-left: 14px; border-left: 4px solid #334155; line-height: 1.7; }
+  .source { font-size: 13px; color: #94a3b8; margin-top: 5px; }
+
+  /* AI Score Bar (Growin style) */
+  .ai-score { margin-top: 14px; }
+  .ai-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .ai-score-label { font-size: 13px; font-weight: 700; color: #94a3b8; min-width: 85px; }
+  .ai-score-bar { flex: 1; height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; }
+  .ai-score-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+  .ai-score-fill.value { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .ai-score-fill.trend { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .ai-score-fill.swing { background: linear-gradient(90deg, #8b5cf6, #c4b5fd); }
+  .ai-score-fill.whale { background: linear-gradient(90deg, #ec4899, #f472b6); }
+  .ai-score-fill.dividend { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .ai-score-val { font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; min-width: 35px; color: #e8e4d9; }
 
   /* Signal tags */
-  .tag { display: inline-block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 14px; border-radius: 12px; color: #fff; }
+  .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 14px; border-radius: 12px; color: #fff; }
   .tag-hold { background: rgba(245,158,11,0.18); border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; }
   .tag-review { background: rgba(239,68,68,0.18); border: 1px solid rgba(239,68,68,0.4); color: #f87171; }
 
   /* Layout: single column for best phone readability */
-  .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-  @media (min-width: 900px) {
-    .grid { grid-template-columns: 1fr 1fr; }
-  }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 
   /* Footer */
-  .footer { margin-top: 28px; padding-top: 20px; border-top: 1px solid #2b303b; font-size: 15px; color: #94a3b8; text-align: center; }
+  .footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; text-align: center; }
   .footer p { margin: 7px 0; }
 
   /* Print */
@@ -117,7 +152,10 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>🚨 Enhanced Price Alert & Market Intelligence</h1>
+  <div class="header">
+    <h1>🚨 Enhanced Price Alert & Market Intelligence</h1>
+    <span class="badge">AI Score · Growin Style</span>
+  </div>
   <div class="meta">2026-11-03 · Last updated: 2026-11-03 19:07 SGT · Prev-day close baseline · Watchlist + Portfolio · Analyst + Social + Moomoo</div>
 
   <!-- KPI Strip - 10 stocks, mobile 1 column -->
@@ -191,6 +229,35 @@
     <p><strong>Watchlist:</strong> 10 of 10 movers — TSLA +1.00% and AMZN +1.08% (leaders), NFLX +0.22%. AMD -7.52% (laggard), MSFT -3.22%, CRM -1.55%.</p>
     <p><strong>Key Driver:</strong> Semiconductor sector under pressure; AMD led the decline on rotation out of high-beta AI names. Big Tech mixed with MSFT/GOOGL/META down on AI capex concerns.</p>
     <p><strong>Risk Watch:</strong> AMD -7.52% breach warrants attention; MSFT -3.22% exceeds 3% alert threshold. Monitor NVDA and AAPL support levels. 10Y yield and Fed path remain key macro constraints.</p>
+
+    <!-- AI Score Example -->
+    <div class="ai-score">
+      <div class="ai-score-row">
+        <span class="ai-score-label">Value</span>
+        <div class="ai-score-bar"><div class="ai-score-fill value" style="width: 72%"></div></div>
+        <span class="ai-score-val">72</span>
+      </div>
+      <div class="ai-score-row">
+        <span class="ai-score-label">Trend</span>
+        <div class="ai-score-bar"><div class="ai-score-fill trend" style="width: 58%"></div></div>
+        <span class="ai-score-val">58</span>
+      </div>
+      <div class="ai-score-row">
+        <span class="ai-score-label">Swing</span>
+        <div class="ai-score-bar"><div class="ai-score-fill swing" style="width: 45%"></div></div>
+        <span class="ai-score-val">45</span>
+      </div>
+      <div class="ai-score-row">
+        <span class="ai-score-label">Whale</span>
+        <div class="ai-score-bar"><div class="ai-score-fill whale" style="width: 38%"></div></div>
+        <span class="ai-score-val">38</span>
+      </div>
+      <div class="ai-score-row">
+        <span class="ai-score-label">Dividend</span>
+        <div class="ai-score-bar"><div class="ai-score-fill dividend" style="width: 28%"></div></div>
+        <span class="ai-score-val">28</span>
+      </div>
+    </div>
   </div>
 
   <div class="section">
