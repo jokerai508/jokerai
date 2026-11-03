@@ -3,34 +3,39 @@
 <head>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>🚨 Enhanced Price Alert & Market Intelligence — 2026-11-03</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, Roboto, sans-serif;
     background: #0d1117;
     color: #e8e4d9;
-    padding: 16px;
+    padding: 12px;
     line-height: 1.6;
+    font-size: 16px;
   }
-  .wrap { max-width: 1000px; margin: 0 auto; }
+  .wrap { max-width: 100%; margin: 0 auto; }
 
   /* Header */
   h1 { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: #e8e4d9; }
-  .meta { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+  .meta { font-size: 13px; color: #94a3b8; margin-bottom: 16px; }
 
-  /* KPI Strip - responsive for 10 stocks */
-  .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  /* KPI Strip - mobile friendly: 2 columns on phone, 5 on desktop */
+  .kpi-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
+  @media (min-width: 600px) {
+    .kpi-strip { grid-template-columns: repeat(5, 1fr); }
+  }
   .kpi-card {
     background: #1a1d24;
     border: 1px solid #2b303b;
     border-radius: 12px;
-    padding: 12px 14px;
+    padding: 12px 12px;
   }
-  .kpi-symbol { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 6px; }
-  .kpi-price { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; color: #e8e4d9; margin-bottom: 4px; }
-  .kpi-change { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+  .kpi-symbol { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 4px; }
+  .kpi-price { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; color: #e8e4d9; margin-bottom: 3px; }
+  .kpi-change { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 3px; }
   .kpi-range { font-size: 11px; color: #94a3b8; font-variant-numeric: tabular-nums; }
   .kpi-change.up { color: #4ade80; }
   .kpi-change.down { color: #f87171; }
@@ -40,12 +45,12 @@
     background: #1a1d24;
     border: 1px solid #2b303b;
     border-radius: 14px;
-    padding: 16px;
+    padding: 14px 16px;
     margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
   .section h2 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 800;
     margin-bottom: 12px;
     color: #e8e4d9;
@@ -56,40 +61,42 @@
     gap: 8px;
   }
 
-  /* Tables */
+  /* Tables - mobile optimized */
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 8px; }
-  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
-  th { background: #1e2430; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #94a3b8; text-align: left; padding: 8px; border-bottom: 1px solid #2b303b; }
-  td { padding: 8px; border-bottom: 1px solid #2b303b; vertical-align: top; }
+  .table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+  th { background: #1e2430; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #94a3b8; text-align: left; padding: 10px 8px; border-bottom: 1px solid #2b303b; white-space: nowrap; }
+  td { padding: 10px 8px; border-bottom: 1px solid #2b303b; vertical-align: top; white-space: nowrap; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(56,189,248,0.04); }
 
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .up { color: #4ade80; font-weight: 600; }
   .down { color: #f87171; font-weight: 600; }
   .symbol { font-weight: 700; color: #e8e4d9; font-size: 14px; }
-  .name { color: #cbd5e1; font-size: 12px; }
+  .name { color: #cbd5e1; font-size: 13px; }
 
   /* Banners & comments */
-  .banner { padding: 10px 12px; border-radius: 10px; font-weight: 700; margin-bottom: 10px; border: 1px solid #3b4556; font-size: 12px; color: #e8e4d9; }
+  .banner { padding: 10px 12px; border-radius: 10px; font-weight: 700; margin-bottom: 10px; border: 1px solid #3b4556; font-size: 13px; color: #e8e4d9; }
   .banner.ai { background: #1e293b; border-left: 3px solid #d4a93c; }
   .banner.social { background: #1e293b; border-left: 3px solid #60a5fa; }
   .banner.news { background: #1e293b; border-left: 3px solid #d4a93c; }
-  .comment { font-size: 12px; color: #cbd5e1; margin: 4px 0; padding-left: 10px; border-left: 3px solid #3b4556; }
-  .source { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+  .comment { font-size: 14px; color: #cbd5e1; margin: 5px 0; padding-left: 10px; border-left: 3px solid #3b4556; line-height: 1.5; }
+  .source { font-size: 11px; color: #94a3b8; margin-top: 3px; }
 
   /* Signal tags */
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 8px; color: #fff; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 8px; color: #fff; }
   .tag-hold { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #f59e0b; }
   .tag-review { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
 
-  /* Layout: grid */
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+  /* Layout: single column on mobile, two columns on desktop */
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 768px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
 
   /* Footer */
-  .footer { margin-top: 22px; padding-top: 16px; border-top: 1px solid #2b303b; font-size: 12px; color: #94a3b8; text-align: center; }
-  .footer p { margin: 4px 0; }
+  .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #2b303b; font-size: 13px; color: #94a3b8; text-align: center; }
+  .footer p { margin: 5px 0; }
 
   /* Print */
   @media print {
@@ -110,7 +117,7 @@
   <h1>🚨 Enhanced Price Alert & Market Intelligence</h1>
   <div class="meta">2026-11-03 · Last updated: 2026-11-03 19:07 SGT · Prev-day close baseline · Watchlist + Portfolio · Analyst + Social + Moomoo</div>
 
-  <!-- KPI Strip - 10 stocks -->
+  <!-- KPI Strip - 10 stocks, mobile 2-col -->
   <div class="kpi-strip">
     <div class="kpi-card">
       <div class="kpi-symbol">US.TSLA</div>
