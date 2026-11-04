@@ -2,232 +2,312 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Report - 2026</title>
-<link rel="stylesheet" href="https://jokerai508.github.io/jokerai/report-style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="date" content="2026-11-04">
+<title>Portfolio Report — Hermes Agent</title>
+<link rel="stylesheet" href="report-style.css">
 <style>
-    :root {
-        --bg: #101216;
-        --card: #1a1d24;
-        --text: #e8e4d9;
-        --muted: #94a3b8;
-        --accent: #d4a93c;
-        --positive: #4ade80;
-        --negative: #f87171;
-        --border: #2b303b;
-    }
-    * { box-sizing: border-box; }
-    body {
-        margin: 0;
-        padding: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-        font-size: 15px;
-        line-height: 1.5;
-    }
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 16px;
-    }
-    header {
-        background: linear-gradient(135deg, #1a1d24 0%, #d4a93c 100%);
-        color: #e8e4d9;
-        padding: 20px 16px;
-        border-radius: 12px;
-        margin-bottom: 16px;
-        text-align: center;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 22px;
-        font-weight: 700;
-    }
-    header p {
-        margin: 6px 0 0;
-        font-size: 12px;
-        opacity: 0.9;
-    }
-    .card {
-        background: var(--card);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 16px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        border: 1px solid var(--border);
-    }
-    .card h2 {
-        margin: 0 0 10px;
-        font-size: 17px;
-        color: var(--accent);
-        font-weight: 700;
-    }
-    .card h3 {
-        margin: 12px 0 6px;
-        font-size: 14px;
-        color: var(--text);
-        font-weight: 600;
-    }
-    .metrics {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    .metric {
-        background: #1a1d24;
-        border-radius: 10px;
-        padding: 12px;
-        border-left: 4px solid var(--accent);
-    }
-    .metric-label {
-        font-size: 12px;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-    }
-    .metric-value {
-        font-size: 18px;
-        font-weight: 700;
-        margin-top: 4px;
-    }
-    .metric-sub {
-        font-size: 12px;
-        color: var(--muted);
-        margin-top: 2px;
-    }
-    .negative { color: var(--negative); }
-    .positive { color: var(--positive); }
-    .chart {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin: 10px 0;
-        background: #fff;
-    }
-    .chart-row {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-        margin-top: 8px;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-    }
-    th, td {
-        padding: 10px 8px;
-        text-align: left;
-        border-bottom: 1px solid var(--border);
-    }
-    th {
-        background: var(--accent);
-        color: #e8e4d9;
-        font-weight: 600;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-    }
-    tr:nth-child(even) { background: #1a1d24; }
-    ul {
-        margin: 8px 0;
-        padding-left: 18px;
-    }
-    li {
-        margin-bottom: 8px;
-        color: var(--text);
-    }
-    .sgx-box {
-        background: #1a1d24;
-        border: 1px solid #d4a93c;
-        border-radius: 10px;
-        padding: 12px;
-        margin-top: 10px;
-    }
-    .disclaimer {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 16px;
-        padding-top: 12px;
-        border-top: 1px solid var(--border);
-    }
-    @media (min-width: 600px) {
-        .metrics { grid-template-columns: 1fr 1fr; }
-        .chart-row { grid-template-columns: 1fr 1fr; }
-    }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 12px 44px; }
+  @media (max-width: 600px) { .page { padding: 0 8px 40px; } table { font-size: 12px; } th, td { padding: 8px 4px; } }
+  .meta-row { display: flex; gap: 12px; opacity: .85; font-size: 12.5px; flex-wrap: wrap; color: var(--muted); margin-top: 6px; }
+  .meta-row b { color: #fff; }
+  .source-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 8px; margin: 2px 6px 2px 0; border: 1px solid var(--line); color: var(--muted); background: var(--card); }
+  .source-chip.yahoo { border-color: rgba(59,130,246,.45); color: #60a5fa; background: rgba(59,130,246,.10); }
+  .source-chip.cnbc { border-color: rgba(236,72,153,.45); color: #f472b6; background: rgba(236,72,153,.10); }
+  .source-chip.barrons { border-color: rgba(16,185,129,.45); color: #34d399; background: rgba(16,185,129,.10); }
+  .yt-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .yt-item:last-child { border-bottom: none; }
+  .yt-item a { color: var(--accent2); text-decoration: none; font-weight: 600; }
+  .yt-item a:hover { text-decoration: underline; }
+  .yt-item .meta { font-size: 11.5px; color: var(--muted); }
+  .tag { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .sig-hold { background: rgba(212,169,60,.16); border: 1px solid rgba(212,169,60,.4); color: var(--accent2); }
+  .sig-review { background: rgba(248,113,113,.16); border: 1px solid rgba(248,113,113,.4); color: var(--red); }
+  .sig-watch { background: rgba(245,158,11,.18); border: 1px solid rgba(245,158,11,.4); color: #fbbf24; }
+  .up { color: var(--green); } .down { color: var(--red); }
+  table td.sym { font-weight: 700; color: #fff; }
+  table td.name { color: #cbd5e1; }
+  .meta-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 600px) { .two-col { grid-template-columns: 1fr 1fr; } }
+  .pos-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .pos-row:last-child { border-bottom: none; }
+  .pos-sym { font-weight: 700; color: #fff; }
+  .pos-pl.negative { color: var(--red); } .pos-pl.positive { color: var(--green); }
+  .acct-card { border-left: 4px solid var(--accent); }
 </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>Portfolio Report - 2026</h1>
-        <p>Generated: November 01, 2026 — 13:48 SGT | Mode: Deviation | Model: reflection/beam-1.0-501b-a23b:free via Nous Portal</p>
-    </header>
-
-    <div class="card">
-        <h2>Executive Summary</h2>
-        <p><strong>Report Date:</strong> November 01, 2026 — 13:48 SGT<br>
-        <strong>Sources:</strong> Moomoo OpenAPI, Yahoo Finance, CNBC, Barrons, Economic Times, SBS News, Business Times SG, X/Twitter, YouTube market commentary</p>
-        <div class="metrics">
-            <div class="metric">
-                <div class="metric-label">Account 1 (US Margin)</div>
-                <div class="metric-value">12 positions</div>
-                <div class="metric-sub">Value: $56,693.29 | P/L: <span class="negative">-12,049.19 (-21.25%)</span></div>
-            </div>
-            <div class="metric">
-                <div class="metric-label">Account 2 (SGX)</div>
-                <div class="metric-value">G13 only</div>
-                <div class="metric-sub">Value: 6,000.00 SGD | P/L: <span class="negative">0.00 SGD (0.00%)</span></div>
-            </div>
-            <div class="metric">
-                <div class="metric-label">Buying Power</div>
-                <div class="metric-value">$417,010.44</div>
-                <div class="metric-sub">USD available</div>
-            </div>
-            <div class="metric">
-                <div class="metric-label">Biggest Losers</div>
-                <div class="metric-value negative">INTC / SKHY / AMD</div>
-                <div class="metric-sub">-4,720.55 / -1,002.00 / -1,519.70</div>
-            </div>
-        </div>
-
-        <h3>Market Overview</h3>
-        <p>US markets rallied on Oct 28 amid AI trade revival. S&P 500 +0.60% (7,722.60), Nasdaq +1.18% (26,477.81), Dow +0.03% (52,377.57). AI enthusiasm driven by Anthropic IPO filing, Nvidia/Meta deal. VIX eased to 17.59. Treasury yields ~4.99%.</p>
-
-        <h3>Key Headlines</h3>
-        <ul>
-            <li><strong>Market Snapshot (Oct 28):</strong> S&P 500: +0.60% (7,722.60) | Nasdaq: +1.18% (26,477.81) | Dow: +0.03% (52,377.57). Key drivers: AI trade revival (Anthropic IPO), Nvidia/Meta $3B deal, AMD $1B investment. VIX eased to 17.59. Treasury yields ~4.99%.</li><li><strong>Yahoo Finance / CNBC:</strong> NVDA +0.90% at $217.94. AMD +5.45% at $560.26. INTC +3.61% at $93.74. MU +2.77% at $928.76. SKHY volatile. Broad-based chip recovery driven by AI enthusiasm.</li><li><strong>CNBC:</strong> AI stocks rally as Anthropic IPO filing revives enthusiasm. Nvidia investing $3B in Meta $98B equity offering. AMD investing $1B. Chip sector leading broad market gains.</li><li><strong>Barrons:</strong> Tech rally cools inflation fears. AI trade revival with semiconductor stocks leading. PHLX Semiconductor Index gained. Nvidia CEO Jensen Huang sees strong AI demand continuing.</li><li><strong>24/7 Wall St:</strong> Lam Research: chip output constrained through 2027. MRVL -8%, AMD -8%, INTC -7% on AI funding concerns. Samsung and SK Hynix posted worst weekly drops since 2008 crisis.</li><li><strong>Yahoo Finance:</strong> Global chip sell-off deepens: SK Hynix and Samsung fell 11% and 9% on Oct 13. 20 largest AI/semiconductor stocks shed over $1 trillion in a week. KOSPI entered bear market.</li><li><strong>SBS News:</strong> SK Hynix plunges 10% to close at 1.43M won. Samsung down 7.4%. Foreign investors net sold 4.5T won in KOSPI. Supply vacuum after treasury buybacks ended.</li><li><strong>Economic Times:</strong> Nasdaq -2.5%, AMD -8%, NVDA -4% in late Oct selloff. Philly Semiconductor Index 8th straight loss. Lam Research weak guidance adds pressure.</li><li><strong>Business Times SG:</strong> CGSI cuts G13 target to S$0.63. 1HFY2026 earnings -34% y-o-y. Rights issue 1-for-5 at S$0.80 (~32.8% discount).</li>
-        </ul>
+<div class="page">
+  <header class="report-header">
+    <div class="brand">
+      <div class="logo">H</div>
+      <div>
+        <small>Hermes Agent</small>
+        <strong>Portfolio Report</strong>
+      </div>
     </div>
+    <h1>📊 Daily Portfolio Report (EN)</h1>
+    <div class="meta-row">
+      <b>📅 Date:</b> 2026-11-04 &nbsp;·&nbsp;
+      <b>🕐 Last updated:</b> 2026-11-04 15:15 SGT &nbsp;·&nbsp;
+      <b>📡 Data source:</b> Moomoo OpenD (127.0.0.1:11111, 15-min delayed) &nbsp;·&nbsp;
+      <b>🏦 Accounts:</b> #1 US Margin + #2 SGX G13
+    </div>
+  </header>
 
-    
+  <section class="section">
+    <h2>📋 Executive Summary</h2>
+    <div class="kpis">
+      <div class="kpi acct-card">
+        <div class="lbl">Account 1 — US Margin</div>
+        <div class="val">12 positions</div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Market Value: <b>$54,842.06</b></span></div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Unrealized P/L: <b class="negative">-$13,907.19 (-20.23%)</b></span></div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Buying Power: <b>383,813.86 HKD</b> · Risk: <b>LEVEL3</b></span></div>
+      </div>
+      <div class="kpi acct-card">
+        <div class="lbl">Account 2 — SGX G13</div>
+        <div class="val">Genting Sing</div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">10,000 shares · S$0.61</span></div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Market Value: <b>S$6,100.00</b></span></div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">P/L: <b class="negative">-S$100.00 (-1.61%)</b></span></div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">Watchlist Leader</div>
+        <div class="val up">🟢 RIOT +18.41%</div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Riot Platforms · $14.02</span></div>
+        <div class="kpi-note">Earnings call Nov 4, 8:00 AM ET</div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">Watchlist Laggard</div>
+        <div class="val down">🔴 ADBE −2.12%</div>
+        <div class="row"><span style="color:var(--muted);font-size:12px;">Adobe · $246.14</span></div>
+        <div class="kpi-note">Only decliner on watchlist</div>
+      </div>
+    </div>
+    <p>US margin account holds 12 positions with combined market value of <strong>$54,842.06</strong> and unrealized P/L of <strong class="negative">-$13,907.19 (-20.23%)</strong>. Largest positions by market value: AMD ($12,950), INTC ($7,761), MRVL ($6,004), SK Hynix ($5,952). Biggest drags: INTC (-41.51%), MRVL (-32.38%), NOK (-32.34%). SGX G13 position is flat at -1.61%. Buying power stands at 383,813.86 HKD; account risk level is LEVEL3.</p>
+    <div class="alert alert-info">
+      <strong>Market tone (Nov 3 session):</strong> S&P 500 +0.36% (7,568.92), Nasdaq +0.83% (25,372.01), Dow −0.38% (51,786.72). Semiconductors led gains on AMD's Q3 beat and Q4 guide of ≈$17B. VIX at 21.15 (+8.91%); 10Y yield ≈4.96%. Election-week volatility persists.
+    </div>
+  </section>
 
-    
+  <section class="section">
+    <h2>🏦 Account 1 — US Margin Positions</h2>
+    <div class="sub">Moomoo OpenD · Real account · P/L by average cost · 15-min delayed prices</div>
+    <table>
+      <thead>
+        <tr><th>Symbol</th><th>Name</th><th>Qty</th><th>Avg Cost</th><th>Price</th><th>Market Value</th><th>Unrealized P/L</th><th>P/L %</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sym">US.AMD</td><td class="name">Advanced Micro Devices</td><td>25</td><td>$565.59</td><td>$518.00</td><td>$12,950.00</td><td class="pos-pl negative">-$1,189.70</td><td class="negative">-8.41%</td></tr>
+        <tr><td class="sym">US.INTC</td><td class="name">Intel Corp</td><td>130</td><td>$102.07</td><td>$59.70</td><td>$7,761.00</td><td class="pos-pl negative">-$5,508.35</td><td class="negative">-41.51%</td></tr>
+        <tr><td class="sym">US.MRVL</td><td class="name">Marvell Technology</td><td>35</td><td>$253.71</td><td>$171.55</td><td>$6,004.25</td><td class="pos-pl negative">-$2,875.75</td><td class="negative">-32.38%</td></tr>
+        <tr><td class="sym">US.SKHY</td><td class="name">SK hynix</td><td>40</td><td>$174.29</td><td>$148.81</td><td>$5,952.40</td><td class="pos-pl negative">-$1,019.10</td><td class="negative">-14.62%</td></tr>
+        <tr><td class="sym">US.MU</td><td class="name">Micron Technology</td><td>6</td><td>$923.90</td><td>$854.56</td><td>$5,127.36</td><td class="pos-pl negative">-$416.04</td><td class="negative">-7.51%</td></tr>
+        <tr><td class="sym">US.DELL</td><td class="name">Dell Technologies</td><td>10</td><td>$467.90</td><td>$409.32</td><td>$4,093.20</td><td class="pos-pl negative">-$585.80</td><td class="negative">-12.52%</td></tr>
+        <tr><td class="sym">US.NVDA</td><td class="name">NVIDIA Corp</td><td>20</td><td>$229.73</td><td>$207.19</td><td>$4,143.80</td><td class="pos-pl negative">-$450.80</td><td class="negative">-9.81%</td></tr>
+        <tr><td class="sym">US.SPCX</td><td class="name">SpaceX</td><td>20</td><td>$154.09</td><td>$134.39</td><td>$2,687.80</td><td class="pos-pl negative">-$394.00</td><td class="negative">-12.78%</td></tr>
+        <tr><td class="sym">US.GOOG</td><td class="name">Alphabet-C</td><td>5</td><td>$319.50</td><td>$277.12</td><td>$1,385.60</td><td class="pos-pl negative">-$211.90</td><td class="negative">-13.26%</td></tr>
+        <tr><td class="sym">US.CBRS</td><td class="name">Cerebras Systems</td><td>15</td><td>$137.33</td><td>$97.20</td><td>$1,458.00</td><td class="pos-pl negative">-$602.00</td><td class="negative">-29.22%</td></tr>
+        <tr><td class="sym">US.TSM</td><td class="name">Taiwan Semiconductor</td><td>5</td><td>$412.68</td><td>$402.83</td><td>$2,014.15</td><td class="pos-pl negative">-$49.25</td><td class="negative">-2.39%</td></tr>
+        <tr><td class="sym">US.NOK</td><td class="name">Nokia Oyj</td><td>150</td><td>$12.46</td><td>$8.43</td><td>$1,264.50</td><td class="pos-pl negative">-$604.50</td><td class="negative">-32.34%</td></tr>
+        <tr style="background:#23262e;"><td class="sym"><b>Total (US)</b></td><td class="name">12 positions</td><td></td><td></td><td></td><td><b>$54,842.06</b></td><td class="pos-pl negative"><b>-$13,907.19</b></td><td class="negative"><b>-20.23%</b></td></tr>
+      </tbody>
+    </table>
+    <p class="meta-note">All 12 US positions are underwater vs average cost. Today's P/L: AMD +$852.50, DELL +$9.20, NVDA +$10.00; INTC -$110.50, MRVL -$14.70, SKHY -$79.20. Source: Moomoo OpenD real account (ACC 283726804520289218).</p>
+  </section>
 
-    
-    
+  <section class="section">
+    <h2>🇸🇬 Account 2 — Singapore G13</h2>
+    <div class="sub">Genting Singapore Ltd (SG.G13) · Cash account · SGD</div>
+    <div class="two-col">
+      <div class="card">
+        <h3>Position</h3>
+        <div class="pos-row"><span class="pos-sym">SG.G13</span><span>Genting Sing · 10,000 shares</span></div>
+        <div class="pos-row"><span>Average Cost</span><span>S$0.62</span></div>
+        <div class="pos-row"><span>Current Price</span><span>S$0.61</span></div>
+        <div class="pos-row"><span>Market Value</span><span><b>S$6,100.00</b></span></div>
+        <div class="pos-row"><span>Unrealized P/L</span><span class="pos-pl negative">-S$100.00 (-1.61%)</span></div>
+        <div class="pos-row"><span>Today P/L</span><span class="pos-pl positive">+S$100.00</span></div>
+      </div>
+      <div class="card">
+        <h3>Key Notes</h3>
+        <ul style="padding-left:16px;color:#cbd5e1;font-size:12.5px;">
+          <li>Rights issue (Oct 25): 1-for-5 at S$0.80 (~32.8% discount), raising S$1.63B.</li>
+          <li>CGSI downgraded target to S$0.63 on hazy tourism outlook.</li>
+          <li>1HFY2026 earnings down 34% YoY to S$156M.</li>
+          <li>Interim dividend of 2 cents/share declared for 1H.</li>
+          <li>Price near 10-year low at S$0.595 close (Oct 23).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    
+  <section class="section">
+    <h2>🌍 Market Overview</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>US Indices (Nov 3 close)</h3>
+        <div class="pos-row"><span>S&P 500</span><span class="up">7,568.92 (+0.36%)</span></div>
+        <div class="pos-row"><span>Nasdaq Composite</span><span class="up">25,372.01 (+0.83%)</span></div>
+        <div class="pos-row"><span>Dow Jones</span><span class="down">51,786.72 (-0.38%)</span></div>
+        <div class="pos-row"><span>VIX</span><span class="up">21.15 (+8.91%)</span></div>
+        <div class="pos-row"><span>10Y Treasury Yield</span><span>≈4.96%</span></div>
+      </div>
+      <div class="card">
+        <h3>Korea Market</h3>
+        <div class="pos-row"><span>KOSPI</span><span class="down">5,711.27 (-2.52%)</span></div>
+        <div class="pos-row"><span>SK Hynix</span><span class="down">₩1,417,000 (-3.74%)</span></div>
+        <div class="pos-row"><span>Samsung Electronics</span><span class="down">₩222,000 (-3.06%)</span></div>
+        <div class="pos-row"><span>KOSDAQ</span><span class="down">720 level</span></div>
+      </div>
+    </div>
+    <p>US markets pared earlier losses as chip stocks rallied into the close, led by AMD's strong Q3 earnings and Q4 guidance. The Nasdaq led gains (+0.83%) while the Dow slipped (−0.38%). KOSPI fell over 2% on renewed AI profitability concerns, with Samsung and SK Hynix both weakening. The KOSPI had surged 10% in two days late October on SK Hynix's record earnings and 100 trillion won shareholder return plan, then gave back gains.</p>
+  </section>
 
-    
+  <section class="section">
+    <h2>📰 Key Headlines (Yahoo Finance / CNBC / Barrons)</h2>
+    <div>
+      <span class="source-chip yahoo">Yahoo Finance</span>
+      <span class="source-chip cnbc">CNBC</span>
+      <span class="source-chip barrons">Barron's</span>
+    </div>
+    <div class="news-item"><span class="source-chip barrons">Barron's</span><a href="https://www.barrons.com/articles/amd-earnings-stock-price-7c8d5465" target="_blank" rel="noopener">AMD earnings show big tech can't get enough AI chips</a><div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Nov 3, 2026 — AMD reported Q3 EPS $2.09 vs $1.95 est., revenue $13.4B vs $13.1B est. Q4 guide ≈$17B. Data-center revenue +97% YoY to $8.55B. Stock rose 7.9% after hours; ~3.7% in regular trading.</div></div>
+    <div class="news-item"><span class="source-chip yahoo">Yahoo Finance</span><a href="https://finance.yahoo.com/" target="_blank" rel="noopener">Stock market today: Dow slips, S&P and Nasdaq gain as chip stocks rally, focus shifts to midterm elections</a><div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Nov 3, 2026 — S&P 500 +0.36%, Nasdaq +0.83%, Dow −0.38%. Chip rebound ahead of AMD earnings. Focus shifts to US midterm election results.</div></div>
+    <div class="news-item"><span class="source-chip cnbc">CNBC</span><a href="https://www.cnbc.com/stocks/" target="_blank" rel="noopener">More equity needed to fund AI buildout as debt risks mount: Blackstone</a><div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Markets waver ahead of midterm results. AI capex sustainability under scrutiny as borrowing costs rise.</div></div>
+    <div class="news-item"><span class="source-chip barrons">Barron's</span><a href="https://www.barrons.com/livecoverage/stock-market-news-today-110326/card/ai-stocks-attempt-another-bounce-can-they-hold-onto-gains--MRMtwHY83n70VhKbuRXy" target="_blank" rel="noopener">AI Stocks Attempt Another Bounce. Can They Hold Onto Gains?</a><div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Nov 3, 2026 — Nasdaq rose 0.9%, S&P 500 +0.5%, PHLX Semiconductor Index +3.5%. AI trade shows whiplash after Monday's selloff.</div></div>
+    <div class="news-item"><span class="source-chip yahoo">Yahoo Finance</span><a href="https://finance.yahoo.com/quote/RIOT" target="_blank" rel="noopener">Riot Platforms (RIOT) — Q3 earnings in focus</a><div style="margin-top:4px;font-size:12.5px;color:#cbd5e1;">Nov 4, 2026 — RIOT reports Q3 before market open, 8:00 AM ET. Zacks consensus: loss $0.34/share on revenue $161.5M. 21 of 22 analysts maintain Buy; mean PT $28.34 (≈139% upside).</div></div>
+  </section>
 
-    
+  <section class="section">
+    <h2>🐦 X / Twitter Sentiment</h2>
+    <ul style="padding-left:16px;color:#cbd5e1;font-size:12.5px;">
+      <li><strong>@gainzalgo</strong> (Nov 3, 4:45 AM): "$AMD is down 6.53% ahead of earnings, but bulls aren't backing down. Consensus near $13.1B revenue and $1.95 EPS; Q4/Helios AI guidance is the swing factor. Options imply ≈9% move either way."</li>
+      <li><strong>Riot Platforms (official)</strong>: Q3 2026 earnings call confirmed for Nov 4, 8:00 AM ET. Bitcoin mining stocks added nearly $5B in a day as BTC neared $78,000.</li>
+      <li><strong>Investing.com</strong> (Nov 3): 21 of 22 RIOT analysts maintain Buy ratings; mean PT $28.34, though Keefe Bruyette, B.Riley, Piper Sandler and Morgan Stanley cut PTs 15–43% recently.</li>
+      <li><strong>@TopStockAlerts1</strong> (Oct 23): Chip stocks plunged on Tesla lower spending forecast, Lam Research weak outlook, AI financing concerns.</li>
+    </ul>
+    <p class="meta-note">Sentiment aggregated from public X/Twitter posts. Not verified as financial advice.</p>
+  </section>
 
-    
+  <section class="section">
+    <h2>▶️ YouTube Market Commentary</h2>
+    <div class="sub">Public market commentary, Nov 3–4, 2026 · titles from YouTube search results</div>
+    <div class="yt-item"><a href="https://www.youtube.com/watch?v=XORsUDTjiNc" target="_blank" rel="noopener">$37.5 BILLION AI Earnings Shock...Plus, China's HBM Crisis Deepens</a><div class="meta">Market Signal · Nov 04, 2026 · 22:50</div></div>
+    <div class="yt-item"><a href="https://www.youtube.com/watch?v=hF6RZ8b1ubg" target="_blank" rel="noopener">Stock Market Today: Nasdaq Rises 0.8%, AMD Jumps 7% Late | Money in Motion Closing (Nov 3, 2026)</a><div class="meta">IROGERTHAT · Nov 03, 2026 · 1:13</div></div>
+    <div class="yt-item"><a href="https://www.youtube.com/watch?v=TjNZJ0L3xuU" target="_blank" rel="noopener">AM Market Report — 22nd Edition: Apple Beat and Fell, Oil Crashes 7.6%, AMD Tonight | Nov 3</a><div class="meta">Market Report · Nov 03, 2026 · Election Day</div></div>
+  </section>
 
-    
+  <section class="section">
+    <h2>🇰🇷 Korea Market & SK Hynix Background</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>SK Hynix Position</h3>
+        <div class="pos-row"><span>Holding</span><span>40 shares · US.SKHY</span></div>
+        <div class="pos-row"><span>Avg Cost</span><span>$174.29</span></div>
+        <div class="pos-row"><span>Current</span><span>$148.81</span></div>
+        <div class="pos-row"><span>Unrealized P/L</span><span class="pos-pl negative">-$1,019.10 (-14.62%)</span></div>
+        <div class="pos-row"><span>Short Interest</span><span>N/A (ADR)</span></div>
+      </div>
+      <div class="card">
+        <h3>Market Context</h3>
+        <ul style="padding-left:16px;color:#cbd5e1;font-size:12.5px;">
+          <li>Q3 2026: Record operating profit 83 trillion won; revenue 104.6 trillion won (first time >100T won quarterly).</li>
+          <li>Shareholder return plan: up to 100 trillion won.</li>
+          <li>HBM for AI and server memory drove the outperformance; supply sold out for next 3 years.</li>
+          <li>SK Hynix shares jumped 10.9% (Oct 28); Samsung +9%. KOSPI reclaimed 6,000.</li>
+          <li>Nov 3: KOSPI −2.52% to 5,711.27; SK Hynix −3.74% to ₩1,417,000; Samsung −3.06%.</li>
+          <li>Foreign investors net-purchased 820B won; institutions net-purchased 960B won during the rally.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <div class="card"><h2>Market Trend & Actionable Intelligence</h2><h3>Market Trend Summary</h3><ul><li>Semiconductor sector: deep selloff Oct 22-23, partial rebound Oct 23-28. S&P 500 +0.60%, Nasdaq +1.18% on Oct 28.</li><li>Memory chips (SKHY, MU): volatile but showing early signs of recovery. SKHY +4.05% on day.</li><li>AI infrastructure spending: Meta capex concerns vs Nvidia neocloud demand narrative split. Jensen Huang warns of 'scarcity of capital'.</li><li>Treasury yields ~5.1%: pressuring high-PE tech names. Fed rate hike fears resurface.</li><li>Korea market: KOSPI entered bear market (-21% from Sept high). SK Hynix down 57% from June peak. Foreign investors dumped $7.8B in a week.</li><li>Earnings season: SK Hynix Oct 28, Intel Oct 29, Micron Oct 30, AMD Nov 3.</li></ul><h3>X/Twitter Sentiment</h3><ul><li><strong>@StockSavvyShay (Oct 25):</strong> GPUs are now the only balanced part of AI supply chain while DRAM, SSDs, chip substrates face 2-5x longer lead times. Massive opportunity for $MU and $SKHY in DRAM/HBM, $INTC and $AMD in CPUs.</li><li><strong>@FreyaResearch07 (Oct 25):</strong> Momentum names crash snapshot: $MU -28%, $SKHY -31%, $NVDA -12%, $AMD -20%, $INTC -38%, $MRVL -28%, $SPCX -30% from highs. Many may never see highs again.</li><li><strong>@marketsday (Oct 23):</strong> SK Hynix shelved Solidigm US IPO citing cooling AI sentiment. $NVDA dropped 4.4% leading $1.32T daily tech market-value loss. $AMD tumbled 8.1%.</li><li><strong>@DeItaone (Oct 13):</strong> U.S. semiconductor stocks slide broadly: $MRVL -4.2%, $AMD -3.0%, $INTC -3.0%, $NVDA -1.1%, $AVGO -0.8%. Broad-based weakness across AI chips.</li><li><strong>@Tickeron (Oct 15):</strong> $INTC down 5.66% on hotter inflation data reigniting Fed rate hike fears. Slowing Anthropic sales reinforce doubts about AI capex returns.</li><li><strong>@TopStockAlerts1 (Oct 23):</strong> Chip stocks plunged on Tesla lower spending forecast, Lam Research weak outlook, and AI financing concerns. $INTC -8.04%, $AMD -8.10%, $MU -6.26%, $NVDA -4.40%.</li></ul><h3>YouTube Market Commentary</h3><ul><li><strong>The Byte-Size Brief (Oct 13):</strong> NVDA under microscope: Q2 FY2027 revenue $96.2B (+106% YoY), $89B data center. Gross margins guided to dip to 71-72% by Q4 due to HBM shortages. Pivoting to photonic interconnects. $150B buyback authorized. Financial risks rising as NVDA guarantees client loans.</li><li><strong>Leo Cui, Ph.D., CFA (Oct 22):</strong> Can AMD catch Nvidia? On memory-heavy jobs Meta chose AMD. At moderate response speed AMD 2025 chip matched NVDA. Push to very fast responses and NVDA produces 2.2x. At rack scale AMD still behind. Next earnings Nov 3.</li><li><strong>World Trends (Oct 21):</strong> AMD outperformed NVDA by 112 percentage points over past year, yet trades at 57x forward earnings vs NVDA 19x. AMD secured 6GW anchor deals with OpenAI and Meta.</li><li><strong>Be Entrepreneur (Oct 23):</strong> Market near a floor? Magnificent 7 have significant drops. Intel reports Oct 29, Amazon same day. INTC dropped to daily 200 EMA. AMD bounced off 100 MA. Watch for bullish divergences.</li></ul><h3>Korea Market & SK Hynix Context</h3><ul><li><strong>SBS News / Oct 21:</strong> SK Hynix completed KRW 40 trillion ($28B) treasury stock buyback, wrapping up two months early. Both Samsung and SK Hynix buyback programs ended, removing key support for KOSPI.</li><li><strong>Yahoo Finance / Oct 17:</strong> South Korea finance minister bets chip boom outlasts selloff. Gap between demand/supply still wide. SK Hynix and Samsung are among 3 biggest HBM suppliers. Windfall flows into Seoul treasury.</li><li><strong>Moneycontrol / Oct 19:</strong> Samsung and SK Hynix post worst weekly drop since 2008 crisis. Foreign investors dumped $7.8B in a week. Samsung -17.8%, SK Hynix -24.3%. SK Hynix down 57% from June peak.</li><li><strong>Bloomberg / Oct 15:</strong> Korea stocks tumble 8% into bear market. KOSPI down 21% from Sept high. SK Hynix and Samsung each down 9%+ on Fed hike fears and AI funding doubts.</li><li><strong>SBS News / Oct 13:</strong> KOSPI plummets over 3% after brief rebound. SK Hynix fell below 1.2M won. French bond spike triggered US Treasury yield rise. CXMT competition threatens memory pricing from 2028.</li><li><strong>SeDaily / Oct 21:</strong> SK Hynix cancelled Solidigm US IPO after regulatory concerns. Will unveil additional shareholder returns with Oct 28 Q3 earnings.</li></ul><h3>Analyst Rating Changes</h3><table><tr><th>Symbol</th><th>Action</th><th>Firm</th><th>Date</th></tr><tr><td>INTC</td><td>Upgrade</td><td>JPM -> Neutral</td><td>Oct 26</td></tr><tr><td>NVDA</td><td>Downgrade</td><td>Seaport -> Sell</td><td>Oct 25</td></tr><tr><td>AMD</td><td>Hold</td><td>Multiple firms</td><td>Oct 24</td></tr><tr><td>MRVL</td><td>Buy</td><td>BofA -> Buy</td><td>Oct 23</td></tr><tr><td>TSM</td><td>Buy</td><td>HSBC -> Buy</td><td>Oct 22</td></tr></table><h3>Upcoming Earnings Calendar</h3><table><tr><th>Date</th><th>Event</th><th>Impact</th></tr><tr><td>Oct 28</td><td>SK Hynix Q3 earnings</td><td>Key for SKHY and memory sentiment</td></tr><tr><td>Oct 29</td><td>Intel Q3 earnings</td><td>High impact on INTC; gross margin and foundry focus</td></tr><tr><td>Oct 30</td><td>Micron Q4 earnings</td><td>Key for MU and memory sentiment</td></tr><tr><td>Nov 3</td><td>AMD Q3 earnings</td><td>Data center and AI chip demand check</td></tr><tr><td>Nov 4</td><td>Qualcomm Q4 earnings</td><td>Mobile and IoT demand</td></tr><tr><td>Nov 5</td><td>Apple Q4 earnings</td><td>Consumer electronics demand</td></tr></table><h3>Dividend Tracker</h3><table><tr><th>Symbol</th><th>Yield</th><th>Ex-Date</th><th>Payment</th></tr><tr><td>INTC</td><td>2.5%</td><td>Jan 15</td><td>~$0.30</td></tr><tr><td>NVDA</td><td>0.03%</td><td>Mar 20</td><td>~$0.01</td></tr><tr><td>MU</td><td>1.2%</td><td>Jun 25</td><td>~$0.40</td></tr><tr><td>DELL</td><td>1.8%</td><td>Jul 15</td><td>~$0.25</td></tr><tr><td>GOOG</td><td>0%</td><td>N/A</td><td>N/A</td></tr></table><h3>Short Interest Tracker</h3><table><tr><th>Symbol</th><th>% of Float</th><th>Shares Short</th></tr><tr><td>INTC</td><td>8.2%</td><td>142M shares</td></tr><tr><td>AMD</td><td>6.5%</td><td>95M shares</td></tr><tr><td>NVDA</td><td>3.1%</td><td>78M shares</td></tr><tr><td>SKHY</td><td>5.8%</td><td>32M shares</td></tr><tr><td>MU</td><td>4.2%</td><td>28M shares</td></tr></table><h3>Watchlist</h3><table><tr><th>Symbol</th><th>Name</th><th>Price</th><th>Change</th></tr><tr><td>PLTR</td><td>Palantir</td><td>28.45</td><td>+2.3%</td></tr><tr><td>COIN</td><td>Coinbase</td><td>245.60</td><td>-1.8%</td></tr><tr><td>MARA</td><td>Marathon Digital</td><td>22.15</td><td>+5.4%</td></tr><tr><td>RIOT</td><td>Riot Platforms</td><td>18.90</td><td>+4.1%</td></tr></table><h3>Recent Earnings Transcript Summaries</h3><ul><li><strong>NVDA (Aug 2026):</strong> Strong data center growth; Blackwell adoption accelerating; guidance raised. Q2 FY2027 revenue $96.2B (+106% YoY). HBM shortages constrain supply.</li><li><strong>AMD (Aug 2026):</strong> MI300 demand healthy; gross margin expansion on track. 6GW anchor deals with OpenAI and Meta secured.</li><li><strong>INTC (Jul 2026):</strong> Foundry turnaround delayed; capex cuts announced; shares volatile. Data Center & AI revenue rose 59% to $6.3B.</li></ul></div>
+  <section class="section">
+    <h2>💰 Dividend Tracking</h2>
+    <table>
+      <thead>
+        <tr><th>Symbol</th><th>Name</th><th>Dividend/Share</th><th>Ex-Date</th><th>Payable Date</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sym">US.TSM</td><td class="name">Taiwan Semiconductor</td><td>$1.08544</td><td>2026-12-10</td><td>2027-01-07</td><td>Upcoming</td></tr>
+        <tr><td class="sym">US.NOK</td><td class="name">Nokia Oyj</td><td>$0.03366</td><td>2026-10-27</td><td>2026-11-10</td><td>Payable Nov 10</td></tr>
+        <tr><td class="sym">US.DELL</td><td class="name">Dell Technologies</td><td>$0.63</td><td>2026-10-20</td><td>2026-10-30</td><td>Paid</td></tr>
+        <tr><td class="sym">US.SKHY</td><td class="name">SK hynix</td><td>$0.02757</td><td>—</td><td>2026-10-07</td><td>Paid</td></tr>
+        <tr><td class="sym">US.INTC</td><td class="name">Intel Corp</td><td>$0.125 (last)</td><td>—</td><td>—</td><td>Suspended</td></tr>
+        <tr><td class="sym">SG.G13</td><td class="name">Genting Sing</td><td>2 cents SGD</td><td>—</td><td>1H 2026</td><td>Declared (1H)</td></tr>
+      </tbody>
+    </table>
+    <p class="meta-note">Dividend data from Moomoo corporate actions. Intel suspended its dividend in 2024. TSM next ex-date Dec 10, 2026 ($1.08544/share, payable Jan 7, 2027).</p>
+  </section>
 
-    <div class="card"><h2>Account 2 — SGX Summary & News</h2><div class="sgx-box"><strong>Genting Singapore (G13):</strong> 10,000 shares | Cost: S$0.600 | Price: S$0.595 | Market Value: <strong>5,950.00 SGD</strong> | P/L: <span class="negative">-50.00 SGD (-0.83%)</span></div><ul><li><strong>Rights Issue (Oct 25):</strong> Raise S$1.63B via 1-for-5 rights at S$0.80 (~32.8% discount).</li><li><strong>CGSI Downgrade:</strong> Target cut to S$0.63 on hazy tourism outlook.</li><li><strong>Earnings:</strong> 1HFY2026 earnings down 34% y-o-y to S$156M.</li><li><strong>Share Price:</strong> Closed at S$0.595 on Oct 23 (-0.83%). Near 10-year low.</li><li><strong>Dividend:</strong> Interim dividend of 2 cents/share declared for 1H.</li></ul></div>
+  <section class="section">
+    <h2>📉 Short Selling Tracking (沽空追踪)</h2>
+    <table>
+      <thead>
+        <tr><th>Symbol</th><th>Short % of Float</th><th>Shares Short</th><th>Days to Cover</th><th>Close Price</th><th>Date</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sym">US.INTC</td><td>2.83%</td><td>148.5M</td><td>1.54</td><td>$95.37</td><td>2026-10-15</td></tr>
+        <tr><td class="sym">US.MRVL</td><td>2.80%</td><td>24.6M</td><td>1.08</td><td>$241.24</td><td>2026-10-15</td></tr>
+        <tr><td class="sym">US.AMD</td><td>2.33%</td><td>38.1M</td><td>1.98</td><td>$562.23</td><td>2026-10-15</td></tr>
+        <tr><td class="sym">US.DELL</td><td>1.95%</td><td>12.4M</td><td>1.81</td><td>$472.74</td><td>2026-10-15</td></tr>
+        <tr><td class="sym">US.TSM</td><td>0.57%</td><td>29.3M</td><td>2.63</td><td>$422.25</td><td>2026-10-15</td></tr>
+        <tr><td class="sym">US.RIOT</td><td>≈14.7%</td><td>—</td><td>—</td><td>$14.02</td><td>Current</td></tr>
+      </tbody>
+    </table>
+    <p class="meta-note">Short interest data from Moomoo OpenD (latest reporting date Oct 15, 2026). RIOT short interest ≈14.7% of float from analyst reports. Low days-to-cover across holdings suggests limited short-squeeze risk; RIOT's elevated short interest is a key watch item ahead of its Nov 4 earnings call.</p>
+  </section>
 
-    <p class="disclaimer">Data sourced from Moomoo OpenAPI, Yahoo Finance, CNBC, Barrons, Economic Times, SBS News, Business Times SG, The Edge Malaysia, X/Twitter, and YouTube market commentary as of November 01, 2026 — 13:48 SGT. This report is for informational purposes only and does not constitute financial advice. Verify all figures via your broker before making investment decisions.</p>
-    <p style="text-align:center;font-size:11px;color:#94a3b8;margin-top:4px;">Last updated: November 01, 2026 — 13:48 SGT</p>
+  <section class="section">
+    <h2>👀 Watchlist</h2>
+    <div class="sub">Moomoo OpenD real-time snapshots · Nov 3, 2026 close · sorted by |change %|</div>
+    <table>
+      <thead>
+        <tr><th>Code</th><th>Name</th><th>Last</th><th>Change</th><th>%</th><th>Today Range</th><th>Volume</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sym">US.RIOT</td><td class="name">Riot Platforms</td><td>$14.02</td><td class="up">+$2.18</td><td class="up">🟢 +18.41%</td><td>$11.90–$14.07</td><td>40,809,138</td></tr>
+        <tr><td class="sym">US.DELL</td><td class="name">Dell Technologies</td><td>$408.40</td><td class="up">+$15.62</td><td class="up">🟢 +3.98%</td><td>$396.52–$418.17</td><td>4,709,462</td></tr>
+        <tr><td class="sym">US.AMD</td><td class="name">Advanced Micro Devices</td><td>$483.90</td><td class="up">+$17.06</td><td class="up">🟢 +3.65%</td><td>$473.54–$497.40</td><td>35,255,053</td></tr>
+        <tr><td class="sym">US.ANET</td><td class="name">Arista Networks</td><td>$169.91</td><td class="up">+$5.77</td><td class="up">🟢 +3.52%</td><td>$165.22–$171.84</td><td>12,814,795</td></tr>
+        <tr><td class="sym">US.AVGO</td><td class="name">Broadcom</td><td>$332.13</td><td class="up">+$9.90</td><td class="up">🟢 +3.07%</td><td>$326.60–$335.74</td><td>17,274,507</td></tr>
+        <tr><td class="sym">US.CBRS</td><td class="name">Cerebras Systems</td><td>$97.82</td><td class="up">+$1.46</td><td class="up">🟢 +1.52%</td><td>$96.80–$102.27</td><td>9,495,416</td></tr>
+        <tr><td class="sym">US.MRVL</td><td class="name">Marvell Technology</td><td>$171.97</td><td class="up">+$0.56</td><td class="up">🟢 +0.33%</td><td>$167.40–$177.31</td><td>39,412,053</td></tr>
+        <tr><td class="sym">US.ADBE</td><td class="name">Adobe</td><td>$246.14</td><td class="down">−$5.33</td><td class="down">🔴 −2.12%</td><td>$241.01–$248.80</td><td>3,207,632</td></tr>
+      </tbody>
+    </table>
+    <p class="meta-note">6 of 8 watchlist names advanced. RIOT leads on pre-earnings speculation ahead of its Q3 call (Nov 4, 8:00 AM ET). ADBE is the sole decliner on mixed AI/ARR views (consensus Hold).</p>
+  </section>
+
+  <section class="section">
+    <h2>📞 Earnings Call Summary</h2>
+    <table>
+      <thead>
+        <tr><th>Company</th><th>Date</th><th>Result</th><th>Guidance / Key Takeaway</th><th>Reaction</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="sym">US.AMD</td><td>Nov 3, after close</td><td>EPS $2.09 vs $1.95 est.; Rev $13.4B vs $13.1B</td><td>Q4 ≈$17B (vs $16.3B est.); Data-center +97% YoY to $8.55B</td><td>+7.9% AH, +3.7% regular</td></tr>
+        <tr><td class="sym">US.ANET</td><td>Nov 3, after close</td><td>Beat estimates</td><td>Revenue $3.66B, +58.5% YoY; 6th straight EPS beat</td><td>Rose after hours</td></tr>
+        <tr><td class="sym">US.RIOT</td><td>Nov 4, 8:00 AM ET</td><td>Expected loss ≈$0.34; Rev ≈$161.5M</td><td>AI/HPC revenue ramp vs bitcoin mining weakness; Corsicana 600MW conversion timeline</td><td>Pre-earnings surge +18.41%</td></tr>
+        <tr><td class="sym">US.QCOM</td><td>Nov 4, after close</td><td>EPS est. $1.33</td><td>Q4 revenue est. $10.1B</td><td>Pending</td></tr>
+        <tr><td class="sym">US.ARM</td><td>Nov 4, after close</td><td>EPS est. $0.23</td><td>2027Q2 revenue est. $1.38B</td><td>Pending</td></tr>
+      </tbody>
+    </table>
+    <p class="meta-note">Upcoming earnings for portfolio holdings: none in the next 7 days beyond RIOT (Nov 4). Watchlist earnings: RIOT (Nov 4), QCOM (Nov 4), ARM (Nov 4). Data from Moomoo earnings calendar.</p>
+  </section>
+
+  <div class="disclaimer">
+    <h3>Disclaimer / 免责声明</h3>
+    <p><strong>EN:</strong> This report was generated by Hermes Agent from Moomoo OpenD real-time quotes (15-minute delayed), public web search results (Yahoo Finance, CNBC, Barrons), and YouTube/X summaries. It is for informational purposes only and does not constitute investment advice, a recommendation, or an offer or solicitation to buy or sell any security. Market data may be delayed; prices and percentages reflect snapshot times shown. All investing involves risk, including possible loss of principal. Users should independently verify data and consult a licensed financial advisor before making investment decisions. Hermes Agent holds no broker-dealer license and is not affiliated with Moomoo, Yahoo Finance, CNBC, or Barrons.</p>
+    <p><strong>CN:</strong> 本报告由 Hermes Agent 基于 Moomoo OpenD 实时行情（15 分钟延迟）、公开网页搜索结果（Yahoo Finance、CNBC、Barrons）及 YouTube/X 摘要生成，仅供信息参考，不构成投资建议、推荐，亦非买卖证券的要约或邀请。行情数据可能延迟；价格与涨跌幅以所示快照时间为准。投资有风险，入市需谨慎，可能遭本金损失。用户应自行核实数据，并在作出投资决策前咨询持牌金融顾问。Hermes Agent 未持有经纪交易商牌照，亦与 Moomoo、Yahoo Finance、CNBC 或 Barrons 无关。</p>
+  </div>
+
+  <footer class="report-footer">
+    <span>Generated by Hermes Agent · Moomoo OpenD Real-Time · 2026-11-04 SGT</span>
+    <span>Account 1: 12 US positions · Account 2: SG.G13 · Watchlist: CBRS, RIOT, DELL, ANET, AMD, MRVL, AVGO, ADBE</span>
+  </footer>
 </div>
 </body>
 </html>
