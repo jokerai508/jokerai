@@ -1,0 +1,6 @@
+# 不应发布到 GitHub Pages 的测试/媒体临时文件
+test_output.mp4
+*.mp4
+*.mp3
+.matrix-soundtrack.mp3
+.DS_Store
