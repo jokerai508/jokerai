@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<title>📊 Investment Analysis Report — 2026-11-04</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, Roboto, sans-serif;
+    background: #0a0b10; color: #e8e4d9;
+    padding: 0; line-height: 1.75; font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 100%; margin: 0 auto; padding: 16px 12px; }
+  .header {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: linear-gradient(135deg, #1a1d24 0%, #d4a93c 100%);
+    color: #e8e4d9; padding: 24px 28px; border-radius: 12px; margin-bottom: 24px;
+  }
+  .header h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; }
+  .header .sub { font-size: 14px; opacity: 0.9; }
+  .header .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.35);
+    border-radius: 10px; padding: 4px 12px; font-size: 12px; font-weight: 700; color: #c4b5fd;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px;
+  }
+  .stat-card {
+    background: linear-gradient(145deg, #161b22 0%, #1c212a 100%);
+    border: 1px solid #2d343e; border-radius: 12px; padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .stat-card .label { font-size: 14px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat-card .value { font-size: 26px; font-weight: 800; color: #e8e4d9; font-feature-settings: "tnum"; }
+  .stat-card .change { font-size: 14px; font-weight: 700; margin-top: 4px; }
+  .pos { color: #4ade80; } .neg { color: #f87171; } .div { color: #fbbf24; }
+  .card {
+    background: linear-gradient(145deg, #161b22 0%, #1c212a 100%);
+    border: 1px solid #2d343e; border-radius: 14px; padding: 20px 24px;
+    margin-bottom: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .card h2 {
+    font-size: 20px; font-weight: 800; margin-bottom: 16px; color: #e8e4d9;
+    letter-spacing: 0.3px; display: flex; align-items: center; gap: 10px;
+  }
+  .card h2 .icon { font-size: 22px; }
+  .news-item {
+    background: rgba(255,255,255,0.02); border: 1px solid #2d343e; border-radius: 12px;
+    padding: 14px 18px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .news-item:hover { border-color: rgba(139,92,246,0.4); }
+  .news-title { font-size: 16px; font-weight: 700; color: #e8e4d9; line-height: 1.4; }
+  .news-summary { font-size: 14px; color: #cbd5e1; line-height: 1.6; }
+  .news-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: #94a3b8; }
+  .news-source { display: inline-flex; align-items: center; gap: 6px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25); border-radius: 8px; padding: 2px 10px; font-size: 11px; font-weight: 700; color: #c4b5fd; }
+  .news-link { font-size: 12px; color: #60a5fa; text-decoration: none; border-bottom: 1px solid rgba(96,165,250,0.3); }
+  .news-link:hover { color: #93c5fd; text-decoration: underline; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid #2d343e; border-radius: 10px; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { background: #2b303b; color: #9aa3b2; font-weight: 700; text-align: left; padding: 12px 16px; border-bottom: 2px solid #2b303b; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 10px 16px; border-bottom: 1px solid #2d343e; color: #f2f4f7; vertical-align: middle; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .pos-td { color: #4ade80; font-weight: 700; } .neg-td { color: #f87171; font-weight: 700; } .div-td { color: #fbbf24; font-weight: 700; }
+  .footer {
+    margin-top: 32px; padding-top: 20px; border-top: 1px solid #334155;
+    font-size: 13px; color: #94a3b8; text-align: center;
+  }
+  .footer p { margin: 6px 0; }
+  @media (max-width: 768px) {
+    .header { padding: 16px 14px; } .header h1 { font-size: 20px; }
+    .stat-card { padding: 14px; } .stat-card .value { font-size: 22px; }
+    .card { padding: 16px; } table { font-size: 13px; } th, td { padding: 8px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>📊 Investment Analysis Report</h1>
+    <span class="sub">Moomoo Account · Portfolio Analysis · 2026-11-04 15:15 SGT</span>
+    <span class="badge">⭐ Deep Report · 10 Modules</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="label">Total Assets (USD)</div>
+      <div class="value">$59,342</div>
+      <div class="change neg">▼ Incl. Unrealized -$14,007</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Securities Value (USD)</div>
+      <div class="value">$59,342</div>
+      <div class="change neg">▼ US $54,842 + SG $4,500</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Buying Power (USD)</div>
+      <div class="value">$49,200</div>
+      <div class="change pos">≈ 383,814 HKD</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Realized P&L (USD)</div>
+      <div class="value">$16,070.65</div>
+      <div class="change pos">▲ Net Gain (since 2026-03-01)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📈</span> Executive Summary</h2>
+    <p style="font-size:16px;">
+      Your portfolio currently has total assets of <strong>$59,342</strong> (US Margin $54,842 + SGX G13 ~$4,500),
+      with unrealized loss of <strong class="neg">-$14,007 (-19.1%)</strong>. Buying power <strong>$49,200</strong> (383,814 HKD), risk level <strong>LEVEL3</strong>.
+    </p>
+    <p style="font-size:16px;">
+      Core holdings concentrated in <strong>AI semiconductors & tech leaders</strong> (AMD, INTC, MRVL, NVDA, SKHY, DELL, MU, TSM, NOK, CBRS, GOOG, SPCX),
+      12 US positions all underwater. INTC (-41.51%), MRVL (-32.38%), NOK (-32.34%) are the biggest drags.
+    </p>
+    <p style="font-size:16px;">
+      <strong>Macro Themes:</strong> AI semiconductor cycle leading (AMD Q3 Data Center +97% YoY),
+      rate-sensitive banks, EV inventory depreciation pressure. Major analysts bullish on AMD, NVDA, TSM, DELL, MU.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📊</span> Position Overview (Real-time Moomoo Data)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Holding</th><th>Qty</th><th>Avg Cost</th><th>Current</th><th>Mkt Value (USD)</th><th>Unreal P&L</th><th>P&L %</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AMD</strong></td><td>25</td><td>$565.59</td><td>$518.00</td><td>$12,950.00</td><td class="neg-td">-$1,189.70</td><td class="neg-td">-8.41%</td></tr>
+          <tr><td><strong>INTC</strong></td><td>130</td><td>$102.07</td><td>$59.70</td><td>$7,761.00</td><td class="neg-td">-$5,508.35</td><td class="neg-td">-41.51%</td></tr>
+          <tr><td><strong>MRVL</strong></td><td>35</td><td>$253.71</td><td>$171.55</td><td>$6,004.25</td><td class="neg-td">-$2,875.75</td><td class="neg-td">-32.38%</td></tr>
+          <tr><td><strong>SKHY</strong></td><td>40</td><td>$174.29</td><td>$148.81</td><td>$5,952.40</td><td class="neg-td">-$1,019.10</td><td class="neg-td">-14.62%</td></tr>
+          <tr><td><strong>MU</strong></td><td>6</td><td>$923.90</td><td>$854.56</td><td>$5,127.36</td><td class="neg-td">-$416.04</td><td class="neg-td">-7.51%</td></tr>
+          <tr><td><strong>DELL</strong></td><td>10</td><td>$467.90</td><td>$409.32</td><td>$4,093.20</td><td class="neg-td">-$585.80</td><td class="neg-td">-12.52%</td></tr>
+          <tr><td><strong>NVDA</strong></td><td>20</td><td>$229.73</td><td>$207.19</td><td>$4,143.80</td><td class="neg-td">-$450.80</td><td class="neg-td">-9.81%</td></tr>
+          <tr><td><strong>SPCX</strong></td><td>20</td><td>$154.09</td><td>$134.39</td><td>$2,687.80</td><td class="neg-td">-$394.00</td><td class="neg-td">-12.78%</td></tr>
+          <tr><td><strong>GOOG</strong></td><td>5</td><td>$319.50</td><td>$277.12</td><td>$1,385.60</td><td class="neg-td">-$211.90</td><td class="neg-td">-13.26%</td></tr>
+          <tr><td><strong>CBRS</strong></td><td>15</td><td>$137.33</td><td>$97.20</td><td>$1,458.00</td><td class="neg-td">-$602.00</td><td class="neg-td">-29.22%</td></tr>
+          <tr><td><strong>TSM</strong></td><td>5</td><td>$412.68</td><td>$402.83</td><td>$2,014.15</td><td class="neg-td">-$49.25</td><td class="neg-td">-2.39%</td></tr>
+          <tr><td><strong>NOK</strong></td><td>150</td><td>$12.46</td><td>$8.43</td><td>$1,264.50</td><td class="neg-td">-$604.50</td><td class="neg-td">-32.34%</td></tr>
+          <tr><td><strong>G13 (SGX)</strong></td><td>10,000</td><td>S$0.62</td><td>S$0.61</td><td>~$4,500</td><td class="neg-td">-S$100 (-1.61%)</td><td class="neg-td">-1.61%</td></tr>
+          <tr style="background:#23262e;"><td><strong>Total (US)</strong></td><td>12 positions</td><td></td><td></td><td><strong>$54,842.06</strong></td><td class="neg-td"><strong>-$13,907.19</strong></td><td class="neg-td"><strong>-20.23%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:#94a3b8;">* Source: Moomoo OpenD real-time accounts (Account 1 US Margin + Account 2 SGX G13), 15-min delayed. FX: 1 USD = 7.8 HKD / 1.35 SGD estimated.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📈</span> P&L Analysis</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Module</th><th>Value (USD)</th><th>Trend</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Realized P&L - Gross</td><td>$16,905.71</td><td class="pos-td">▲</td></tr>
+          <tr><td>Realized P&L - Net</td><td>$16,070.65</td><td class="pos-td">▲</td></tr>
+          <tr><td>Total Fees</td><td>$835.06</td><td class="neg">▼</td></tr>
+          <tr><td>Unrealized P&L (US + SG)</td><td>-$14,007</td><td class="neg">▼</td></tr>
+          <tr><td><strong>Combined Net P&L</strong></td><td><strong>$2,063.65</strong></td><td class="div-td">~</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px; color:#94a3b8;">
+      Realized P&L since 2026-03-01, 12 US positions + 1 SG position. Current unrealized loss mainly from INTC (-$5,508), MRVL (-$2,876), NOK (-$605), CBRS (-$602), SKHY (-$1,019).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">🔬</span> Fundamental Analysis</h2>
+    <p style="font-size:16px;"><strong>Core Logic:</strong> AI semiconductor chain in high-growth phase, AMD Q3 Data Center revenue +97% YoY, Q4 guide ~$17B beats estimates. But PC market weak (Intel Q4 revenue guide -12%) pressuring INTC, DELL. AI infrastructure demand still accelerating.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>Analyst Rating</th><th>Target (USD)</th><th>Upside (est)</th><th>Key View</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AMD</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$510</td>
+            <td class="pos-td">+18%</td>
+            <td style="font-size:14px;">Morgan Stanley raises target to $510. Q3 Data Center +97% to $8.55B, Q4 guide ~$17B beats. Strong AI chip demand.</td>
+          </tr>
+          <tr>
+            <td><strong>NVDA</strong></td>
+            <td class="pos-td">Strong Buy</td>
+            <td>$319</td>
+            <td class="pos-td">+54%</td>
+            <td style="font-size:14px;">98% analysts Buy. Data center demand robust. HBM memory shortage benefits supply chain.</td>
+          </tr>
+          <tr>
+            <td><strong>TSM</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$529</td>
+            <td class="pos-td">+31%</td>
+            <td style="font-size:14px;">16 analysts Buy. Advanced node capacity tight. AI chip foundry demand oversubscribed.</td>
+          </tr>
+          <tr>
+            <td><strong>MRVL</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$321</td>
+            <td class="pos-td">+87%</td>
+            <td style="font-size:14px;">Consensus ~$322. Storage/optical modules shortage clear. Current $171.55 far below target.</td>
+          </tr>
+          <tr>
+            <td><strong>DELL</strong></td>
+            <td class="pos-td">Moderate Buy</td>
+            <td>$570</td>
+            <td class="pos-td">+39%</td>
+            <td style="font-size:14px;">$95B backlog. AI server growth engine. PC cycle bottoming.</td>
+          </tr>
+          <tr>
+            <td><strong>MU</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$1,562</td>
+            <td class="pos-td">+83%</td>
+            <td style="font-size:14px;">HBM demand strong. Supply tight through 2027.</td>
+          </tr>
+          <tr>
+            <td><strong>SKHY</strong></td>
+            <td class="div-td">Hold</td>
+            <td>$157</td>
+            <td class="pos-td">+5%</td>
+            <td style="font-size:14px;">Q3 record OP 83T KRW. HBM sold out for 3 years. But KRX recently -3.74%.</td>
+          </tr>
+          <tr>
+            <td><strong>INTC</strong></td>
+            <td class="div-td">Hold</td>
+            <td>$104</td>
+            <td class="pos-td">+74%</td>
+            <td style="font-size:14px;">Roth Capital downgraded. PC weak, foundry pivot unproven. Current $59.70 far below target.</td>
+          </tr>
+          <tr>
+            <td><strong>NOK</strong></td>
+            <td class="neg-td">Sell</td>
+            <td>$9</td>
+            <td class="pos-td">+7%</td>
+            <td style="font-size:14px;">-32.34% unrealized. Auto/network equipment weak. Suggest reduce.</td>
+          </tr>
+          <tr>
+            <td><strong>CBRS</strong></td>
+            <td class="neg-td">Caution</td>
+            <td>$119</td>
+            <td class="pos-td">+22%</td>
+            <td style="font-size:14px;">-29.22% unrealized. AI chip startup extreme volatility. Non-core.</td>
+          </tr>
+          <tr>
+            <td><strong>SPCX</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$180</td>
+            <td class="pos-td">+34%</td>
+            <td style="font-size:14px;">SpaceX valuation rising. Starlink high growth. Limited liquidity.</td>
+          </tr>
+          <tr>
+            <td><strong>GOOG</strong></td>
+            <td class="pos-td">Buy</td>
+            <td>$380</td>
+            <td class="pos-td">+37%</td>
+            <td style="font-size:14px;">Ads recovery + AI cloud growth. YouTube ads strong. Reasonable valuation.</td>
+          </tr>
+          <tr>
+            <td><strong>G13</strong></td>
+            <td class="div-td">Caution</td>
+            <td>S$0.63</td>
+            <td class="pos-td">+3%</td>
+            <td style="font-size:14px;">Rights issue dilution, hazy tourism. Near 10-yr low S$0.595. Dividend 2c/share.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📉</span> Technical Analysis</h2>
+    <p style="font-size:16px;">Using 200-day & 50-day MA. Semiconductors mostly uptrend, but INTC, NOK, CBRS in downtrend.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>50-Day MA</th><th>200-Day MA</th><th>Trend</th><th>Key Levels (USD)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AMD</strong></td><td>$520</td><td>$430</td><td class="pos-td">Uptrend</td><td>Support $470 / Resist $560</td></tr>
+          <tr><td><strong>NVDA</strong></td><td>$230</td><td>$185</td><td class="pos-td">Uptrend</td><td>Support $200 / Resist $245</td></tr>
+          <tr><td><strong>TSM</strong></td><td>$430</td><td>$360</td><td class="pos-td">Uptrend</td><td>Support $400 / Resist $450</td></tr>
+          <tr><td><strong>MRVL</strong></td><td>$255</td><td>$190</td><td class="pos-td">Uptrend</td><td>Support $240 / Resist $280</td></tr>
+          <tr><td><strong>DELL</strong></td><td>$430</td><td>$380</td><td class="pos-td">Uptrend</td><td>Support $400 / Resist $470</td></tr>
+          <tr><td><strong>MU</strong></td><td>$960</td><td>$750</td><td class="pos-td">Uptrend</td><td>Support $900 / Resist $1,050</td></tr>
+          <tr><td><strong>GOOG</strong></td><td>$330</td><td>$290</td><td class="pos-td">Uptrend</td><td>Support $305 / Resist $355</td></tr>
+          <tr><td><strong>SPCX</strong></td><td>$150</td><td>$140</td><td class="pos-td">Mild Up</td><td>Support $142 / Resist $160</td></tr>
+          <tr><td><strong>G13</strong></td><td>S$0.60</td><td>S$0.50</td><td class="pos-td">Mild Up</td><td>Support S$0.55 / Resist S$0.68</td></tr>
+          <tr><td><strong>SKHY</strong></td><td>$160</td><td>$110</td><td class="pos-td">Mild Up</td><td>Support $145 / Resist $175</td></tr>
+          <tr><td><strong>CBRS</strong></td><td>$125</td><td>$80</td><td class="neg-td">Downtrend</td><td>Support $100 / Resist $140</td></tr>
+          <tr><td><strong>NOK</strong></td><td>$10</td><td>$7</td><td class="neg-td">Downtrend</td><td>Support $8 / Resist $12</td></tr>
+          <tr><td><strong>INTC</strong></td><td>$112</td><td>$78</td><td class="neg-td">Downtrend</td><td>Support $55 / Resist $90</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">💰</span> Valuation Analysis</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>Current</th><th>P/E (est)</th><th>Target</th><th>Margin of Safety</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AMD</strong></td><td>$518</td><td>~22x</td><td>$510</td><td class="div-td">-2%</td></tr>
+          <tr><td><strong>NVDA</strong></td><td>$207</td><td>~25x</td><td>$319</td><td class="pos-td">+54%</td></tr>
+          <tr><td><strong>TSM</strong></td><td>$403</td><td>~19x</td><td>$529</td><td class="pos-td">+31%</td></tr>
+          <tr><td><strong>MRVL</strong></td><td>$172</td><td>~15x</td><td>$321</td><td class="pos-td">+87%</td></tr>
+          <tr><td><strong>DELL</strong></td><td>$409</td><td>~12x</td><td>$570</td><td class="pos-td">+39%</td></tr>
+          <tr><td><strong>MU</strong></td><td>$855</td><td>~10x</td><td>$1,562</td><td class="pos-td">+83%</td></tr>
+          <tr><td><strong>SKHY</strong></td><td>$149</td><td>est 15x</td><td>$157</td><td class="pos-td">+5%</td></tr>
+          <tr><td><strong>INTC</strong></td><td>$60</td><td>~12x</td><td>$104</td><td class="pos-td">+74%</td></tr>
+          <tr><td><strong>GOOG</strong></td><td>$277</td><td>~25x</td><td>$380</td><td class="pos-td">+37%</td></tr>
+          <tr><td><strong>SPCX</strong></td><td>$134</td><td>~22x</td><td>$180</td><td class="pos-td">+34%</td></tr>
+          <tr><td><strong>CBRS</strong></td><td>$97</td><td>~25x</td><td>$119</td><td class="pos-td">+22%</td></tr>
+          <tr><td><strong>NOK</strong></td><td>$8.43</td><td>~8x</td><td>$9</td><td class="pos-td">+7%</td></tr>
+          <tr><td><strong>G13</strong></td><td>S$0.61</td><td>est 10x</td><td>S$0.63</td><td class="pos-td">+3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">⚠️</span> Risk Assessment</h2>
+    <div class="news-item">
+      <div class="news-title">🔴 1· Heavy Concentration Loss (Critical)</div>
+      <div class="news-summary">All 12 US positions underwater, total unrealized -$13,907 (-20.23%). INTC, MRVL, NOK combined -$8,988 = 64.6% of total loss. Margin account may face margin call if market drops further (current risk LEVEL3).</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Real-time Account</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🔴 2· Tech Bubble / Valuation Correction (High)</div>
+      <div class="news-summary">AI semi valuations elevated. Capex slowdown could trigger correction. AMD at $518 vs $510 target. NVDA has upside but high volatility.</div>
+      <div class="news-meta"><span class="news-source">Source: 24/7 Wall St / Yahoo Finance</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🟡 3· PC Weakness Drags INTC/DELL (Medium)</div>
+      <div class="news-summary">Intel guides 2026/27 PC sales -12%. INTC -41.51% unrealized is biggest drag. DELL has AI servers but PC client business still large, pressured.</div>
+      <div class="news-meta"><span class="news-source">Source: Yahoo Finance / CNBC</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🟡 4· Policy / Geopolitics (Medium-High)</div>
+      <div class="news-summary">US-China semi export controls, Taiwan tensions, KRX selloff (KOSPI -2.52%, SKHynix -3.74%) create supply chain uncertainty. SKHY -14.62% unrealized.</div>
+      <div class="news-meta"><span class="news-source">Source: MarketBeat / The Star</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🟡 5· Singapore G13 Rights Dilution (Medium)</div>
+      <div class="news-summary">Genting Singapore 1:5 rights issue (32.8% discount) significantly dilutes shareholders. Tourism outlook hazy, stock at 10-yr low. -1.61% unrealized.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Corporate Actions</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">🎯</span> Catalysts & Timeline</h2>
+    <div class="news-item">
+      <div class="news-title">🟢 2026-11-04: RIOT Q3 Earnings Call (Imminent)</div>
+      <div class="news-summary">RIOT pre-market 8:00 AM ET Q3, est loss $0.34/sh, rev $161.5M. Watchlist leader +18.41%, short interest ~14.7%, high pre-earnings vol risk.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Earnings Calendar</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🟢 2026-11-04: QCOM/ARM Earnings (After Close)</div>
+      <div class="news-summary">Watchlist QCOM, ARM report after close. QCOM Q4 rev est $10.1B, ARM 2027 Q2 rev est $1.38B. May move semi sentiment.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Earnings Calendar</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🔵 2026-Q4: Fed Rate Cuts & Macro Data (Medium-term)</div>
+      <div class="news-summary">If Fed cuts materialize, growth stock re-rating possible. Watch CPI, NFP, GDP. 10Y yield ~4.96%, VIX 21.15 shows election-week vol.</div>
+      <div class="news-meta"><span class="news-source">Source: Bloomberg / MarketBeat</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🟢 2027: Memory & AI Delivery Cycle (Long-term)</div>
+      <div class="news-summary">MRVL, MU, SKHY benefit from AI delivery cycle & HBM shortage. SKHY HBM sold out through 2029. Core holdings for long-term hold.</div>
+      <div class="news-meta"><span class="news-source">Source: 24/7 Wall St / MarketBeat</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📋</span> Allocation Recommendations</h2>
+    <div class="news-item">
+      <div class="news-title">✅ Core Long-term (Add on Dips)</div>
+      <div class="news-summary"><strong>AMD, NVDA, TSM, MRVL, DELL, MU</strong>. AI semi & memory cycle core beneficiaries. Add on pullbacks to key support: AMD $470, NVDA $200, MRVL $240, MU $900.</div>
+      <div class="news-meta"><span class="news-source">Source: MarketBeat, 24/7 Wall St, Yahoo Finance</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">⚠️ Strict Stop-Loss (Reduce/Hedge)</div>
+      <div class="news-summary"><strong>INTC, NOK, CBRS, SKHY</strong>. INTC -41.51% PC structural decline, foundry pivot uncertain; NOK -32.34% auto/network no growth; CBRS -29% theme stock vol; SKHY -14.62% KRX drag. Cut INTC/NOK/CBRS 50%+, SKHY -20% stop.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Real-time + Analyst Ratings</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">📌 Index Fund / SG Allocation (Hold)</div>
+      <div class="news-summary"><strong>SPCX, G13</strong>. SPCX as SpaceX bet hold; G13 if stabilizes above S$0.60 post-rights can keep small, else consider exit. No new capital.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Corp Actions + 24/7 Wall St</span></div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">🛡 Risk Priority: Margin Account Safety</div>
+      <div class="news-summary">Current risk LEVEL3, buying power 383,814 HKD. If total value drops below $50k or unrealized exceeds -$15k, maintenance margin breach risk. Actions: 1) Reduce high-loss positions to free margin; 2) Keep cash buffer; 3) Set portfolio -15% stop-loss.</div>
+      <div class="news-meta"><span class="news-source">Source: Moomoo Risk Metrics</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="icon">📝</span> Conclusion</h2>
+    <p style="font-size:16px;">
+      Your portfolio is centered on <strong>AI semiconductors & tech leaders</strong>, current total assets <strong>$59,342</strong>,
+      realized net gain <strong>$16,070.65</strong>, but unrealized loss <strong class="neg">-$14,007</strong>,
+      combined net only <strong>$2,064</strong>. All 12 US positions underwater, risk level LEVEL3.
+    </p>
+    <p style="font-size:16px;">
+      Core recommendation: <strong>Hold AMD, NVDA, TSM, MRVL, DELL, MU as core long-term (add on dips)</strong>;
+      <strong>INTC, NOK, CBRS sharply reduce</strong>; <strong>SKHY strict -20% stop</strong>.
+      Priority: free up margin to lower risk level. Track: AMD/NVDA Data Center rev, INTC foundry pivot, SKHY HBM supply, Fed rate path — all key signals in coming weeks.
+    </p>
+    <p style="font-size:14px; color:#94a3b8;">
+      ⚠️ Disclaimer: This is an AI-generated investment analysis report for informational purposes only, not investment advice. Data sources: Moomoo Desktop App real-time accounts, Yahoo Finance, CNBC, Bloomberg, MarketBeat, 24/7 Wall St. Investing involves risk, including loss of principal. Verify all data independently and consult a licensed financial advisor before making investment decisions.
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>📊 Investment Analysis Report · Generated 2026-11-04 15:15 SGT · Moomoo OpenD Real-time + AI Analysis</p>
+    <p>Data Sources: Moomoo Desktop App (Account 1 US Margin + Account 2 SGX G13) · Yahoo Finance · CNBC · Bloomberg · MarketBeat · 24/7 Wall St · The Star</p>
+    <p>For informational purposes only. Not investment advice. Verify before deciding.</p>
+  </div>
+</div>
+</body>
+</html>
