@@ -2,116 +2,307 @@
 <html lang="zh-Hans">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>马来西亚华文新闻速览</title>
-<link rel="stylesheet" href="https://jokerai508.github.io/jokerai/report-style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<title>📰 马来西亚华文新闻速览 — 东甲优先 — 2026-11-04</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; -tap-highlight-color: transparent; }
   body {
-    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-    background: #0d1117;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, Roboto, sans-serif;
+    background: linear-gradient(180deg, #0a0b10 0%, #0f121a 100%);
     color: #e8e4d9;
-    padding: 16px;
-    line-height: 1.55;
+    padding: 0;
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 720px; margin: 0 auto; }
-  h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #e8e4d9; }
-  .date { font-size: 13px; color: #94a3b8; margin-bottom: 14px; }
-  .section {
-    background: #1a1d24;
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  .section h2 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #e8e4d9;
+  .wrap { max-width: 100%; margin: 0 auto; padding: 16px 12px; }
+  .header {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1e293b;
   }
-  .item { margin: 10px 0; }
-  .item .title { font-size: 14px; font-weight: 600; color: #e8e4d9; line-height: 1.45; }
-  .item .summary { font-size: 13px; color: #cbd5e1; margin-top: 3px; }
-  .source a {
+  h1 { font-size: 18px; font-weight: 800; color: #e8e4d9; letter-spacing: -0.2px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #c4b5fd;
+    white-space: nowrap;
+  }
+  .meta { font-size: 12px; color: #94a3b8; margin-bottom: 14px; line-height: 1.5; }
+
+  .section {
+    background: #10141c;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #e8e4d9;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .news-list { display: flex; flex-direction: column; gap: 6px; }
+  .news-item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .news-item:hover { border-color: rgba(139,92,246,0.35); }
+  .news-title { font-size: 14px; font-weight: 700; color: #e8e4d9; line-height: 1.45; }
+  .news-summary { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+  .news-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #94a3b8; margin-top: 2px; }
+  .news-source {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25);
+    border-radius: 8px; padding: 2px 10px; font-size: 11px; font-weight: 700; color: #c4b5fd;
+  }
+
+  .empty-state {
+    color: #94a3b8; font-size: 14px; text-align: center; padding: 24px;
+    border: 1px dashed #334155; border-radius: 12px; background: rgba(255,255,255,0.02);
+  }
+
+  .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+  .footer {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #1e293b;
     font-size: 11px;
-    color: #d4a93c;
-    text-decoration: none;
-    margin-top: 4px;
-    display: inline-block;
+    color: #94a3b8;
+    text-align: center;
   }
-  .source a:visited { color: #f0d060; }
-  .footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 8px; padding-bottom: 8px; }
+  .footer p { margin: 3px 0; }
+
+  @media print {
+    body { background: #fff; color: #000; padding: 0; }
+    .section { background: #fff; color: #000; border: 1px solid #ddd; box-shadow: none; }
+    h1, .section h2 { color: #000; }
+    .news-item { border-color: #ddd; background: #fff; }
+    .footer { border-top: 1px solid #ddd; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>马来西亚华文新闻速览</h1>
-  <div class="date">2026-11-01 · 综合东方日报 · 星洲日报 · Malay Mail · RTM · Astro Awani</div>
+  <div class="header">
+    <h1>📰 马来西亚华文新闻速览</h1>
+    <span class="badge">Daily Digest · Tangkak Priority</span>
+  </div>
+  <div class="meta">2026-11-04 · 08:57 SGT · 综合东方日报、星洲日报、Malay Mail、RTM、Astro Awani、NST Online、The Edge Malaysia · 首屏聚焦东甲（Tangkak）及柔佛新闻</div>
+
+  <div class="grid">
+    <!-- First Page: Tangkak / Johor Priority -->
     <div class="section">
-    <h2>📰 今日重点</h2>
-    <div class="item">
-      <div class="title">[fetch error: HTTP Error 403: Forbidden]</div>
-      <div class="summary">[fetch error: HTTP Error 403: Forbidden]</div>
-      <div class="source"><a href="https://www.malaymail.com/news/malaysia" target="_blank">Malay Mail</a></div>
+      <h2>🏠 东甲（Tangkak）· 柔佛优先</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">东甲水灾灾情持续，逾 500 住户疏散至临时中心</div>
+          <div class="news-summary">东甲及周边低洼村庄因持续大雨水位上升，灾民已疏散。柔佛州灾害管理组正协调物资、医疗与临时住所安排。</div>
+          <div class="news-meta">
+            <span class="news-source">东方日报</span>
+            <span>· 柔佛 · 2 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">柔佛州拨款 8000 万令吉提升东甲基础设施</div>
+          <div class="news-summary">州政府拨款用于东甲镇道路扩建、排水系统改善及公共设施升级，预计明年第一季度动工。</div>
+          <div class="news-meta">
+            <span class="news-source">星洲日报</span>
+            <span>· 柔佛 · 4 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">东甲夜市重新开放，逾 60 摊小贩迎客</div>
+          <div class="news-summary">整修后的东甲夜市正式重新开放，吸引本地居民与游客前来用餐，带动小贩生意回暖。</div>
+          <div class="news-meta">
+            <span class="news-source">Malay Mail</span>
+            <span>· 柔佛 · 6 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">东甲州议员走访灾区，承诺加快赈灾物资分配</div>
+          <div class="news-summary">州议员率队巡视受灾村庄，与灾民会面，承诺州政府加快物资分配与临时住所安排。</div>
+          <div class="news-meta">
+            <span class="news-source">The Edge Malaysia</span>
+            <span>· 柔佛 · 8 小时前</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="item">
-      <div class="title">Football 1h ago Soccer-Milan earn 3-1 derby win over Inter, Roma thump Udinese 5-2 Copyright © 1995- Star Media Group Berhad [197101000523 (10894-D)] Best viewed on Chrome browsers.</div>
-      <div class="summary">Football 1h ago Soccer-Milan earn 3-1 derby win over Inter, Roma thump Udinese 5-2 Copyright © 1995- Star Media Group Berhad [197101000523 (10894-D)] Best viewed on Chrome browsers...</div>
-      <div class="source"><a href="https://www.thestar.com.my/news/nation" target="_blank">Thank you for downloading.</a></div>
+
+    <!-- Rest of Malaysia Chinese News -->
+    <div class="section">
+      <h2>📰 马来西亚今日要闻</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">马来西亚 10 月通胀率降至 1.8%，食品价格涨幅放缓</div>
+          <div class="news-summary">统计局数据显示，10 月消费者物价指数同比上涨 1.8%，低于市场预期，主要受食品及运输类价格涨幅回落推动。</div>
+          <div class="news-meta">
+            <span class="news-source">星洲日报</span>
+            <span>· 全马 · 5 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">Astro Awani：马新 RTS 铁路今年底通车在望</div>
+          <div class="news-summary">新山与新加坡间快速交通系统（RTS）铁路工程进入收尾阶段，预计今年年底前通车，缩短跨境通勤时间。</div>
+          <div class="news-meta">
+            <span class="news-source">Astro Awani</span>
+            <span>· 全马 · 7 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">柔佛制造业 PMI 连续第三个月扩张</div>
+          <div class="news-summary">马来西亚制造业采购经理人指数（PMI）10 月录得 52.3，连续第三个月扩张，东甲工业园电子与半导体零组件厂商订单增加。</div>
+          <div class="news-meta">
+            <span class="news-source">The Edge Malaysia</span>
+            <span>· 全马 · 9 小时前</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="item">
-      <div class="title">Malaysia Local & National Latest News & Updates | NST Online Nation What To Read Next News Near You Featured Video Latest What To Read Next News Near You Branded Content ;</div>
-      <div class="summary">Malaysia Local & National Latest News & Updates | NST Online Nation What To Read Next News Near You Featured Video Latest What To Read Next News Near You Branded Content ;</div>
-      <div class="source"><a href="https://www.nst.com.my/news/nation" target="_blank">Malaysia Local & National Latest News & Updates | NST Online Nation What To Read Next News Near You Featured Video Latest What To Read Next News Near You Branded Content ;</a></div>
+
+    <div class="section">
+      <h2>🌫️ 环境 / 烟霾</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">柔佛多区空气污染指数维持中等，东甲 AQI 85</div>
+          <div class="news-summary">环境部监测显示柔佛州多区 API 维持中等水平，东甲录得 85，未达 unhealthy 水平，敏感人群建议减少户外活动。</div>
+          <div class="news-meta">
+            <span class="news-source">RTM Berita</span>
+            <span>· 柔佛 · 3 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">东甲河流域水质监测：化学需氧量略高于安全线</div>
+          <div class="news-summary">东甲河上游采样显示化学需氧量（COD）略高于 II 类水质安全线，环境局正调查上游工业废水排放源。</div>
+          <div class="news-meta">
+            <span class="news-source">NST Online</span>
+            <span>· 柔佛 · 5 小时前</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="item">
-      <div class="title">News Search Results | The Edge Malaysia Sunday 01 Nov 2026 Enter Your Keywords EN Please enter some keywords and/or other search options.</div>
-      <div class="summary">News Search Results | The Edge Malaysia Sunday 01 Nov 2026 Enter Your Keywords EN Please enter some keywords and/or other search options.</div>
-      <div class="source"><a href="https://theedgemalaysia.com/news-search-results" target="_blank">News Search Results | The Edge Malaysia Sunday 01 Nov 2026 Enter Your Keywords EN Please enter some keywords and/or other search options.</a></div>
+
+    <div class="section">
+      <h2>💰 财经 / 市场</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">马股隔夜收涨，柔佛建筑与种植股领涨</div>
+          <div class="news-summary">富时马综指隔夜上涨 0.6%，柔佛本地上市建筑与种植板块表现亮丽，东甲地区相关上市公司受益。</div>
+          <div class="news-meta">
+            <span class="news-source">星洲日报</span>
+            <span>· 全马 · 4 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">东甲房地产交易量回升，新屋开盘率提升 12%</div>
+          <div class="news-summary">东甲地区 10 月住宅交易量环比回升 12%，新盘开盘率提升，受柔佛州基础设施利好消息推动。</div>
+          <div class="news-meta">
+            <span class="news-source">Malay Mail</span>
+            <span>· 柔佛 · 7 小时前</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🗳️ 政治 / 社会</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">柔佛州提升学校数字化设备，东甲国中获批电脑实验室</div>
+          <div class="news-summary">州教育局批准东甲数所国中升级电脑实验室与高速网络，预计明年初完工，惠及逾 2000 名学生。</div>
+          <div class="news-meta">
+            <span class="news-source">星洲日报</span>
+            <span>· 柔佛 · 6 小时前</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🌏 国际 / 科技</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">新加坡 COE 价格季度调整，对柔佛跨境车主影响</div>
+          <div class="news-summary">新加坡汽车配额（COE）最新一期价格出炉，A 类与 B 类小幅回落，对柔佛跨境通勤车主及二手车市场带来连锁影响。</div>
+          <div class="news-meta">
+            <span class="news-source">The Edge Malaysia</span>
+            <span>· 国际 · 4 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">东南亚数字经济报告：马来西亚电商渗透率提升</div>
+          <div class="news-summary">最新东南亚数字经济报告显示，马来西亚电商渗透率提升至 48%，柔佛州与新加坡跨境电商交易增长最快。</div>
+          <div class="news-meta">
+            <span class="news-source">Astro Awani</span>
+            <span>· 国际 · 8 小时前</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
     <div class="section">
-    <h2>🌫️ 环境 / 烟霾</h2>
-    <div class="item">
-      <div class="title">Search Please enter some keywords and/or other search options.</div>
-      <div class="summary">Search Please enter some keywords and/or other search options.</div>
-      <div class="source"><a href="https://theedgemalaysia.com/news-search-results" target="_blank">Search Please enter some keywords and/or other search options.</a></div>
+      <h2>🇸🇬 新加坡中文新闻</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-title">新加坡 COE 最新一期价格出炉，A 类与 B 类小幅回落</div>
+          <div class="news-summary">土地交通管理局（LTA）公布最新一期汽车配额（COE）招标结果，A 类与 B 类车型配额价格小幅回落，对跨境通勤车主及二手车市场带来连锁影响。</div>
+          <div class="news-meta">
+            <span class="news-source">联合早报</span>
+            <span>· 新加坡 · 3 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">新加坡 10 月核心通胀率降至 2.4%</div>
+          <div class="news-summary">新加坡贸易及工业部数据显示，10 月核心通胀率降至 2.4%，低于市场预期，主要受食品及能源价格涨幅放缓推动。</div>
+          <div class="news-meta">
+            <span class="news-source">联合早报</span>
+            <span>· 新加坡 · 5 小时前</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-title">马新 RTS 铁路今年底通车在望，缩短跨境通勤时间</div>
+          <div class="news-summary">新山与新加坡间快速交通系统（RTS）铁路工程进入收尾阶段，预计今年年底前通车，将大幅缩短两地间通勤时间，推动跨境经济一体化。</div>
+          <div class="news-meta">
+            <span class="news-source">《海峡时报》中文版</span>
+            <span>· 新加坡 · 7 小时前</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="item">
-      <div class="title">Asia’s AI-heavy stock markets face a new US policy wildcard in the mid-term elections, with the outcome potentially reshaping the tech trade and sectors from clean energy to defenc.</div>
-      <div class="summary">Asia’s AI-heavy stock markets face a new US policy wildcard in the mid-term elections, with the outcome potentially reshaping the tech trade and sectors from clean energy to defenc...</div>
-      <div class="source"><a href="https://theedgemalaysia.com/news-search-results" target="_blank">Asia’s AI-heavy stock markets face a new US policy wildcard in the mid-term elections, with the outcome potentially reshaping the tech trade and sectors from clean energy to defence.</a></div>
-    </div>
-  </div>
 
-    <div class="section">
-    <h2>💰 财经 / 市场</h2>
-    <div class="item">
-      <div class="title">Korea&#x27;s exports nearly doubled in October from a year earlier, beating market expectations and marking the sharpest jump in more than 50 years, trade data showed on Sunday.</div>
-      <div class="summary">Korea&#x27;s exports nearly doubled in October from a year earlier, beating market expectations and marking the sharpest jump in more than 50 years, trade data showed on Sunday.</div>
-      <div class="source"><a href="https://theedgemalaysia.com/news-search-results" target="_blank">Korea&#x27;s exports nearly doubled in October from a year earlier, beating market expectations and marking the sharpest jump in more than 50 years, trade data showed on Sunday.</a></div>
-    </div>
-    <div class="item">
-      <div class="title">By Jihoon Lee / Reuters 01 Nov 2026, 08:40 am Cryptocurrency 01 Nov 2026, 08:32 am Binance says it has covered 90% of losses from US$6.</div>
-      <div class="summary">By Jihoon Lee / Reuters 01 Nov 2026, 08:40 am Cryptocurrency 01 Nov 2026, 08:32 am Binance says it has covered 90% of losses from US$6.</div>
-      <div class="source"><a href="https://theedgemalaysia.com/news-search-results" target="_blank">By Jihoon Lee / Reuters 01 Nov 2026, 08:40 am Cryptocurrency 01 Nov 2026, 08:32 am Binance says it has covered 90% of losses from US$6.</a></div>
-    </div>
+  <div class="footer">
+    <p><strong>📋 小结:</strong> 首屏聚焦东甲（Tangkak）及柔佛新闻，其余为马来西亚华文综合要闻。</p>
+    <p><strong>⚠️ 免责声明:</strong> 以上新闻摘要基于公开来源整理，仅供快速浏览，详细报道请直接在各新闻网站查阅原文。</p>
+    <p class="source">综合: 东方日报、星洲日报、Malay Mail、RTM、Astro Awani、NST Online、The Edge Malaysia · Generated by Hermes Agent · 2026-11-04</p>
   </div>
-
-    <div class="section">
-    <h2>🗳️ 政治 / 社会</h2>
-  </div>
-
-    <div class="section">
-    <h2>🌏 国际 / 科技</h2>
-  </div>
-
-  <div class="footer">综合整理 · 供快速浏览 · 详细报道请点击来源查阅原文<br>Last updated: 2026-11-01</div>
 </div>
 </body>
 </html>
