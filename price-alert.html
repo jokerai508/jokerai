@@ -3,237 +3,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>US Stock Price Alert Report — Hermes Agent</title>
+<title>🚨 US Stock Price Alert & Market Intelligence — 2026-11-06</title>
 <link rel="stylesheet" href="report-style.css">
 <style>
-  .page-wrap { max-width: 720px; margin: 0 auto; padding: 0 12px; }
-  @media (max-width: 720px){ .page-wrap{ padding: 0 8px; } .section{ padding: 16px; } }
-  .source-chip{ font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; display: inline-block; margin: 0 6px 6px 0; border: 1px solid; }
-  .chip-schwab{ background: rgba(212,169,60,.14); color: var(--accent2); border-color: rgba(212,169,60,.45); }
-  .chip-inv{ background: rgba(74,222,128,.14); color: var(--green); border-color: rgba(74,222,128,.45); }
-  .chip-yahoo{ background: rgba(107,114,128,.14); color: #e5e7eb; border-color: rgba(107,114,128,.45); }
-  .chip-yt{ background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.25); }
-  .sig-hold{ background: rgba(212,169,60,.16); color: var(--accent2); }
-  .sig-review{ background: rgba(248,113,113,.16); color: var(--red); }
-  .muted-xs{ font-size: 11.5px; color: var(--muted); }
-  .news-item{ border-bottom: 1px solid var(--line); padding: 10px 0; }
-  .news-item:last-child{ border-bottom: none; }
-  .yt-item{ display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .yt-item:last-child{ border-bottom: none; }
-  .sent-row{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
-  .sent-pill{ font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); color: var(--ink); }
-  .sig-summary td, .sig-summary th { font-size: 13px; }
-  .tag-hold{ background: rgba(212,169,60,.16); color: var(--accent2); }
-  .tag-review{ background: rgba(248,113,113,.16); color: var(--red); }
-  .zh-summary{ background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin-top: 16px; }
-  .zh-summary h3{ font-size: 14px; color: #fff; margin-bottom: 8px; }
-  .zh-summary p{ font-size: 13px; color: var(--ink); margin: 0 0 6px 0; }
-  .disclaimer{ font-size: 0.78rem; color: var(--muted); padding: 16px; background: var(--card); border-radius: var(--radius); border-left: 3px solid var(--accent); margin-top: 16px; line-height: 1.55; }
-  .disclaimer h4{ font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent2); margin: 0 0 8px 0; }
-  .disclaimer p{ font-size: 12.5px; margin: 0 0 6px 0; }
-  .disclaimer p:last-child{ margin-bottom: 0; }
-  footer, .footer, .report-footer { margin-top: 22px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; flex-wrap: wrap; gap: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+  /* Page-specific layout overrides — mobile-first, max-width 720px */
+  .wrap { max-width: 720px !important; margin: 0 auto; padding: 16px 16px 36px; }
+  @media (max-width: 720px) {
+    .wrap { padding: 12px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 4px; }
+    .hero h1, .report-header h1 { font-size: 22px; }
+  }
+  .source-chip {
+    display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .06em; padding: 2px 8px; border-radius: 999px; margin-right: 6px; margin-bottom: 4px;
+  }
+  .chip-schwab { background: rgba(0,123,255,.14); color: #3b82f6; border: 1px solid rgba(59,130,246,.35); }
+  .chip-investopedia { background: rgba(234,179,8,.14); color: #fcd34d; border: 1px solid rgba(251,191,36,.35); }
+  .chip-yf { background: rgba(74,222,128,.14); color: var(--green); border: 1px solid rgba(74,222,128,.35); }
+  .chip-cnbc { background: rgba(248,113,113,.14); color: var(--red); border: 1px solid rgba(248,113,113,.35); }
+  .chip-bloomberg { background: rgba(59,130,246,.14); color: #60a5fa; border: 1px solid rgba(59,130,246,.35); }
+  .chip-cbs { background: rgba(249,115,22,.14); color: #fb923c; border: 1px solid rgba(249,115,22,.35); }
+  .chip-fox { background: rgba(244,114,182,.14); color: #f472b6; border: 1px solid rgba(244,114,182,.35); }
+  .chip-generic { background: rgba(148,163,184,.12); color: #cbd5e1; border: 1px solid rgba(148,163,184,.35); }
+  .fail { color: var(--muted); font-size: 12.5px; text-align: center; }
+  .note { font-size: 12.5px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 10px 0; }
+  .ref-list { font-size: 12.5px; color: var(--ink); margin: 8px 0 4px; padding-left: 16px; }
+  .ref-list li { margin-bottom: 6px; }
+  .yt-item { font-size: 13.5px; margin: 8px 0; padding: 8px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  .yt-item .t { font-weight: 700; color: #fff; }
+  .yt-item .m { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+  .zh-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin-top: 16px; }
+  .zh-box h3 { color: #fff; font-size: 15px; margin-bottom: 8px; }
+  .zh-box p { font-size: 13.5px; color: var(--ink); margin-bottom: 6px; line-height: 1.55; }
 </style>
 </head>
 <body>
-<div class="page-wrap">
-
-<header class="report-header">
-  <div class="brand">
-    <div class="logo">H</div>
-    <div>
-      <small>Hermes Agent</small>
-      <strong>US Stock Price Alert Report (EN)</strong>
+<div class="wrap">
+  <div class="hero report-header">
+    <div class="brand">
+      <div class="logo">🚨</div>
+      <div>
+        <small>Hermes Agent · Price Alert (EN)</small>
+        <strong>US Stock Price Alert &amp; Market Intelligence</strong>
+      </div>
+    </div>
+    <h1>🚨 US Stock Price Alert &amp; Market Intelligence</h1>
+    <div class="meta">
+      <span>📅 日期: 2026-11-06</span>
+      <span>🕐 更新时间: 2026-11-06 14:33 SGT</span>
+      <span>📡 数据来源: Moomoo OpenD (127.0.0.1:11111, 15 分钟延迟)</span>
+      <span>📊 覆盖: 8 只观察标的 · 7 只持仓标的</span>
+    </div>
+    <div class="alert alert-danger mt-2">
+      ⚠️ 行情数据不可用: Moomoo OpenD API 端口 (127.0.0.1:11111) 连接被拒绝 (connection refused / port closed)。本报告所有“最新价 / 涨跌额 / 涨跌幅 / 今日区间 / 成交量”字段均标注「数据获取失败」，未填入任何虚构数字。分析师评级、目标价、新闻与社交情绪来自公开网络来源 (Schwab / Investopedia / Yahoo Finance 等)，非实时报价，仅供参考。
     </div>
   </div>
-  <div class="meta">
-    <span>Date: 2026-11-06</span>
-    <span>Updated: 2026-11-06 00:06 SGT</span>
-    <span>Source: Moomoo OpenD (15 min delayed)</span>
-  </div>
-</header>
 
-<section class="section">
-  <h2>📋 Executive Summary</h2>
-  <p class="sub">US chip and AI-infrastructure stocks sold off hard. Intel's weak Q4 guidance reignited AI-spending fears, the Democratic midterm sweep raised data-center regulation concerns, and Marvell's $115B all-stock Lumentum deal drew broad analyst downgrades — dragging the whole watchlist down.</p>
-  <div class="kpis" style="margin-top:10px;">
-    <div class="kpi">
-      <div class="lbl">Watchlist Movers</div>
-      <div class="val">7 down · 1 up</div>
-      <div class="muted-xs">8 / 8 names retrieved</div>
+  <div class="section">
+    <h2>📋 Executive Summary</h2>
+    <p><strong>Market tone:</strong> U.S. equities saw a broad tech/AI sell-off on Thursday, Nov 5 (SGT Nov 6). Per Schwab and Yahoo Finance coverage, the Dow fell ~3.4% to 51,523.06 (−1,800 pts), the S&amp;P 500 dropped ~4.3–4.4% to 7,353.73, and the Nasdaq Composite slid ~5.5% into correction territory (Nasdaq-100 −6.3% to −6.4%, PHLX Semiconductor Index −12% to −12.2%); VIX spiked toward 28, its highest since March 2020. The sell-off was driven by post-midterm political-shift concerns (Democratic sweep raising AI/data-center regulation fears, incl. data-center moratorium talk in Texas) and profit-taking in crowded AI trades.</p>
+    <p><strong>Watchlist themes:</strong> Arista (ANET) posted a Q3 beat-and-raise ($3.66B rev, +58.5% YoY; EPS $1.20 vs $1.08 est.) with UBS lifting PT to $291; Riot (RIOT) signed a $28B AI data-center lease at Corsicana but faces PT cuts and a “lease catalyst drought” warning; Cerebras (CBRS) had UBS cut PT to $250 (Buy kept), trading near 52-week lows ahead of Nov 12 Q3 results; Dell (DELL) holds Moderate Buy consensus (~$590 target) on $130B+ AI server orders; AMD (−17.3% on Nov 5 per web sources) and MRVL (BofA downgrade to Neutral, $225 on Lumentum deal) under pressure; AVGO (−10.4% on Nov 5 per web sources) holds Strong Buy consensus ahead of Dec 9 earnings; ADBE faces multiple downgrades (Citi to Sell, $207).</p>
+    <p><strong>Data status:</strong> Real-time quotes unavailable from Moomoo OpenD — all watchlist and portfolio price fields below are marked <em>「数据获取失败」</em>. No figures were fabricated. Signals below are derived from web-sourced analyst consensus and news, not live quotes.</p>
+  </div>
+
+  <div class="section">
+    <h2>🔥 Watchlist Movers (8)</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col" class="num">Price (USD)</th>
+          <th scope="col" class="num">Change</th>
+          <th scope="col" class="num">Chg %</th>
+          <th scope="col" class="num">Today Range</th>
+          <th scope="col" class="num">Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="symbol">US.CBRS</span><br><span class="name">Cerebras Systems</span></td><td>Cerebras Systems</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.RIOT</span><br><span class="name">Riot Platforms</span></td><td>Riot Platforms</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.DELL</span><br><span class="name">Dell Technologies</span></td><td>Dell Technologies</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.ANET</span><br><span class="name">Arista Networks</span></td><td>Arista Networks</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.AMD</span><br><span class="name">Advanced Micro Devices</span></td><td>Advanced Micro Devices</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.MRVL</span><br><span class="name">Marvell Technology</span></td><td>Marvell Technology</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.AVGO</span><br><span class="name">Broadcom Inc.</span></td><td>Broadcom Inc.</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+        <tr><td><span class="symbol">US.ADBE</span><br><span class="name">Adobe Inc.</span></td><td>Adobe Inc.</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td><td class="num fail">—</td></tr>
+      </tbody>
+    </table>
     </div>
-    <div class="kpi">
-      <div class="lbl">Top Decliner</div>
-      <div class="val">AMD −15.84%</div>
-      <div class="muted-xs">Advanced Micro Devices</div>
+    <p class="note">Analyst consensus &amp; price targets (public web sources — not Moomoo real-time quotes):</p>
+    <ul class="ref-list">
+      <li><strong>CBRS</strong> — Consensus Moderate Buy / Strong Buy; avg PT ~$275–282 (11–14 firms). UBS PT $250, Buy (cut from $330, Nov 2); Culper short-seller report (Oct 28) and lockup expiry (~Nov 9) weighing; Q3 results due Nov 12. <span class="source-chip chip-generic">TipRanks</span><span class="source-chip chip-generic">stockanalysis</span><span class="source-chip chip-generic">StreetInsider</span></li>
+      <li><strong>RIOT</strong> — Consensus Buy; PT range ~$13–42, avg ~$28 (20+ firms). BTIG $40 Buy (910MW Corsicana AI lease, ~$28B contract value); Northland $28 Outperform; H.C. Wainwright $35 Buy; B. Riley $25 Buy; Keefe Bruyette cut PT to $20 citing “lease catalyst drought” through early 2027; $573M bridge loan due Dec 31; Q3 reported Nov 4 ($181M rev, $0.01 EPS beat). <span class="source-chip chip-generic">TipRanks</span><span class="source-chip chip-generic">Investing.com</span><span class="source-chip chip-generic">TIKR</span></li>
+      <li><strong>DELL</strong> — Consensus Moderate Buy; mean PT ~$570–597, high $700. Goldman Sachs $590 Buy (reiterated Nov 3); Bernstein $650 Buy; Barclays cut to Hold $574 after +300% YTD rally. $130B+ AI server orders, $95B backlog. <span class="source-chip chip-generic">TipRanks</span><span class="source-chip chip-generic">stockanalysis</span><span class="source-chip chip-generic">WSNext</span></li>
+      <li><strong>ANET</strong> — Consensus Strong Buy / Buy; PT ~$236–291. UBS $291 (Buy, raised from $259); J.P. Morgan $270; Piper Sandler $261; Truist $240; Wells Fargo $245; Barclays $236. Q3 rev $3.66B (+58.5% YoY), EPS $1.20 vs $1.08 est.; Q4 guide $3.90–4.00B vs $3.60B consensus. <span class="source-chip chip-generic">TipRanks</span><span class="source-chip chip-generic">TheStreet</span><span class="source-chip chip-generic">TheFly</span></li>
+      <li><strong>AMD</strong> — Consensus Buy; median PT ~$641, range $430–1,250. BofA $650 Buy (cut from $720, sector multiple contraction); Bernstein $650 Outperform; Stifel $725; Truist $605; J.P. Morgan Hold. Q3 rev $13.4B, EPS $2.09 (beats); datacenter +97% YoY; Q4 guide $17.0B vs $16.3B est. <span class="source-chip chip-generic">Ticker Nerd</span><span class="source-chip chip-cnbc">CNBC</span><span class="source-chip chip-generic">Investing.com</span></li>
+      <li><strong>MRVL</strong> — Consensus Moderate Buy; PT ~$327. BofA downgraded to Neutral, PT $225 from $400 (Lumentum all-stock deal, ~$115B, close H1 2028; ~50% dilution concern); TD Cowen Hold $175 from $350; UBS sees strategic merit. SOX index −19% over past month. <span class="source-chip chip-generic">pricetargets</span><span class="source-chip chip-yf">Yahoo Finance</span><span class="source-chip chip-cnbc">CNBC</span></li>
+      <li><strong>AVGO</strong> — Consensus Strong Buy; mean PT ~$514–531 (51 firms, 49 Buy / 2 Hold); high $660. Earnings Dec 9–10, 2026. Web-sourced close Nov 5: $291.53 (−10.4%). <span class="source-chip chip-generic">Finabase</span><span class="source-chip chip-generic">TipRanks</span><span class="source-chip chip-generic">StreetAlpha</span></li>
+      <li><strong>ADBE</strong> — Consensus Hold; mean PT ~$261–284. Citi downgraded to Sell, PT $207 from $250 (Nov 4); Wells Fargo Underweight $225; HSBC Hold $267. AI monetization debate; CEO Anil Chakravarthy starts Dec 1. Web-sourced close Nov 4: $248.48 (+0.95%). <span class="source-chip chip-generic">Finabase</span><span class="source-chip chip-yf">Yahoo Finance</span><span class="source-chip chip-generic">Ticker Nerd</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🚨 Portfolio Alerts (≥3% move)</h2>
+    <p>Holdings: US.TSM, US.NOK, US.MRVL, US.INTC, US.DELL, US.CBRS, US.AMD. Real-time quotes unavailable — ≥3% move scan could not be performed; all rows below are marked data-failed. Web-sourced session context (Nov 5): AMD −17.3%, AVGO −10.4%, NVDA −9.3%; individual holding moves unverified.</p>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col" class="num">Price (USD)</th>
+          <th scope="col" class="num">Change</th>
+          <th scope="col" class="num">Chg %</th>
+          <th scope="col">Signal (≥3%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="symbol">US.TSM</span></td><td>Taiwan Semiconductor</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.NOK</span></td><td>Nokia Corp.</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.MRVL</span></td><td>Marvell Technology</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.INTC</span></td><td>Intel Corp.</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.DELL</span></td><td>Dell Technologies</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.CBRS</span></td><td>Cerebras Systems</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+        <tr><td><span class="symbol">US.AMD</span></td><td>Advanced Micro Devices</td><td class="num fail">「数据获取失败」</td><td class="num fail">—</td><td class="num fail">—</td><td><span class="tag">—</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">Signal legend: HOLD = position within tolerance · REVIEW = ≥3% move breach, check stop-loss and thesis. “—” = quote fetch failed, scan unavailable.</p>
+  </div>
+
+  <div class="section">
+    <h2>▶️ YouTube Hot Videos</h2>
+    <div class="yt-item">
+      <div class="t">Nasdaq Suffers Worst Rout Since March 2020</div>
+      <div class="m">Bloomberg · Nov 6, 2026 — AI boom stocks pulled down on political-shift concerns after the U.S. midterms.</div>
     </div>
-    <div class="kpi">
-      <div class="lbl">Only Gainer</div>
-      <div class="val">ADBE +1.16%</div>
-      <div class="muted-xs">Adobe (near flat)</div>
+    <div class="yt-item">
+      <div class="t">Why markets experienced massive tech sell-off</div>
+      <div class="m">CBS News · Nov 6, 2026 — Post-midterm AI sell-off rattles Wall Street; Nasdaq in correction territory.</div>
     </div>
-    <div class="kpi">
-      <div class="lbl">Portfolio ≥3%</div>
-      <div class="val">7 / 7</div>
-      <div class="muted-xs">All flagged REVIEW</div>
+    <div class="yt-item">
+      <div class="t">Markets are ‘shooting first and asking questions later’ on AI</div>
+      <div class="m">CNBC · Nov 6, 2026 — Goldman Sachs’ Tim Moe: reaction excessive; positioning unwind overshadows AI/semiconductor fundamentals.</div>
     </div>
-  </div>
-  <p class="muted-xs" style="margin-top:10px;">Watchlist: CBRS, RIOT, DELL, ANET, AMD, MRVL, AVGO, ADBE. Holdings: TSM, NOK, MRVL, INTC, DELL, CBRS, AMD. Quotes are real-time snapshots from Moomoo OpenD (127.0.0.1:11111), 15-minute delayed; change vs previous close. No data was fabricated — every number below came from Moomoo OpenD.</p>
-</section>
-
-<section class="section">
-  <h2>🔥 Watchlist Movers</h2>
-  <p class="sub">Real-time quotes via Moomoo OpenD (127.0.0.1:11111), 15-minute delayed. Change vs previous close.</p>
-  <div class="table-wrap">
-  <table>
-    <thead>
-      <tr><th>Code</th><th>Name</th><th class="num">Price</th><th class="num">Change</th><th class="num">Chg %</th><th class="num">Day Range</th><th class="num">Volume</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>CBRS</strong></td><td>Cerebras Systems</td><td class="num">$79.26</td><td class="num text-negative">−$12.59</td><td class="num text-negative"><span class="badge down">🔴 −13.71%</span></td><td class="num">77.84 − 89.49</td><td class="num">6,063,409</td></tr>
-      <tr><td><strong>RIOT</strong></td><td>Riot Platforms</td><td class="num">$13.27</td><td class="num text-negative">−$2.11</td><td class="num text-negative"><span class="badge down">🔴 −13.70%</span></td><td class="num">12.96 − 15.07</td><td class="num">13,979,641</td></tr>
-      <tr><td><strong>DELL</strong></td><td>Dell Technologies</td><td class="num">$318.71</td><td class="num text-negative">−$53.65</td><td class="num text-negative"><span class="badge down">🔴 −14.41%</span></td><td class="num">318.52 − 352.70</td><td class="num">5,975,578</td></tr>
-      <tr><td><strong>ANET</strong></td><td>Arista Networks</td><td class="num">$159.75</td><td class="num text-negative">−$18.74</td><td class="num text-negative"><span class="badge down">🔴 −10.50%</span></td><td class="num">159.00 − 171.70</td><td class="num">5,194,062</td></tr>
-      <tr><td><strong>AMD</strong></td><td>Advanced Micro Devices</td><td class="num">$411.36</td><td class="num text-negative">−$77.43</td><td class="num text-negative"><span class="badge down">🔴 −15.84%</span></td><td class="num">403.71 − 456.20</td><td class="num">27,982,377</td></tr>
-      <tr><td><strong>MRVL</strong></td><td>Marvell Technology</td><td class="num">$137.97</td><td class="num text-negative">−$21.83</td><td class="num text-negative"><span class="badge down">🔴 −13.66%</span></td><td class="num">135.57 − 152.15</td><td class="num">23,989,032</td></tr>
-      <tr><td><strong>AVGO</strong></td><td>Broadcom</td><td class="num">$295.79</td><td class="num text-negative">−$29.69</td><td class="num text-negative"><span class="badge down">🔴 −9.12%</span></td><td class="num">292.80 − 314.00</td><td class="num">16,964,004</td></tr>
-      <tr><td><strong>ADBE</strong></td><td>Adobe</td><td class="num">$251.36</td><td class="num text-positive">+$2.88</td><td class="num text-positive"><span class="badge up">🟢 +1.16%</span></td><td class="num">244.15 − 252.09</td><td class="num">1,596,301</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="muted-xs">Source: Moomoo OpenD real-time snapshot, fetched 2026-11-06 00:03 SGT. 8 of 8 watchlist quotes retrieved successfully; no missing data.</p>
-</section>
-
-<section class="section">
-  <h2>🚨 Portfolio Alerts (≥3% change)</h2>
-  <p class="sub">Holdings: TSM, NOK, MRVL, INTC, DELL, CBRS, AMD. Signal: HOLD (|∆| &lt; 3%) / REVIEW (|∆| ≥ 3%).</p>
-  <div class="table-wrap">
-  <table>
-    <thead>
-      <tr><th>Code</th><th>Name</th><th class="num">Price</th><th class="num">Chg %</th><th>Signal</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>TSM</strong></td><td>Taiwan Semiconductor</td><td class="num">$355.64</td><td class="num text-negative">−10.14%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>NOK</strong></td><td>Nokia Oyj</td><td class="num">$7.44</td><td class="num text-negative">−9.93%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>MRVL</strong></td><td>Marvell Technology</td><td class="num">$137.97</td><td class="num text-negative">−13.66%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>INTC</strong></td><td>Intel</td><td class="num">$53.43</td><td class="num text-negative">−8.31%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>DELL</strong></td><td>Dell Technologies</td><td class="num">$318.71</td><td class="num text-negative">−14.41%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>CBRS</strong></td><td>Cerebras Systems</td><td class="num">$79.26</td><td class="num text-negative">−13.71%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-      <tr><td><strong>AMD</strong></td><td>Advanced Micro Devices</td><td class="num">$411.36</td><td class="num text-negative">−15.84%</td><td><span class="tag tag-review">REVIEW</span></td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="muted-xs">All 7 holdings moved ≥3% to the downside — every position is flagged REVIEW. No HOLD triggers today. Position-level P&L requires share quantities, which are not available to this report.</p>
-</section>
-
-<section class="section">
-  <h2>▶️ YouTube Hot Videos</h2>
-  <p class="sub">Latest market commentary from YouTube and financial video channels.</p>
-  <div class="yt-item">
-    <div style="flex-shrink:0;font-weight:800;color:var(--accent2);">1.</div>
-    <div><strong>PreMarket Playbook | November 5, 2026 — Benzinga</strong><br><span class="muted-xs">Benzinga's live premarket show covering the stocks, news and catalysts moving the market, incl. chip names after Intel's guidance cut.</span><br><a href="https://www.youtube.com/watch?v=waXhin-w26I" class="chip-yt source-chip">YouTube · Benzinga</a></div>
-  </div>
-  <div class="yt-item">
-    <div style="flex-shrink:0;font-weight:800;color:var(--accent2);">2.</div>
-    <div><strong>Why Wall Street isn't exactly loving Marvell's $115B Lumentum deal — Yahoo Finance Video</strong><br><span class="muted-xs">Luke Kawa (Sherwood News) on The 8:30 assesses Wall Street's reaction to Marvell's all-stock Lumentum acquisition; Jensen Huang/Nvidia blessed the deal, many analysts don't.</span><br><a href="https://finance.yahoo.com/video/why-wall-street-isnt-exactly-loving-marvells-115b-lumentum-deal-145204052.html" class="chip-yt source-chip">YouTube · Yahoo Finance</a></div>
-  </div>
-  <div class="yt-item">
-    <div style="flex-shrink:0;font-weight:800;color:var(--accent2);">3.</div>
-    <div><strong>Forrest: AMD Earnings Prove AI Chipmaker's Longevity Despite Midterm Volatility — Schwab Network</strong><br><span class="muted-xs">Kim Forrest on AMD's Q3 2026 results (revenue $13.4B, +45% Y/Y; data center nearly doubled), turnaround plan working, and the case for Congress to back AI buildout.</span><br><a href="https://schwabnetwork.com/video/forrest-amd-earnings-prove-ai-chipmaker-s-longevity-despite-midterm-volatility" class="chip-yt source-chip">YouTube · Schwab Network</a></div>
-  </div>
-  <div class="yt-item">
-    <div style="flex-shrink:0;font-weight:800;color:var(--accent2);">4.</div>
-    <div><strong>AMD's 'Double Black Diamond Ski Run:' Do Earnings Show Steeper Rally Ahead? — Schwab Network</strong><br><span class="muted-xs">Ed Butowsky: "should be bought all day long" after AMD's strong earnings; Christopher Davis cautions a Democratic Congress may slow the AI buildout.</span><br><a href="https://schwabnetwork.com/video/amd-s-double-black-diamond-ski-run-do-earnings-show-steeper-rally-ahead-" class="chip-yt source-chip">YouTube · Schwab Network</a></div>
-  </div>
-</section>
-
-<section class="section">
-  <h2>🇺🇸 USA Branded News</h2>
-  <p class="sub">Headlines from Schwab, Investopedia and Yahoo Finance. Source chips indicate origin.</p>
-  <div class="news-item">
-    <strong>Analysts downgrade Marvell and slash price targets over Lumentum deal</strong>
-    <span class="source-chip chip-yahoo">Yahoo Finance</span>
-    <br><span class="muted-xs">Sam Boughedda · Nov 3, 2026. TD Cowen cut MRVL to Hold from Buy, PT $175 from $350; Bank of America moved to Neutral, PT $225 from $400, citing the all-stock Lumentum acquisition's structure and timing.</span>
-  </div>
-  <div class="news-item">
-    <strong>November 4, 2026: AI-linked infrastructure and data-center stocks under pressure after midterms</strong>
-    <span class="source-chip chip-schwab">Schwab</span>
-    <br><span class="muted-xs">Schwab Network · Nov 4, 2026. Stifel raised AMD's price target to $725 from $700, keeping "Buy" after strong Q3 results; AI-linked names came under pressure following the midterm elections.</span>
-  </div>
-  <div class="news-item">
-    <strong>Stock Market Today: Nasdaq, S&amp;P 500 Futures Slide as Amazon and Intel Plunge After Earnings</strong>
-    <span class="source-chip chip-inv">Investopedia</span>
-    <br><span class="muted-xs">Stephen Wisnefski · Oct 30, 2026. Intel shares dropped sharply after a weak Q4 outlook overshadowed better-than-expected earnings; the PC slump is expected to last into 2027.</span>
-  </div>
-  <div class="news-item">
-    <strong>AMD Advances 5%, Intel Rises 4%, Marvell Gains 2% as Chip Stocks Bounce Ahead of AMD Earnings</strong>
-    <span class="source-chip chip-yahoo">Yahoo Finance</span>
-    <br><span class="muted-xs">David Moadel · Nov 3, 2026. AMD projected Data Center revenue up ~88% to $8.19B ahead of its Q3 report; Intel guided Q4 revenue to $15–16B vs ~$17B consensus.</span>
-  </div>
-</section>
-
-<section class="section">
-  <h2>📊 Sector &amp; Risk</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Sector View</h3>
-      <p class="muted-xs">Semiconductors and AI infrastructure led the decline. Every watchlist name is chip/AI/data-center adjacent (CBRS, RIOT, DELL, ANET, AMD, MRVL, AVGO, ADBE), so the list moves as a single sector block. ADBE alone traded higher on the day.</p>
+    <div class="yt-item">
+      <div class="t">Hyperscalers, healthcare and financials are opportunities in sell-off</div>
+      <div class="m">CNBC · Nov 6, 2026 — UBS’ Jason Katz sees the sell-off as a potential clearing event; favors hyperscalers, healthcare, financials, energy.</div>
     </div>
-    <div class="card">
-      <h3>Key Risks</h3>
-      <ul class="muted-xs" style="padding-left:16px;margin:8px 0;">
-        <li>Regulatory: Democratic Congress may tighten AI data-center rules; uncertainty over 2028 US data-center additions.</li>
-        <li>Company-specific: Qualcomm's weak handset outlook and Nvidia chip export approvals added sector pressure.</li>
-        <li>Concentration: Portfolio is heavily semiconductor-weighted (TSM, MRVL, INTC, AMD, DELL) — sector rotation amplifies drawdowns across holdings at once.</li>
-        <li>Cerebras (CBRS): stock ~−57.6% since Aug 4, 2026; reports of losing a key OpenAI workload to Nvidia; a securities-law investigation was announced Nov 2, 2026.</li>
-      </ul>
+    <div class="yt-item">
+      <div class="t">Stocks kick off November lower as AI sell-off hits Tech</div>
+      <div class="m">Yahoo Finance · Nov 2, 2026 — Jared Blikre on pressure in semiconductor stocks and the tech sector.</div>
+    </div>
+    <p class="note">Live YouTube fetch blocked by bot detection; titles/sources above are from web search. Open youtube.com and search the tickers manually for the latest videos.</p>
+  </div>
+
+  <div class="section">
+    <h2>🇺🇸 USA Branded News &amp; Research</h2>
+    <div class="yt-item">
+      <div class="t"><strong>Stocks Plunge on AI Fears, Volatility Erupts</strong></div>
+      <div class="m">Dow −3.44% (51,523.06), S&amp;P 500 −4.36% (7,353.73), Nasdaq −5.52% into correction; VIX topped 28; SOX −12.2%. AMD −17%, AVGO −10%, NVDA −9.3% on Nov 5.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-schwab">Schwab</span><span class="source-chip chip-generic">Nov 5, 2026</span></div>
+    </div>
+    <div class="yt-item">
+      <div class="t"><strong>Stock market today: Dow plunges 1,800 points, Nasdaq enters correction in AI trade meltdown</strong></div>
+      <div class="m">Dow −3.4% (>1,800 pts), S&amp;P 500 −4.3%, Nasdaq −5.5%; Nasdaq-100 −6.3%, ~$2.3T in market value erased.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-yf">Yahoo Finance</span><span class="source-chip chip-generic">Nov 5–6, 2026</span></div>
+    </div>
+    <div class="yt-item">
+      <div class="t"><strong>A Market In Dislocation — Investopedia Express Ep. 319</strong></div>
+      <div class="m">Caleb Silver with Liz Ann Sonders (Schwab) on tech/AI sell-off dislocations, midterm election uncertainty, and earnings from Apple, Palantir, AMD.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-investopedia">Investopedia</span><span class="source-chip chip-generic">Nov 2, 2026</span></div>
+    </div>
+    <div class="yt-item">
+      <div class="t"><strong>Can the Market Withstand an AI Selloff?</strong></div>
+      <div class="m">S&amp;P 500 tech sector fell 6.8% in October, worst monthly performance since March 2025; rotation into health care, financials, energy, small caps.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-schwab">Schwab Network</span><span class="source-chip chip-generic">Nov 2, 2026</span></div>
+    </div>
+    <div class="yt-item">
+      <div class="t"><strong>AI Selloff Creates Opportunity as Tech Looks for a November Rebound</strong></div>
+      <div class="m">Art Hogan bullish on AI buildout; names AMD and Broadcom as long-term opportunities; post-midterm clarity and solid fundamentals supporting stocks into year-end.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-schwab">Schwab Network</span><span class="source-chip chip-generic">Nov 2, 2026</span></div>
+    </div>
+    <div class="yt-item">
+      <div class="t"><strong>Dow sheds more than 1,800 points as midterm results spur investor exodus from tech and AI</strong></div>
+      <div class="m">Nasdaq Composite tumbled 1,422 pts (−5.5%) into correction; S&amp;P 500 −4.4%; data-center regulation fears after Democratic midterm wins.</div>
+      <div style="margin-top:4px"><span class="source-chip chip-cbs">CBS News</span><span class="source-chip chip-generic">Nov 5–6, 2026</span></div>
     </div>
   </div>
-</section>
 
-<section class="section">
-  <h2>📈 Signal Summary</h2>
-  <table class="sig-summary">
-    <thead>
-      <tr><th>Signal</th><th class="num">Count</th><th>Detail</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Watchlist — Bearish</td><td class="num">7 / 8</td><td>CBRS −13.71%, RIOT −13.70%, DELL −14.41%, ANET −10.50%, AMD −15.84%, MRVL −13.66%, AVGO −9.12%</td></tr>
-      <tr><td>Watchlist — Bullish</td><td class="num">1 / 8</td><td>ADBE +1.16%</td></tr>
-      <tr><td>Portfolio — REVIEW (≥3% down)</td><td class="num">7 / 7</td><td>TSM, NOK, MRVL, INTC, DELL, CBRS, AMD — all down 8.31%–15.84%</td></tr>
-      <tr><td>Portfolio — HOLD (&lt;3%)</td><td class="num">0 / 7</td><td>None</td></tr>
-      <tr><td>Data fetch failures</td><td class="num">0</td><td>All 11 quotes retrieved from Moomoo OpenD; no missing data. X/Twitter feed unavailable (xurl OAuth not configured); sentiment below is analyst consensus from public web sources.</td></tr>
-    </tbody>
-  </table>
-  <div class="sent-row" style="margin-top:10px;">
-    <span class="sent-pill">TSM: Buy — 25 analysts, avg PT ≈ $585.57</span>
-    <span class="sent-pill">NOK: Hold — AltIndex AI Score 49; Moody's Baa3</span>
-    <span class="sent-pill">MRVL: REVIEW — TD Cowen Hold $175; BofA Neutral $225</span>
-    <span class="sent-pill">INTC: Hold — consensus PT ≈ $95.16; CEO bought $9.7M shares Nov 2</span>
-    <span class="sent-pill">DELL: Mixed — $6.1B AI server orders; ISG margin record 15%; earnings Nov 24</span>
-    <span class="sent-pill">CBRS: Speculative — −57.6% since Aug 4; investigation announced Nov 2</span>
-    <span class="sent-pill">AMD: Strong Buy — Q3 rev $13.4B (+45%), data center ≈ doubled; TD Cowen $675 Buy</span>
-    <span class="sent-pill">AVGO: Strong Buy — AI semi revenue $115B (FY27) → $230B (FY28) guidance</span>
-    <span class="sent-pill">ADBE: Mixed — RBC PT $315 Buy; MCH Analysis Sell scenario</span>
+  <div class="section">
+    <h2>📊 Sector &amp; Risk</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Area</th>
+          <th scope="col">Observation (web-sourced)</th>
+          <th scope="col">Risk / Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Semiconductors / AI infra</strong></td>
+          <td>Thursday's sell-off led by AI/semi names (SOX −12.2%, Nasdaq in correction). ANET beat-and-raise contrasts with MRVL downgrade (Lumentum) and broad multiple compression.</td>
+          <td>Concentration risk; monitor 200-DMA support; avoid over-leverage into volatility.</td>
+        </tr>
+        <tr>
+          <td><strong>Crypto-to-AI pivot</strong></td>
+          <td>RIOT: $28B Corsicana AI data-center lease; BTC treasury trimmed; $573M bridge loan due Dec 31; “lease catalyst drought” through early 2027.</td>
+          <td>Financing/refinancing risk; Texas regulatory uncertainty.</td>
+        </tr>
+        <tr>
+          <td><strong>Enterprise software</strong></td>
+          <td>ADBE: multiple downgrades (Citi Sell $207; Wells Fargo Underweight $225; HSBC Hold $267); AI monetization debate; CEO transition Dec 1.</td>
+          <td>Valuation multiple compression risk; watch Dec 9 guidance.</td>
+        </tr>
+        <tr>
+          <td><strong>Server OEM</strong></td>
+          <td>DELL: $130B+ AI server orders, $95B backlog; GS $590 / Bernstein $650 Buy; Barclays Hold $574 after +300% YTD rally; ~$3.5B insider sales.</td>
+          <td>Growth-cooling risk after extended rally; smaller earnings beats ahead.</td>
+        </tr>
+        <tr>
+          <td><strong>Macro</strong></td>
+          <td>Post-midterm data-center regulation concerns; political-shift headlines; Fed path and 10Y yield constraints; narrowing market breadth.</td>
+          <td>Keep position sizes disciplined; two-way volatility likely around headlines.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</section>
 
-<div class="zh-summary">
-  <h3>📰 中文摘要</h3>
-  <p>美股芯片与 AI 基础设施股普跌。英特尔弱势 Q4 指引重新引发 AI 支出担忧，中期选举后民主党执掌国会带来数据中心监管不确定性，Marvell 以全股票方式收购 Lumentum（1150 亿美元）招致分析师普遍下调评级。观察名单 8 只标的中 7 跌 1 升，跌幅最大为 AMD (−15.84%)，Adobe 微涨 +1.16%。持仓 7 只全部跌幅超过 3%，统一标记 REVIEW，无 HOLD。行情来自 Moomoo OpenD（127.0.0.1:11111），15 分钟延迟；未编造任何数据，获取失败将标注「数据获取失败」。</p>
-</div>
+  <div class="section">
+    <h2>📈 Signal Summary</h2>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Signal</th>
+          <th scope="col">Reason (analyst consensus + news, web-sourced)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="symbol">US.CBRS</span></td><td><span class="tag tag-warn">HOLD</span></td><td>Moderate Buy/Strong Buy consensus, PT ~$275–282, but UBS cut PT to $250; near 52-week low after short-report/insider-selling pressure; Nov 12 Q3 is key.</td></tr>
+        <tr><td><span class="symbol">US.RIOT</span></td><td><span class="tag tag-review">REVIEW</span></td><td>Buy consensus PT ~$28 but X sentiment bearish; PT cuts to $20 (Keefe Bruyette) and “lease catalyst drought”; $573M loan maturity Dec 31.</td></tr>
+        <tr><td><span class="symbol">US.DELL</span></td><td><span class="tag tag-warn">HOLD</span></td><td>Moderate Buy, PT ~$590 vs recent levels; AI orders strong, but Barclays cut to Hold after +300% YTD rally; valuation debate continues.</td></tr>
+        <tr><td><span class="symbol">US.ANET</span></td><td><span class="tag tag-warn">HOLD</span></td><td>Strong Buy consensus, PT ~$240–291; strong Q3 beat-and-raise; post-earnings volatility expected.</td></tr>
+        <tr><td><span class="symbol">US.AMD</span></td><td><span class="tag tag-review">REVIEW</span></td><td>Buy consensus median PT $641 (+58%), BofA $650, Stifel $725; but −17% in Nov 5 sell-off; check stop-loss.</td></tr>
+        <tr><td><span class="symbol">US.MRVL</span></td><td><span class="tag tag-review">REVIEW</span></td><td>Moderate Buy PT ~$327, but BofA downgraded to Neutral ($225) on Lumentum dilution/regulatory overhang; TD Cowen Hold $175.</td></tr>
+        <tr><td><span class="symbol">US.AVGO</span></td><td><span class="tag tag-warn">HOLD</span></td><td>Strong Buy consensus PT ~$514–531; AI/ASIC demand intact; earnings Dec 9; −10.4% on Nov 5 (web-sourced).</td></tr>
+        <tr><td><span class="symbol">US.ADBE</span></td><td><span class="tag tag-review">REVIEW</span></td><td>Hold consensus PT ~$261–284; Citi Sell $207 and Wells Fargo Underweight $225; AI monetization uncertainty.</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Signals are NOT derived from real-time Moomoo quotes (unavailable). They reflect web-sourced analyst consensus and recent news only.</p>
+  </div>
 
-<div class="disclaimer">
-  <h4>免责声明 / Disclaimer</h4>
-  <p><strong>中文：</strong>本报告仅供信息参考，不构成投资建议。行情数据来自 Moomoo OpenD（127.0.0.1:11111），有 15 分钟延迟，可能与实时行情存在偏差。新闻、分析师观点与社交媒体情绪来自公开网络来源（Schwab、Investopedia、Yahoo Finance、YouTube 等），Hermes Agent 不保证其准确性、完整性或及时性。投资有风险，入市需谨慎。</p>
-  <p><strong>English:</strong> This report is for informational purposes only and does not constitute investment advice. Quote data is sourced from Moomoo OpenD (127.0.0.1:11111) and is delayed by 15 minutes; it may differ from real-time prices. News, analyst opinions, and social-media sentiment are drawn from public web sources (Schwab, Investopedia, Yahoo Finance, YouTube, etc.); Hermes Agent makes no guarantee as to their accuracy, completeness, or timeliness. Investing involves risk.</p>
-</div>
+  <div class="zh-box">
+    <h3>📋 中文摘要</h3>
+    <p>本次报告覆盖 8 只观察标的（CBRS、RIOT、DELL、ANET、AMD、MRVL、AVGO、ADBE）与 7 只持仓标的（TSM、NOK、MRVL、INTC、DELL、CBRS、AMD）。周四（11 月 5 日）美股科技/AI 板块大幅回调：道指跌 ~3.4%、标普 500 跌 ~4.4%、纳指跌 ~5.5% 进入修正区域，费城半导体指数跌 ~12%。机构观点分化：ANET 季报超预期并上调目标价；RIOT 获 280 亿美元 AI 数据中心租赁，但分析师下调目标价并提及“租赁催化剂匮乏”；CBRS 遭 UBS 下调目标价至 $250 但维持买入；DELL AI 服务器订单超 1,300 亿美元；MRVL 因 Lumentum 并购被 BofA 降级中性；ADBE 遭多家机构下调评级。</p>
+    <p>因 Moomoo OpenD 接口端口（127.0.0.1:11111）连接被拒绝，实时报价未能获取，所有行情字段均标注「数据获取失败」，未使用任何虚构数据。持仓 ≥3% 波动预警无法执行，所有持仓信号均标注“—”。上述分析师评级、目标价与新闻均来自公开网络来源，非实时报价，仅供参考。</p>
+  </div>
 
-<footer class="report-footer">
-  <span>Generated by Hermes Agent · Moomoo OpenD Real-Time · 2026-11-06 SGT</span>
-  <span>Watchlist: CBRS, RIOT, DELL, ANET, AMD, MRVL, AVGO, ADBE · Holdings: TSM, NOK, MRVL, INTC, DELL, CBRS, AMD</span>
-</footer>
+  <div class="disclaimer">
+    <strong>⚠️ Disclaimer / 免责声明:</strong><br>
+    This report is auto-generated by Hermes Agent. Data sources: Moomoo OpenD real-time quotes (15-minute delayed) and public web sources (analyst ratings, news, social media). For reference only, not investment advice. Investing involves risk; proceed with caution. Fields where data fetch failed are marked “「数据获取失败」”; no data has been fabricated.<br><br>
+    本报告由 Hermes Agent 自动生成。数据来源：Moomoo OpenD 实时行情（15 分钟延迟）及公开网络来源（券商评级、新闻、社交媒体），仅供参考，不构成投资建议。投资有风险，入市需谨慎。行情获取失败的字段标注「数据获取失败」，未编造任何数据。
+  </div>
 
+  <div class="footer report-footer">
+    <div>Generated by Hermes Agent · Moomoo OpenD Real-Time · 2026-11-06 SGT</div>
+    <div>📅 日期: 2026-11-06 &nbsp;·&nbsp; 🕐 更新时间: 2026-11-06 14:33 SGT &nbsp;·&nbsp; 📡 数据来源: Moomoo OpenD（127.0.0.1:11111，15 分钟延迟，行情获取失败）</div>
+  </div>
 </div>
 </body>
 </html>
