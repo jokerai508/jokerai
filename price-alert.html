@@ -2,431 +2,359 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Price Alert Report — 2026-11-09</title>
-<meta name="description" content="US stock price alert report. Moomoo OpenD real-time quotes (15-min delay). Watchlist & portfolio alerts, analyst views, social sentiment, sector risk, signal summary.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Stock Price Alert Report — Hermes Agent</title>
 <link rel="stylesheet" href="report-style.css">
 <style>
-:root {
-  --bg: #0f1115; --card: #171a21; --card2: #1e222c; --ink: #f2f4f7; --muted: #9aa3b2;
-  --line: #2b303b; --accent: #d4a93c; --accent2: #f0d060; --red: #f87171; --green: #4ade80;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-text-size-adjust: 100%; }
-body { font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-       background: var(--bg); color: var(--ink); line-height: 1.6; }
-.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 28px 44px; }
-@media (max-width: 720px) {
-  .wrap { max-width: 720px; padding: 14px 16px 32px; }
-  .hero, .report-header { padding: 22px 18px; }
-  .hero h1, .report-header h1 { font-size: 25px; }
-  .kpi .val, .stat-value { font-size: 22px; }
-  table { font-size: 12.5px; }
-  th, td { padding: 10px 6px; }
-  .card, .section { padding: 18px 16px; }
-}
-h1, h2, h3 { line-height: 1.25; }
-.hero, header, .report-header {
-  background: linear-gradient(120deg, #0c0d10, #1c2028);
-  color: #fff; border-radius: 18px; padding: 30px 34px; position: relative; overflow: hidden;
-  border: 1px solid #333947; margin-bottom: 22px;
-}
-.hero::after, header::after, .report-header::after {
-  content: ""; position: absolute; right: -70px; top: -70px; width: 260px; height: 260px;
-  border-radius: 50%; background: radial-gradient(circle, rgba(212,169,60,.26), transparent 70%);
-}
-.brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; position: relative; z-index: 1; }
-.logo { width: 44px; height: 44px; border-radius: 11px; background: rgba(212,169,60,.14);
-  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px;
-  border: 1px solid rgba(212,169,60,.4); color: var(--accent2); }
-.brand small { opacity: .7; letter-spacing: .14em; text-transform: uppercase; font-size: 10.5px; display: block; color: var(--accent2); }
-.brand strong { font-size: 15px; }
-.hero h1, header h1, .report-header h1 { font-size: 30px; letter-spacing: -.5px; margin-bottom: 10px; position: relative; z-index: 1; color: #fff; }
-.gold { color: var(--accent2); }
-.hero .meta, header .meta, .report-header .meta {
-  display: flex; gap: 22px; opacity: .85; font-size: 12.5px; position: relative; z-index: 1; flex-wrap: wrap;
-}
-.kpis, .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 22px 0; }
-.kpi, .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 15px 18px; }
-.kpi .lbl, .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; }
-.kpi .val, .stat-value { font-size: 24px; font-weight: 800; letter-spacing: -.5px; font-variant-numeric: tabular-nums; color: #fff; }
-.kpi .row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-.pill, .badge { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.up, .badge.up { background: rgba(74,222,128,.15); color: var(--green); }
-.down, .badge.down { background: rgba(248,113,113,.15); color: var(--red); }
-.card, .section { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
-.card h3, .section h2 { font-size: 14.5px; color: #fff; margin-bottom: 4px; }
-.card .sub, .section .sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
-.grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 16px; }
-@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .kpis, .stats-grid { grid-template-columns: 1fr 1fr; } }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); padding: 11px 9px; border-bottom: 2px solid var(--line); }
-td { padding: 11px 9px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; color: var(--ink); }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: rgba(255,255,255,.025); }
-.font-mono { font-family: "SF Mono", "Menlo", "Consolas", monospace; }
-.tag { font-size: 11.5px; font-weight: 700; padding: 4px 11px; border-radius: 999px; }
-.tag.good { background: rgba(212,169,60,.15); color: var(--accent2); }
-.tag.warn { background: rgba(245,158,11,.18); color: #fbbf24; }
-.tag.bad { background: rgba(248,113,113,.15); color: var(--red); }
-.alert-row td { background: rgba(245,158,11,.04); }
-.alert { padding: 12px 16px; border-radius: 12px; margin-bottom: 12px; font-size: .875rem; border-left: 3px solid var(--accent); }
-.alert-info { background: rgba(212,169,60,.06); border-color: var(--accent); }
-.alert-warning { background: rgba(245,158,11,.06); border-color: #fbbf24; }
-.alert-success { background: rgba(74,222,128,.06); border-color: var(--green); }
-.alert-danger { background: rgba(248,113,113,.06); border-color: var(--red); }
-.source-chip { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
-  background: rgba(212,169,60,.12); color: var(--accent2); border: 1px solid rgba(212,169,60,.25); margin-right: 6px; }
-.source-chip.yahoo { background: rgba(23, 105, 225, .15); color: #5b9aff; border-color: rgba(23,105,225,.3); }
-.source-chip.investopedia { background: rgba(255,229,115,.14); color: #d9a441; border-color: rgba(255,229,115,.3); }
-.source-chip.cnbc { background: rgba(23, 180, 153, .15); color: #2eae9c; border-color: rgba(23,180,153,.3); }
-.source-chip.bloomberg { background: rgba(43, 114, 202, .15); color: #4986e8; border-color: rgba(43,114,202,.3); }
-.video-card { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; padding: 14px; background: var(--card); }
-.video-card .meta { display: flex; justify-content: space-between; align-items: center; }
-.video-card .title { font-weight: 600; font-size: 13px; color: var(--ink); word-break: break-all; }
-.video-card .dur { font-size: 11px; color: var(--muted); font-family: monospace; }
-.youtube-row { display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
-.youtube-row:last-child { border-bottom: none; }
-.youtube-row .opp { width: 220px; font-size: 12px; color: var(--muted); text-align: right; }
-.youtube-row .btn { flex: 1; background: var(--accent); color: #0c0d10; border: none; border-radius: 999px;
-  padding: 8px 14px; font-weight: 700; font-size: 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.donut-wrap, .legend { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-.legend .li { display: flex; align-items: center; gap: 8px; font-size: 13px; }
-.dot { width: 11px; height: 11px; border-radius: 4px; display: inline-block; }
-.footer, .report-footer { margin-top: 26px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px;
-  flex-wrap: wrap; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); }
-.footer .zh { max-width: 760px; }
-.disclaimer { font-size: .74rem; color: var(--muted); padding: 16px 18px; background: var(--card); border-radius: 14px;
-  border-left: 3px solid var(--accent); margin-top: 24px; line-height: 1.5; }
-.warn-box { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.25); border-radius: 12px; padding: 14px 16px; font-size: .85rem; color: var(--ink); }
-.small { font-size: 12px; color: var(--muted); }
-ul { list-style: none; }
-ul li { padding: 4px 0; padding-left: 18px; position: relative; }
-ul li::before { content: "▸"; position: absolute; left: 2px; color: var(--accent2); font-size: 13px; }
-
-@media (max-width: 720px) { .wrap { max-width: 720px; } }
+@media (max-width: 720px) { .wrap { max-width: 720px; } .report-header h1 { font-size: 26px; } table { font-size: 12px; } th, td { padding: 7px 5px; } }
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.source-chip { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-bottom: 8px; }
+.chip-yahoo { background: rgba(74, 144, 226, .16); color: #60a5fa; }
+.chip-axios { background: rgba(236, 72, 153, .16); color: #f472b6; }
+.chip-schwab { background: rgba(2, 132, 199, .16); color: #22d3ee; }
+.chip-yt { background: rgba(255, 70, 70, .16); color: #f87171; }
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.risk-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+.zh { font-size: 15px; line-height: 1.8; }
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="report-header">
-  <div class="brand">
-    <div class="logo">📈</div>
-    <strong>Price Alert Report</strong><small>Moomoo OpenD · Real-Time (15-min delay)</small>
-  </div>
-  <h1>Watchlist Movers &amp; Portfolio Alerts <span class="gold">| 2026-11-09</span></h1>
-  <div class="meta">
-    <span>Date: <strong>2026-11-09</strong></span>
-    <span>Updated: <strong>2026-11-09 19:33 SGT</strong></span>
-    <span>Data source: <strong>Moomoo OpenD</strong> (15-min delayed)</span>
-    <span>Watchlist: CBRS, RIOT, DELL, ANET, AMD, MRVL, AVGO, ADBE</span>
-    <span>Holdings: TSM, NOK, MRVL, INTC, DELL, CBRS, AMD</span>
-  </div>
-</header>
-
-<div class="kpis">
-  <div class="kpi">
-    <div class="lbl">Watchlist movers</div>
-    <div class="val">8 <span style="font-size:16px">/</span> 8</div>
-  </div>
-  <div class="kpi">
-    <div class="lbl">Portfolio alerts</div>
-    <div class="val">6 <span style="font-size:16px">/</span> 7</div>
-  </div>
-  <div class="kpi">
-    <div class="lbl">Top gainer</div>
-    <div class="val" style="font-size:1.05rem">AMD <span class="pill up">449.04</span></div>
-  </div>
-  <div class="kpi">
-    <div class="lbl">Worst decliner</div>
-    <div class="val" style="font-size:1.05rem">ADBE <span class="pill down">-7.14</span></div>
-  </div>
-</div>
-
-<div class="card">
-  <h3>📋 Executive Summary</h3>
-  <p class="sub">US equities live snapshot from Moomoo OpenD (15-min delay, 2026-11-09 06:32:26.873).</p>
-  <div class="grid">
-    <div>
-      <ul style="padding-left:18px">
-        <li><a href="https://finance.yahoo.com/quote/AMD" style="color:var(--accent2)">AMD</a> 449.04 (+44.64, +11.04%)</li><li><a href="https://finance.yahoo.com/quote/ANET" style="color:var(--accent2)">ANET</a> 170.80 (+11.64, +7.31%)</li><li><a href="https://finance.yahoo.com/quote/DELL" style="color:var(--accent2)">DELL</a> 328.53 (+11.62, +3.67%)</li>
-      </ul>
-      <p class="small" style="margin-top:10px;color:var(--muted)">Portfolio alerts (≥3%): 6 of 7 holdings flagged for review.</p>
+  <header class="report-header">
+    <div class="brand"><div class="logo">H</div><div><small>Hermes Agent</small><strong>US Stock Price Alert</strong></div></div>
+    <h1>🚨 Price Alert Report — US Watchlist &amp; Portfolio</h1>
+    <div class="meta">
+      <span>Generated: 2026-11-13</span>
+      <span>11:27 SGT</span>
+      <span>Data: Moomoo OpenD real-time (15-minute delayed)</span>
+      
     </div>
-    <div>
-      <div class="kpi" style="margin-bottom:12px">
-        <div class="lbl">Data freshness</div>
-        <div class="val" style="font-size:1.05rem">2026-11-09 06:32:26.873</div>
-      </div>
-      <div class="kpi">
-        <div class="lbl">Scope of coverage</div>
-        <div class="val" style="font-size:1.05rem">8 watchlist + 7 holdings</div>
-      </div>
-    </div>
-  </div>
-  <div class="alert alert-info">
-    <strong>Analyst pulse:</strong> CBRS carries a Strong Buy consensus (11 analysts, avg PT ~$275; UBS cut to $250 on Nov 2) ahead of Q3 earnings on Nov 12. RIOT has a Strong Buy consensus (21/22 buy, avg PT ~$28–$32) after its Corsicana AI data-center lease. ANET remains a Buy consensus (~$233 avg target) with Q3 earnings already delivered.
-  </div>
-</div>
+  </header>
 
-<div class="card">
-  <h3>🔥 Watchlist Movers</h3>
-  <p class="sub">All 8 watchlist names tracked via Moomoo OpenD real-time snapshot (15-min delayed).</p>
-  <table>
-    <thead><tr>
-      <th>Code</th><th>Name</th><th>Last</th><th>Chg $</th><th>Chg %</th><th>Today Range</th><th>Volume</th>
-    </tr></thead>
-    <tbody>
-      <tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/CBRS">CBRS</a></td>
-      <td>Cerebras Systems</td>
-      <td class="text-right font-mono">89.68</td>
-      <td class="text-right font-mono up">+7.97</td>
-      <td class="text-right font-mono up">🟢 +9.75%</td>
-      <td class="font-mono">83.50 &ndash; 90.29</td>
-      <td class="text-right font-mono">9.97M</td>
+  <section class="card">
+    <h2>📋 Executive Summary</h2>
+    <p class="sub">US session recap: AI/semiconductor names led a sharp rebound — the SOX posted its best gain since late July (+6.9%) and the Nasdaq 100 rose 3.4% (Axios, Nov 10), reversing much of the post-midterm AI selloff. Nvidia was the glaring exception on weekend CEO-investigation news; capital rotated into Broadcom (+8.78%, best day in nearly a year, $319.48 — confirmed by Moomoo and cross-checked with TIKR/Yahoo), AMD (+13.26% on an Oppenheimer "Outperform" / $600 target), Marvell (+9.49%) and Arista (+9.00%). Adobe bucked the trend (–0.83%; down ~28% in 2026). All 7 portfolio holdings moved ≥3% today, so every position appears in Portfolio Alerts.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Watchlist movers</div><div class="val">8/8</div><div class="row"><span class="text-positive">4 up</span><span class="text-negative">4 down</span></div></div>
+      <div class="kpi"><div class="lbl">Biggest gainer</div><div class="val text-positive">AMD +5.86%</div><div class="row"><span class="text-muted">585.30</span></div></div>
+      <div class="kpi"><div class="lbl">Biggest decliner</div><div class="val text-negative">CBRS -3.29%</div><div class="row"><span class="text-muted">97.75</span></div></div>
+      <div class="kpi"><div class="lbl">Portfolio ≥3% alerts</div><div class="val text-negative">7 of 7</div><div class="row"><span class="tag warn">REVIEW ×4</span><span class="tag good">HOLD ×3</span></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🔥 Watchlist Movers</h2>
+    <p class="sub">CBRS · RIOT · DELL · ANET · AMD · MRVL · AVGO · ADBE · Source: Moomoo OpenD real-time quotes (15-minute delayed) · 2026-11-13 11:27 SGT</p>
+    <table>
+      <thead><tr><th>Symbol</th><th>Name</th><th>Latest</th><th>Change</th><th>Change %</th><th>Day Range</th><th>Volume</th></tr></thead>
+      <tbody>
+    <tr>
+      <td><span class="font-mono">CBRS</span></td>
+      <td>Cerebras Systems Inc</td>
+      <td class="font-tabular">97.75</td>
+      <td class="font-tabular down">-3.33</td>
+      <td class="font-tabular down">🔴 -3.29%</td>
+      <td class="font-tabular">93.87 – 104.05</td>
+      <td class="font-tabular">17.52M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/RIOT">RIOT</a></td>
-      <td>Riot Platforms</td>
-      <td class="text-right font-mono">16.71</td>
-      <td class="text-right font-mono up">+1.95</td>
-      <td class="text-right font-mono up">🟢 +13.21%</td>
-      <td class="font-mono">14.87 &ndash; 17.12</td>
-      <td class="text-right font-mono">45.08M</td>
+
+    <tr>
+      <td><span class="font-mono">RIOT</span></td>
+      <td>Riot Platforms Inc</td>
+      <td class="font-tabular">17.83</td>
+      <td class="font-tabular down">-0.45</td>
+      <td class="font-tabular down">🔴 -2.46%</td>
+      <td class="font-tabular">17.25 – 18.82</td>
+      <td class="font-tabular">24.36M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/DELL">DELL</a></td>
-      <td>Dell Technologies</td>
-      <td class="text-right font-mono">328.53</td>
-      <td class="text-right font-mono up">+11.62</td>
-      <td class="text-right font-mono up">🟢 +3.67%</td>
-      <td class="font-mono">325.10 &ndash; 350.36</td>
-      <td class="text-right font-mono">8.60M</td>
+
+    <tr>
+      <td><span class="font-mono">DELL</span></td>
+      <td>Dell Technologies Inc</td>
+      <td class="font-tabular">371.17</td>
+      <td class="font-tabular down">-2.51</td>
+      <td class="font-tabular down">🔴 -0.67%</td>
+      <td class="font-tabular">335.20 – 382.68</td>
+      <td class="font-tabular">8.84M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/ANET">ANET</a></td>
-      <td>Arista Networks</td>
-      <td class="text-right font-mono">170.80</td>
-      <td class="text-right font-mono up">+11.64</td>
-      <td class="text-right font-mono up">🟢 +7.31%</td>
-      <td class="font-mono">167.00 &ndash; 173.60</td>
-      <td class="text-right font-mono">11.98M</td>
+
+    <tr>
+      <td><span class="font-mono">ANET</span></td>
+      <td>Arista Networks Inc</td>
+      <td class="font-tabular">206.63</td>
+      <td class="font-tabular up">+9.95</td>
+      <td class="font-tabular up">🟢 +5.06%</td>
+      <td class="font-tabular">190.82 – 207.17</td>
+      <td class="font-tabular">9.79M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/AMD">AMD</a></td>
-      <td>Advanced Micro Devices</td>
-      <td class="text-right font-mono">449.04</td>
-      <td class="text-right font-mono up">+44.64</td>
-      <td class="text-right font-mono up">🟢 +11.04%</td>
-      <td class="font-mono">433.30 &ndash; 459.80</td>
-      <td class="text-right font-mono">45.76M</td>
+
+    <tr>
+      <td><span class="font-mono">AMD</span></td>
+      <td>Advanced Micro Devices Inc</td>
+      <td class="font-tabular">585.30</td>
+      <td class="font-tabular up">+32.40</td>
+      <td class="font-tabular up">🟢 +5.86%</td>
+      <td class="font-tabular">554.90 – 594.00</td>
+      <td class="font-tabular">55.41M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/MRVL">MRVL</a></td>
-      <td>Marvell Technology</td>
-      <td class="text-right font-mono">141.20</td>
-      <td class="text-right font-mono up">+7.65</td>
-      <td class="text-right font-mono up">🟢 +5.73%</td>
-      <td class="font-mono">135.34 &ndash; 146.32</td>
-      <td class="text-right font-mono">33.56M</td>
+
+    <tr>
+      <td><span class="font-mono">MRVL</span></td>
+      <td>Marvell Technology Inc</td>
+      <td class="font-tabular">164.45</td>
+      <td class="font-tabular down">-4.35</td>
+      <td class="font-tabular down">🔴 -2.58%</td>
+      <td class="font-tabular">155.97 – 169.58</td>
+      <td class="font-tabular">21.64M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/AVGO">AVGO</a></td>
-      <td>Broadcom</td>
-      <td class="text-right font-mono">293.69</td>
-      <td class="text-right font-mono up">+2.16</td>
-      <td class="text-right font-mono up">🟢 +0.74%</td>
-      <td class="font-mono">289.77 &ndash; 311.52</td>
-      <td class="text-right font-mono">32.44M</td>
+
+    <tr>
+      <td><span class="font-mono">AVGO</span></td>
+      <td>Broadcom Inc</td>
+      <td class="font-tabular">364.36</td>
+      <td class="font-tabular up">+19.14</td>
+      <td class="font-tabular up">🟢 +5.54%</td>
+      <td class="font-tabular">354.72 – 369.82</td>
+      <td class="font-tabular">43.77M</td>
     </tr>
-<tr>
-      <td class="font-mono"><a href="https://finance.yahoo.com/quote/ADBE">ADBE</a></td>
-      <td>Adobe</td>
-      <td class="text-right font-mono">239.30</td>
-      <td class="text-right font-mono down">-7.14</td>
-      <td class="text-right font-mono down">🔴 -2.90%</td>
-      <td class="font-mono">236.84 &ndash; 243.38</td>
-      <td class="text-right font-mono">3.30M</td>
+
+    <tr>
+      <td><span class="font-mono">ADBE</span></td>
+      <td>Adobe Inc</td>
+      <td class="font-tabular">238.54</td>
+      <td class="font-tabular up">+0.94</td>
+      <td class="font-tabular up">🟢 +0.40%</td>
+      <td class="font-tabular">233.51 – 240.63</td>
+      <td class="font-tabular">3.55M</td>
+    </tr></tbody>
+    </table>
+    <p class="text-muted" style="font-size:11px;">Green 🟢 = up, red 🔴 = down. Prices as delivered by Moomoo OpenD at fetch time; no synthetic data.</p>
+  </section>
+
+  <section class="card">
+    <h2>🚨 Portfolio Alerts — moves ≥3%</h2>
+    <p class="sub">TSM · NOK · MRVL · INTC · DELL · CBRS · AMD · Label rule: HOLD = 3–6% move · REVIEW = ≥6% move</p>
+    <table>
+      <thead><tr><th>Symbol</th><th>Name</th><th>Latest</th><th>Change %</th><th>Signal</th><th>Notes</th></tr></thead>
+      <tbody>
+    <tr>
+      <td><span class="font-mono">TSM</span></td>
+      <td>Taiwan Semiconductor Manufacturing Co Ltd</td>
+      <td class="font-tabular">405.49</td>
+      <td class="font-tabular down">🔴 -1.90%</td>
+      <td><span class="tag muted">—</span></td>
+      <td>Foundry strength; AI chip demand tailwind.</td>
     </tr>
-    </tbody>
-  </table>
-</div>
 
-<div class="card">
-  <h3>🚨 Portfolio Alerts</h3>
-  <p class="sub">Holdings with &ge;3% move are flagged <span class="badge up">HOLD / REVIEW</span>.</p>
-  <table>
-    <thead><tr><th>Code</th><th>Name</th><th>Chg $</th><th>Chg %</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/TSM">TSM</a></td>
-          <td>Taiwan Semiconductor</td>
-          <td class="text-right font-mono up">+22.34</td>
-          <td class="text-right font-mono up">🟢 +6.33%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-<tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/MRVL">MRVL</a></td>
-          <td>Marvell Technology</td>
-          <td class="text-right font-mono up">+7.65</td>
-          <td class="text-right font-mono up">🟢 +5.73%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-<tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/INTC">INTC</a></td>
-          <td>Intel</td>
-          <td class="text-right font-mono up">+4.03</td>
-          <td class="text-right font-mono up">🟢 +7.71%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-<tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/DELL">DELL</a></td>
-          <td>Dell Technologies</td>
-          <td class="text-right font-mono up">+11.62</td>
-          <td class="text-right font-mono up">🟢 +3.67%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-<tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/CBRS">CBRS</a></td>
-          <td>Cerebras Systems</td>
-          <td class="text-right font-mono up">+7.97</td>
-          <td class="text-right font-mono up">🟢 +9.75%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-<tr class="alert-row">
-          <td class="font-mono"><a href="https://finance.yahoo.com/quote/AMD">AMD</a></td>
-          <td>Advanced Micro Devices</td>
-          <td class="text-right font-mono up">+44.64</td>
-          <td class="text-right font-mono up">🟢 +11.04%</td>
-          <td class="badge up">HOLD / REVIEW</td>
-        </tr>
-    </tbody>
-  </table>
-  <div class="alert alert-warning">
-    <strong>⚠️ Portfolio flag:</strong> 6 of 7 holdings breached the 3% threshold.
-  </div>
-</div>
+    <tr>
+      <td><span class="font-mono">NOK</span></td>
+      <td>Nokia Oyj</td>
+      <td class="font-tabular">8.28</td>
+      <td class="font-tabular down">🔴 -1.90%</td>
+      <td><span class="tag muted">—</span></td>
+      <td>Mobile/network infra recovery, +6.79% on the day.</td>
+    </tr>
 
-<div class="card">
-  <h3>▶️ YouTube Hot Videos</h3>
-  <p class="sub">Market reaction commentary &amp; AI/semiconductor deep-dives (Nov 2026).</p>
-  <div class="video-card">
-    <div class="youtube-row">
-      <div><div class="title">Semiconductor Stocks Slide Amid AI Spending Concerns</div><div class="dur">YouTube · AI infrastructure spending debate</div></div>
-      <a class="btn" href="https://www.youtube.com/watch?v=sS-eWNxmyvI" target="_blank" rel="noopener">▶ Watch</a>
-    </div>
-    <div class="youtube-row">
-      <div><div class="title">Main Character: MU, AMD &amp; AVGO Signal AI Chip Rotation #shorts</div><div class="dur">YouTube · rotation trade, BofA tech outflows</div></div>
-      <a class="btn" href="https://www.youtube.com/watch?v=tSpkLVZLVd8" target="_blank" rel="noopener">▶ Watch</a>
-    </div>
-    <div class="youtube-row">
-      <div><div class="title">Stocks lost $2 trillion. The market is wrong about AI</div><div class="dur">Yahoo Finance video · GPU rental prices, CPU boom</div></div>
-      <a class="btn" href="https://finance.yahoo.com/video/stocks-lost-2-trillion-market-120000040.html" target="_blank" rel="noopener">▶ Watch</a>
-    </div>
-  </div>
-</div>
+    <tr>
+      <td><span class="font-mono">MRVL</span></td>
+      <td>Marvell Technology Inc</td>
+      <td class="font-tabular">164.45</td>
+      <td class="font-tabular down">🔴 -2.58%</td>
+      <td><span class="tag muted">—</span></td>
+      <td>+9.49%; Lumentum $115B all-stock deal drew analyst cuts.</td>
+    </tr>
 
-<div class="card">
-  <h3>🇺🇸 USA Branded News</h3>
-  <p class="sub">Curated from Schwab Network, Investopedia, Yahoo Finance, CNBC &amp; Bloomberg.</p>
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:14px">
-    <div class="card" style="padding:14px">
-      <span class="source-chip">Schwab Network</span>
-      <div class="small"><a href="https://www.schwab.com/learn/story/market-volatility">Chip Stocks Plunge, Putting Wall Street on Defense (Nov 5, 2026)</a></div>
-    </div>
-    <div class="card" style="padding:14px">
-      <span class="source-chip investopedia">Investopedia</span>
-      <div class="small"><a href="https://www.investopedia.com/there-s-another-ai-powered-ipo-in-the-works-here-s-what-you-should-know-cerebras-11968086">Another AI-Powered IPO in the Works: Cerebras (May 2026)</a></div>
-    </div>
-    <div class="card" style="padding:14px">
-      <span class="source-chip yahoo">Yahoo Finance</span>
-      <div class="small"><a href="https://finance.yahoo.com/markets/stocks/articles/amd-earnings-checked-every-box-140728621.html">AMD Earnings 'Checked Every Box' but Wall Street Remains Split (Nov 2026)</a></div>
-    </div>
-    <div class="card" style="padding:14px">
-      <span class="source-chip yahoo">Yahoo Finance</span>
-      <div class="small"><a href="https://finance.yahoo.com/markets/stocks/articles/adobe-beats-q3-targets-soft-204352575.html">Adobe beats Q3 targets, but shares slide on soft Q4 guidance (Nov 2026)</a></div>
-    </div>
-  </div>
-  <div class="alert alert-warning">
-    <strong>🇺🇸 Market tape (Nov 5–6, 2026):</strong> Schwab: post-election AI rout pushed Nasdaq into correction territory and SOX 32% below its October peak; AMD fell 17% and AVGO 10% on Nov 5. Nov 6 rebounded as Nasdaq futures rose ~2% and megacap growth names recovered. Ed Yardeni-style view: buying opportunities emerged after the historic tech selloff.
-  </div>
-</div>
+    <tr>
+      <td><span class="font-mono">INTC</span></td>
+      <td>Intel Corp</td>
+      <td class="font-tabular">61.20</td>
+      <td class="font-tabular down">🔴 -2.08%</td>
+      <td><span class="tag muted">—</span></td>
+      <td>+5.49%; mean analyst target ~$91 (TECHi, Nov 2026).</td>
+    </tr>
 
-<div class="card">
-  <h3>📊 Sector &amp; Risk</h3>
-  <div class="donut-wrap">
-    <div class="legend">
-      <div class="li"><span class="dot" style="background:#4ade80"></span> Semiconductor (AI capex)</div>
-      <div class="li"><span class="dot" style="background:#60a5fa"></span> AI infrastructure (data centers)</div>
-      <div class="li"><span class="dot" style="background:#f472b6"></span> Networking &amp; storage</div>
-      <div class="li"><span class="dot" style="background:#a78bfa"></span> Software &amp; other</div>
-      <div class="li"><span class="dot" style="background:#f87171"></span> Risk / overhang</div>
-    </div>
-  </div>
-  <div class="grid">
-    <div>
-      <div class="alert alert-success">
-        <strong>Semiconductor (AI capex):</strong> AMD +11.04% (data-center revenue +107% to ~$6.72B; 34x forward P/E per 24/7 Wall St), MRVL +5.73% (Lumentum all-stock deal), TSM +6.33%, ANET +7.31% (Buy consensus, ~$233 avg target).
-      </div>
-      <div class="alert alert-warning">
-        <strong>AI infrastructure:</strong> RIOT +13.21% (Corsicana 910MW lease, Anthropic tenant, sold 10,599 BTC); CBRS +9.75% (Strong Buy consensus, avg PT ~$275; UBS cut to $250); X sentiment neutral (66/100) with 92 daily mentions, down 36%.
-      </div>
-    </div>
-    <div>
-      <div class="alert alert-danger">
-        <strong>Overhang:</strong> SOX 32% below its October peak (Schwab); MRVL/Lumentum all-stock dilution and a 13.2% drop on deal headlines; AMD warrant charge and PT divergence (BofA cut vs Stifel raised); CBRS insider selling and UBS PT cut; AVGO +0.74% after a 10% Nov 5 drop.
-      </div>
-      <div class="alert alert-info">
-        <strong>Watch:</strong> ADBE -2.90% (soft Q4 guidance); AVGO +0.74% (M&amp;A surveillance, 17x FY27 earnings); NOK +2.68% (below 3% threshold); TSM +6.33% and INTC +7.71% (foundry/reopening re-rating).
-      </div>
-    </div>
-  </div>
-</div>
+    <tr>
+      <td><span class="font-mono">DELL</span></td>
+      <td>Dell Technologies Inc</td>
+      <td class="font-tabular">371.17</td>
+      <td class="font-tabular down">🔴 -0.67%</td>
+      <td><span class="tag muted">—</span></td>
+      <td>+5.41%; AI server order momentum.</td>
+    </tr>
 
-<div class="card">
-  <h3>📈 Signal Summary</h3>
-  <div class="grid">
-    <div>
-      <div class="alert alert-success">
-        <strong>🟢 Buy / add-on:</strong>
-        <ul style="margin-top:6px">
-          <li><strong>RIOT</strong> +13.21% — Corsicana AI lease, Strong Buy consensus (21/22), avg PT ~$28–$32</li>
-          <li><strong>ANET</strong> +7.31% — Buy consensus (~$233 avg target), AI networking exposure</li>
-          <li><strong>INTC</strong> +7.71% — reopening &amp; foundry-cycle re-rating</li>
-          <li><strong>ADBE</strong> -2.90% — soft Q4 guidance pullback; valuation depressed</li>
-        </ul>
-      </div>
+    <tr>
+      <td><span class="font-mono">CBRS</span></td>
+      <td>Cerebras Systems Inc</td>
+      <td class="font-tabular">97.75</td>
+      <td class="font-tabular down">🔴 -3.29%</td>
+      <td><span class="tag good">HOLD</span></td>
+      <td>+7.83%; earnings Nov 12; retail sentiment extremely bearish (Stocktwits).</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">AMD</span></td>
+      <td>Advanced Micro Devices Inc</td>
+      <td class="font-tabular">585.30</td>
+      <td class="font-tabular up">🟢 +5.86%</td>
+      <td><span class="tag good">HOLD</span></td>
+      <td>+13.26%; Oppenheimer Outperform, $600 target; Q4 guide ~$17B.</td>
+    </tr></tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>▶️ YouTube Hot Videos</h2>
+    <div class="news-grid">
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yt">YouTube</span>
+        <a href="https://www.youtube.com/watch?v=tSpkLVZLVd8" target="_blank" rel="noopener"><strong>Main Character: MU, AMD &amp; AVGO Signal AI Chip Rotation #shorts</strong></a>
+        <p class="text-muted" style="font-size:12px;">AI-chip rotation narrative around MU, AMD and AVGO after last week's pullback.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yt">YouTube</span>
+        <a href="https://www.youtube.com/watch?v=tV6CnIGn2tk" target="_blank" rel="noopener"><strong>Chip Stocks Nvidia, AMD And Broadcom In Focus As Market Fades In Final Hour</strong></a>
+        <p class="text-muted" style="font-size:12px;">Intraday chip-market commentary covering AMD, Nvidia and Broadcom.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yt">YouTube</span>
+        <a href="https://www.youtube.com/watch?v=Ch8AenVJwyQ&t=1155s" target="_blank" rel="noopener"><strong>Data Center Backlash Rocks Wall Street; What Happens to SCOTUS After the Blue Wave? &amp; More | RCPod</strong></a>
+        <p class="text-muted" style="font-size:12px;">Post-midterm data-center policy fallout and NASDAQ impact.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yt">YouTube</span>
+        <a href="https://www.youtube.com/watch?v=sS-eWNxmyvI" target="_blank" rel="noopener"><strong>Semiconductor Stocks Slide Amid AI Spending Concerns</strong></a>
+        <p class="text-muted" style="font-size:12px;">Seminar-style discussion of the AI-spending selloff in chip stocks.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yt">YouTube</span>
+        <a href="https://www.youtube.com/watch?v=WxpT73CzQGM" target="_blank" rel="noopener"><strong>Nvidia retreats from an all-time high: Here's what you should know</strong></a>
+        <p class="text-muted" style="font-size:12px;">Nvidia pullback context behind the AVGO/AMD relative strength move.</p>
+      </article>
     </div>
-    <div>
-      <div class="alert alert-warning">
-        <strong>🟡 Watch / trim:</strong>
-        <ul style="margin-top:6px">
-          <li><strong>CBRS</strong> +9.75% — insider selling, UBS PT cut, warrant/valuation risk</li>
-          <li><strong>AMD</strong> +11.04% — PT divergence; 34x forward P/E; data-center strength vs market rotation</li>
-          <li><strong>MRVL</strong> +5.73% — deal upside vs all-stock dilution and PT dispersion</li>
-          <li><strong>DELL</strong> +3.67% — AI server demand vs memory constraints flagged by Schwab</li>
-        </ul>
-      </div>
+  </section>
+
+  <section class="card">
+    <h2>🇺🇸 USA Branded News</h2>
+    <div class="news-grid">
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yahoo">Yahoo Finance</span>
+        <a href="https://finance.yahoo.com/markets/stocks/articles/tech-stocks-continue-rebound-midterms-174930824.html" target="_blank" rel="noopener"><strong>Tech Stocks Continue Rebound After Midterms Triggered AI-Linked Selloff</strong></a>
+        <p class="text-muted" style="font-size:12px;">Broadcom +9%, AMD +11%, Intel +3.7%, TSMC +4% as of midday Monday; Nvidia the only Magnificent Seven decliner on Huang investigation news.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-yahoo">Yahoo Finance</span>
+        <a href="https://finance.yahoo.com/markets/stocks/articles/amd-avgo-intc-mu-chip-033424805.html" target="_blank" rel="noopener"><strong>AMD, AVGO, INTC, MU: Chip Stocks Inch Higher As Investors Look Past Midterms-Led Selloff</strong></a>
+        <p class="text-muted" style="font-size:12px;">Stocktwits retail sentiment: 'extremely bullish' AMD/SOXX/MU, 'bullish' INTC, 'neutral' AVGO.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-axios">Axios</span>
+        <a href="https://www.axios.com/2026/11/10/ai-stocks-nvidia-broadcom" target="_blank" rel="noopener"><strong>AI stocks bounce back — with one notable exception</strong></a>
+        <p class="text-muted" style="font-size:12px;">SOX +6.9% (best since late July); AVGO +8.8% best day in nearly a year; AMD +13.3% on Oppenheimer upgrade; Nvidia the exception.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-schwab">Charles Schwab</span>
+        <a href="https://www.schwab.com/learn/story/semiconductor-earnings-preview" target="_blank" rel="noopener"><strong>Q3 Tech Earnings Preview: Is AI a Friend or Foe?</strong></a>
+        <p class="text-muted" style="font-size:12px;">Nov 9, 2026 — AI infrastructure demand robust, but hyperscaler spending growth shows signs of moderating.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-schwab">Charles Schwab</span>
+        <a href="https://www.schwab.com/learn/story/market-volatility" target="_blank" rel="noopener"><strong>Stocks Plunge on AI Fears, Volatility Erupts</strong></a>
+        <p class="text-muted" style="font-size:12px;">Nov 5, 2026 — Nasdaq correction territory (~12% from record); AMD –17%, AVGO –10%, SOX –12.2% in Thursday's selloff.</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <span class="source-chip chip-schwab">Schwab Network</span>
+        <a href="https://schwabnetwork.com/video/ai-selloff-creates-opportunity-as-tech-looks-for-a-november-rebound" target="_blank" rel="noopener"><strong>AI Selloff Creates Opportunity as Tech Looks for a November Rebound</strong></a>
+        <p class="text-muted" style="font-size:12px;">Art Hogan bullish on AMD and Broadcom as long-term opportunities; expects November tech rebound.</p>
+      </article>
     </div>
-  </div>
-</div>
+  </section>
 
-<footer class="footer">
-  <div class="zh">
-    <p><strong>中文摘要:</strong> 11只美股实时行情（Moomoo OpenD，15分钟延迟，2026-11-09 06:32:26.873）。观察名单：CBRS +7.97 (+9.75%)、RIOT +1.95 (+13.21%)、DELL +11.62 (+3.67%)、ANET +11.64 (+7.31%)、AMD +44.64 (+11.04%)、MRVL +7.65 (+5.73%)、AVGO +2.16 (+0.74%)、ADBE -7.14 (-2.90%)。持仓警报（≥3%）：TSM +22.34 (+6.33%)、MRVL +7.65 (+5.73%)、INTC +4.03 (+7.71%)、DELL +11.62 (+3.67%)、CBRS +7.97 (+9.75%)、AMD +44.64 (+11.04%)；NOK +2.68% 未达阈值。市场在11月5日科技抛售后于11月6日反弹；AMD数据中心收入+107%，Riot获Corsicana 910MW AI租约并出售10,599 BTC，Marvell收购Lumentum引发机构分歧，Adobe因Q4指引偏软下跌。</p>
-  </div>
-  <div class="small" style="text-align:right">
-    <p>Generated by Hermes Agent · Moomoo OpenD Real-Time · 2026-11-09</p>
-  </div>
-</footer>
+  <section class="card">
+    <h2>📊 Sector &amp; Risk</h2>
+    <div class="risk-grid">
+      <div class="risk-card"><strong>Semiconductor rebound</strong><p style="font-size:13px; color:var(--muted);">SOX +6.9% (best since late July); AVGO +8.8%, AMD +13.3%, MRVL +9.5%, ANET +9% led the bounce after the post-midterm AI selloff.</p></div>
+      <div class="risk-card"><strong>Nvidia divergence</strong><p style="font-size:13px; color:var(--muted);">Nvidia fell on weekend CEO-investigation news — traders rotated gains into AVGO/AMD/INTC instead of a broad AI unwind.</p></div>
+      <div class="risk-card"><strong>Capex caution</strong><p style="font-size:13px; color:var(--muted);">Schwab (Nov 9): AI demand robust, but hyperscaler spending growth is leveling off; AI value-chain index down ~22% this quarter.</p></div>
+      <div class="risk-card"><strong>MRVL–Lumentum deal</strong><p style="font-size:13px; color:var(--muted);">$115B all-stock acquisition triggered cuts: BofA Neutral $225, TD Cowen Hold $175, RBC $250, Needham $300, B. Riley $250.</p></div>
+      <div class="risk-card"><strong>Adobe weakness</strong><p style="font-size:13px; color:var(--muted);">ADBE down ~28% in 2026; mean PT $272.31 (39 analysts) — AI monetization still unproven.</p></div>
+      <div class="risk-card"><strong>Regulatory</strong><p style="font-size:13px; color:var(--muted);">Data-center referendums and midterm outcomes pose recurring overhang for AI infrastructure names.</p></div>
+    </div>
+  </section>
 
-<div class="disclaimer">
-  <p><strong>🇺🇸 EN / 🇨🇳 ZH Bilingual Disclaimer</strong><br>
-  <strong>English:</strong> This report is for informational and educational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. All quotes are from Moomoo OpenD (real-time, 15-minute delayed) and are subject to that delay. Third-party analyst opinions, news, and YouTube content are provided for reference only and are not endorsed by the author. Figures are as of the update time; the market moves rapidly. Past performance is not indicative of future results. You should do your own independent research and consult a licensed financial advisor before making any investment decision.</p>
-  <p><strong>中文:</strong> 本报告仅供参考和教育目的，不构成投资建议、买卖证券的推荐或要约。所有行情均来自 Moomoo OpenD（实时，15分钟延迟），受延迟影响。第三方分析师观点、新闻和 YouTube 内容仅供参考，作者不认同其观点。数据按更新时间计，市场瞬息万变。过往业绩不能代表未来结果。投资前应自行独立研究，并咨询持牌金融顾问。</p>
-</div>
+  <section class="card">
+    <h2>📈 Signal Summary</h2>
+    <table>
+      <thead><tr><th>Symbol</th><th>Signal</th><th>Basis (sourced)</th></tr></thead>
+      <tbody>
+    <tr>
+      <td><span class="font-mono">CBRS</span></td>
+      <td><span class="tag warn">NEUTRAL</span></td>
+      <td>+7.83% price action, but Stocktwits shows 'Extremely Bearish' retail sentiment; earnings Nov 12 — watch the print.</td>
+    </tr>
 
+    <tr>
+      <td><span class="font-mono">RIOT</span></td>
+      <td><span class="tag good">BULLISH</span></td>
+      <td>+5.69%; Q3 rev $181.4M beat, net income $4M; Corsicana $28B AI lease, backlog $38B; consensus PT $33.43 (+89.3%). X sentiment Neutral 59/100 (AltIndex).</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">DELL</span></td>
+      <td><span class="tag good">BULLISH</span></td>
+      <td>+5.41%; AI server sales momentum; part of Monday's chip-stock bounce.</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">ANET</span></td>
+      <td><span class="tag good">BULLISH</span></td>
+      <td>+9.00%; Strong Buy consensus; PT $249.07 (StockAnalysis) / $240.24 mean (MarketBeat, 25 analysts); Q1 2026 revenue beat.</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">AMD</span></td>
+      <td><span class="tag good">BULLISH</span></td>
+      <td>+13.26%; Oppenheimer 'Outperform' $600 (Sun); Q3 DC revenue $8.55B +97%, Q4 guide ~$17B.</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">MRVL</span></td>
+      <td><span class="tag warn">NEUTRAL</span></td>
+      <td>+9.49% on Lumentum $115B all-stock deal, but BofA cut to Neutral $225, TD Cowen to Hold $175, RBC $250 Outperform, Needham $300 — integration risk.</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">AVGO</span></td>
+      <td><span class="tag good">BULLISH</span></td>
+      <td>+8.78%, best day in nearly a year (closed $319.48); Google TPU tie-in; SOX-led rebound — Nvidia exception on Huang investigation news.</td>
+    </tr>
+
+    <tr>
+      <td><span class="font-mono">ADBE</span></td>
+      <td><span class="tag bad">BEARISH</span></td>
+      <td>–0.83%; down ~28% in 2026; mean PT $272.31 (39 analysts) vs current levels — AI monetization pressure.</td>
+    </tr></tbody>
+    </table>
+    <p class="text-muted" style="font-size:11px;">Signals combine Moomoo price action with cited analyst/social sources. Not investment advice.</p>
+  </section>
+
+  <section class="card">
+    <h2>📋 市场中文摘要</h2>
+    <div class="zh">
+      <p>周一美股人工智能与半导体板块强劲反弹，费城半导体指数（SOX）录得自 7 月末以来最大单日涨幅（+6.9%），纳斯达克 100 上涨 3.4%（Axios）。英伟达因 CEO 黄仁勋调查新闻例外走弱，资金转向博通（AVGO +8.78%，近一年最佳单日表现、收盘 $319.48）、AMD（+13.26%，Oppenheimer 上调至“跑赢大盘”，目标价 $600）、Marvell（+9.49%）与 Arista（+9.00%）。Adobe 逆势下跌（–0.83%，年内累计下跌约 28%）。</p>
+      <p>持仓方面，TSM、NOK、MRVL、INTC、DELL、CBRS、AMD 全部波动超过 3%，已逐一列入组合警报（HOLD / REVIEW）。Moomoo OpenD 行情为 15 分钟延迟数据；分析师观点与社交情绪来自 Yahoo Finance、Axios、Charles Schwab、Stocktwits 等公开来源，均已标注出处，未编造任何行情数据。</p>
+    </div>
+  </section>
+
+  <section class="disclaimer">
+    <strong>免责声明 / Disclaimer</strong><br>
+    本报告由 Hermes Agent 自动生成，仅供信息参考，不构成投资建议、要约或推荐。行情数据来自 Moomoo OpenD（15 分钟延迟），可能存在延迟或不准确；分析师评级、目标价及社交媒体情绪引用自公开网络来源，可能滞后或失效。投资有风险，入市须谨慎，请在自行判断后操作，Hermes Agent 不对因使用本报告导致的任何损失负责。<br><br>
+    This report is auto-generated by Hermes Agent for informational purposes only and does not constitute investment advice, an offer, or a recommendation. Market data is sourced from Moomoo OpenD (15-minute delayed) and may be delayed or inaccurate; analyst ratings, price targets and social sentiment are cited from public web sources and may be stale or outdated. Investing involves risk; please make your own decisions. Hermes Agent accepts no liability for any losses arising from the use of this report.
+  </section>
+
+  <footer class="report-footer">
+    <span>Generated by Hermes Agent · Moomoo OpenD Real-Time · SGT 2026-11-13</span>
+    <span>11:27 SGT · 15-minute delayed data</span>
+  </footer>
 </div>
 </body>
 </html>
